@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+redis-server --daemonize yes
+overmind s -f Procfile.dev

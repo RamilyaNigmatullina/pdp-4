@@ -1,0 +1,5 @@
+export_i18n_js: :none
+
+translations:
+  - file: "frontend/vendor/translations.js"
+    only: <%= YAML.load_file("config/i18n-js-keys.yml") %>

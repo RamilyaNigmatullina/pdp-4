@@ -1,0 +1,147 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+Rails:
+  Enabled: true
+
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - bin/**/*
+    - db/**/*
+    - public/**/*
+    - tmp/**/*
+    - vendor/**/*
+    - node_modules/**/*
+    - frontend/**/*
+
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+
+Layout/AlignHash:
+  EnforcedLastArgumentHashStyle: ignore_implicit
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/AlignArguments:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/ClassStructure:
+  Enabled: true
+  ExpectedOrder:
+     - module_inclusion
+     - constants
+     - association
+     - public_attribute_macros
+     - public_delegate
+     - macros
+     - public_class_methods
+     - initializer
+     - public_methods
+     - protected_attribute_macros
+     - protected_methods
+     - private_attribute_macros
+     - private_delegate
+     - private_methods
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Max: 200
+
+Metrics/ModuleLength:
+  Max: 200
+
+Metrics/MethodLength:
+  Max: 20
+
+Style/Documentation:
+  Enabled: false
+
+Style/MethodCalledOnDoEndBlock:
+  Enabled: true
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  ConsistentQuotesInMultiline: true
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/MixinGrouping:
+  EnforcedStyle: grouped
+
+Style/AutoResourceCleanup:
+  Enabled: true
+
+Style/ImplicitRuntimeError:
+  Enabled: true
+
+Rails/ActiveSupportAliases:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Capybara/FeatureMethods:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/RepeatedDescription:
+  Enabled: false
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
+RSpec/ImplicitSubject:
+  Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Exclude:
+    - spec/acceptance/**/*
+
+RSpec/NestedGroups:
+  Max: 5
+
+RSpec/SharedExamples:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Exclude:
+    - spec/features/**/*
+  Enabled: true
+
+RSpec/SubjectStub:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/ContextWording:
+  Exclude:
+    - spec/_support/shared/contexts/**/*
+  Prefixes:
+    - when
+    - with
+    - without
+    - if
+    - and
+    - but

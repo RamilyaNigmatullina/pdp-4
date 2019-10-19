@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+set -e
+
+BUNDLE_PATH=".bundle"
+
+bundle check --path $BUNDLE_PATH > /dev/null 2>&1 ||
+  bundle install --path=$BUNDLE_PATH $BUNDLER_ARGS
+
+bin/yarn install
+
+# Setup configurable environment variables
+if [ ! -f .env ]; then
+  cp .env.example .env
+fi
+
+# Setup database and add any development seed data
+bin/rails db:prepare
+
+# Clean log files and tmp directory
+bin/rails log:clear tmp:clear
+
+# Setup commit message hooks
+if [ ! -f .git/hooks/commit-msg ]; then
+  cp .github/commit-msg.example .git/hooks/commit-msg
+fi

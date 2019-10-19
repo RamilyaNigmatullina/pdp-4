@@ -1,0 +1,7 @@
+@import './variables';
+
+abbr[title] {
+  color: $error;
+  padding-left: 3px;
+  text-decoration: none;
+}

@@ -1,0 +1,5 @@
+en:
+  simple_form:
+    placeholders:
+      message:
+        text: Type text...

@@ -1,0 +1,16 @@
+<ul>
+  <% users.each do |user| %>
+    <li class="row">
+      <div class="col">
+        <%= user.full_name %>
+      </div>
+      <div class="col">
+        <% if current_user.chat_with(user: user).nil? %>
+          <%= button_to "+", chats_path, params: { chat: { user_id: user.id } } %>
+        <% else %>
+          <%= link_to "+", chat_path(current_user.chat_with(user: user)) %>
+        <% end %>
+      </div>
+    </li>
+  <% end %>
+</ul>

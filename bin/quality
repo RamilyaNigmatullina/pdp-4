@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+set -e
+
+bin/rubocop -D
+bin/fasterer
+bin/brakeman --quiet --skip-libs
+
+bin/bundler-audit update
+
+yarn eslint
+yarn stylelint

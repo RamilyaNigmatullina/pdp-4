@@ -1,0 +1,8 @@
+en:
+  actions:
+    destroy: destroy
+    edit: edit
+    new: +
+    show: show
+  navigation_bar:
+    profile: Profile

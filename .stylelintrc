@@ -1,0 +1,17 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-order"
+  ],
+  "rules": {
+    "at-rule-no-unknown": null,
+    "selector-pseudo-class-no-unknown": [true, {
+      ignorePseudoClasses: ["global"]
+    }],
+    "order/order": [
+      "custom-properties",
+      "declarations"
+    ],
+    "order/properties-alphabetical-order": true
+  }
+}
