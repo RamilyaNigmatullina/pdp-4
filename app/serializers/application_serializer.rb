@@ -1,2 +1,2 @@
-class ApplicationSerializer < Panko::Serializer
+class ApplicationSerializer < ActiveModel::Serializer
 end

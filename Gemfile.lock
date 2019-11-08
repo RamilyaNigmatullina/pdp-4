@@ -41,6 +41,11 @@ GEM
     active_link_to (1.0.5)
       actionpack
       addressable
+    active_model_serializers (0.10.10)
+      actionpack (>= 4.1, < 6.1)
+      activemodel (>= 4.1, < 6.1)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activejob (6.0.0)
       activesupport (= 6.0.0)
       globalid (>= 0.3.6)
@@ -67,6 +72,10 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.0)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcrypt (3.1.13)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
@@ -86,6 +95,8 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    case_transform (0.2)
+      activesupport
     childprocess (3.0.0)
     coderay (1.1.2)
     colorize (0.8.1)
@@ -122,6 +133,7 @@ GEM
     erubi (1.9.0)
     et-orbi (1.2.2)
       tzinfo
+    execjs (2.7.0)
     factory_bot (5.1.1)
       activesupport (>= 4.2.0)
     factory_bot_rails (5.1.1)
@@ -148,6 +160,7 @@ GEM
       ruby-vips (>= 2.0.13, < 3)
     interactor (3.1.1)
     jaro_winkler (1.5.3)
+    jsonapi-renderer (0.2.2)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -185,10 +198,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
-    oj (3.9.2)
     orm_adapter (0.5.0)
-    panko_serializer (0.7.0)
-      oj (~> 3.9.0)
     parallel (1.18.0)
     parser (2.6.5.0)
       ast (~> 2.4.0)
@@ -243,6 +253,12 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    react-rails (2.6.0)
+      babel-transpiler (>= 0.7.0)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
     redis (4.1.3)
     regexp_parser (1.6.0)
     request_store (1.4.1)
@@ -362,6 +378,7 @@ PLATFORMS
 DEPENDENCIES
   action_policy
   active_link_to
+  active_model_serializers
   bootsnap (>= 1.1.0)
   brakeman
   bullet
@@ -383,12 +400,12 @@ DEPENDENCIES
   kaminari
   letter_opener
   listen
-  panko_serializer
   pg (= 1.1.4)
   pry-rails
   puma (= 4.2.1)
   rails (= 6.0.0)
   rails-i18n
+  react-rails
   rspec-rails (= 4.0.0.beta3)
   rspec-sidekiq
   rspec_api_documentation
