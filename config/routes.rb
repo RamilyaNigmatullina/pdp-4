@@ -8,4 +8,9 @@ Rails.application.routes.draw do
   end
   resources :users, only: :index
   resource :profile, only: %i[edit update]
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+    end
+  end
 end

@@ -8,6 +8,7 @@ gem "puma", "4.2.1"
 gem "rails", "6.0.0"
 
 # assets
+gem "react-rails"
 gem "webpacker"
 
 # views
@@ -20,6 +21,7 @@ gem "sidekiq-scheduler"
 
 # all other gems
 gem "action_policy"
+gem "active_model_serializers"
 gem "bootsnap", ">= 1.1.0", require: false
 gem "decent_decoration"
 gem "decent_exposure"
@@ -30,7 +32,6 @@ gem "i18n-js"
 gem "image_processing"
 gem "interactor"
 gem "kaminari"
-gem "panko_serializer"
 gem "rails-i18n"
 gem "seedbank"
 

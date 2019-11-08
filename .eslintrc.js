@@ -14,9 +14,11 @@ module.exports = {
   },
   extends: [
     'airbnb-base',
+    'plugin:react/recommended',
     'plugin:jest/recommended',
   ],
   plugins: [
+    'react',
     'jest',
   ],
   settings: {
@@ -26,9 +28,7 @@ module.exports = {
       },
     },
   },
-  globals: {
-    'I18n': true,
-  },
+  globals: {},
   rules: {
     'import/extensions': ['error', 'always', {
       js: 'never',

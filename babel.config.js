@@ -20,6 +20,12 @@ module.exports = function babelConfig(api) {
         exclude: ['transform-typeof-symbol'],
       },
     ],
+    [
+      '@babel/react', {
+        development: isDevelopmentEnv || isTestEnv,
+        useBuiltIns: true,
+      },
+    ],
   ];
 
   const plugins = [
@@ -31,6 +37,7 @@ module.exports = function babelConfig(api) {
     ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
     ['@babel/plugin-transform-runtime', { helpers: false, regenerator: true, corejs: false }],
     ['@babel/plugin-transform-regenerator', { async: false }],
+    isProductionEnv && ['babel-plugin-transform-react-remove-prop-types', { removeImport: true }],
   ];
 
   return {
