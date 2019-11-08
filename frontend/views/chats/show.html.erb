@@ -1,25 +1,6 @@
-<div class="chat">
-  <%= interlocutor.full_name %>
-
-  <div class="messages">
-    <% messages.each do |message| %>
-      <% if current_user.id == message.sender_id %>
-        <div class="<%= "message message--current-user" %>">
-          <span class="message__text"><%= message.text %></span>
-          <%= image_tag current_user.avatar, class: "rounded-circle", size: "32x32" %>
-        </div>
-      <% else %>
-        <div class="<%= "message message--interlocutor" %>">
-          <%= image_tag interlocutor.avatar, class: "rounded-circle", size: "32x32" %>
-          <span class="message__text"><%= message.text %></span>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-
-  <%= simple_form_for(:message, url: chat_messages_path(chat), html: { class: "message-form" }) do |f| %>
-    <%= f.input :text, as: :string, label: false, wrapper_html: { class: "message-form__text" } %>
-
-    <%= f.button :submit, ">", class: "message-form__button" %>
-  <% end %>
-</div>
+<%= render_react_component("Chat", {
+  currentUser: UserSerializer.new(current_user).as_json,
+  interlocutor: UserSerializer.new(chat.interlocutor).as_json,
+  chat: ChatSerializer.new(chat).as_json,
+  messages: ActiveModel::Serializer::CollectionSerializer.new(chat.messages.order(created_at: :desc), serializer: MessageSerializer).to_a
+}) %>
