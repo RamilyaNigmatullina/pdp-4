@@ -25,14 +25,14 @@ class MessageForm extends React.Component {
 
   render() {
     return (
-      <form className="simple_form message-form" method="post" onSubmit={this.hadleSubmit.bind(this)}>
+      <form className="simple_form message-form" method="post" onSubmit={this.handleSubmit}>
         { this.renderTextarea() }
         <button className="btn btn-primary message-form__buttom">Send</button>
       </form>
     );
   }
 
-  hadleSubmit = (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
