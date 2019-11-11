@@ -1,0 +1,13 @@
+.message-form {
+  display: flex;
+  margin: 8px 0;
+
+  .message-form__text {
+    margin: 0 16px 0 0;
+    width: 100%;
+  }
+
+  .message-form__button {
+    height: 38px;
+  }
+}
