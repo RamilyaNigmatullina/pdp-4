@@ -41,10 +41,10 @@ class MessageForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const text = this.textInput.current.value;
+    const formData = new FormData(event.target);
     const url = event.target.action;
 
-    createMessage(url, text)
+    createMessage(url, formData)
       .then((response) => {
         this.textInput.current.value = '';
 

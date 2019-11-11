@@ -3,7 +3,7 @@ module RequestedData
 
   included do
     def response_fields
-      params[:fields] 
+      params[:fields]&.split(",")
     end
   end
 end
