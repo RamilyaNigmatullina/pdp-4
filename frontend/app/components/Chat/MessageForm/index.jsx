@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import { createMessage } from '../api/index';
 
 class MessageForm extends React.Component {
   constructor(props) {
@@ -25,7 +25,13 @@ class MessageForm extends React.Component {
 
   render() {
     return (
-      <form className="simple_form message-form" method="post" onSubmit={this.handleSubmit}>
+      <form
+        className="simple_form message-form"
+        method="post"
+        action={`/api/v1/chats/${this.props.chatId}/messages`}
+        onSubmit={this.handleSubmit}
+      >
+
         { this.renderTextarea() }
         <button className="btn btn-primary message-form__buttom">Send</button>
       </form>
@@ -35,14 +41,15 @@ class MessageForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const formData = new FormData(event.target);
+    const text = this.textInput.current.value;
+    const url = event.target.action;
 
-    axios.post(
-      `/api/v1/chats/${this.props.chatId}/messages`,
-      formData,
-    ).then(() => {
-      this.textInput.current.value = '';
-    });
+    createMessage(url, text)
+      .then((response) => {
+        this.textInput.current.value = '';
+
+        return response.data;
+      });
   }
 }
 

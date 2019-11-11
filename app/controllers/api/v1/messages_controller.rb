@@ -7,7 +7,7 @@ module Api
       def create
         message.save
 
-        respond_with message, location: nil
+        respond_with message, location: nil, fields: response_fields
       end
 
       private
