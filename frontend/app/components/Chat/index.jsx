@@ -1,13 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import consumer from 'helpers/consumer';
 import Message from './Message';
 import MessageForm from './MessageForm';
 
 class Chat extends React.Component {
-  renderMessages() {
-    const { interlocutor, currentUser, messages } = this.props;
+  state = {
+    messages: this.props.messages,
+  };
 
-    return messages.map((message) => {
+  componentDidMount() {
+    consumer.subscriptions.create({
+      channel: 'ChatChannel',
+      chat_id: this.props.chat.id,
+    }, {
+      received: this.handleReceived,
+    });
+  }
+
+  renderMessages() {
+    const { interlocutor, currentUser } = this.props;
+
+    return this.state.messages.map((message) => {
       const isCurrentUserMessage = currentUser.id === message.sender_id;
       const avatarUrl = isCurrentUserMessage ? currentUser.avatar : interlocutor.avatar;
 
@@ -32,6 +46,10 @@ class Chat extends React.Component {
         { <MessageForm chatId={this.props.chat.id} /> }
       </div>
     );
+  }
+
+  handleReceived = (message) => {
+    this.setState(({ messages }) => ({ messages: [message, ...messages] }));
   }
 }
 
