@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
+import 'form-serializer';
 import { createMessage } from '../api/index';
 
 class MessageForm extends React.Component {
@@ -41,14 +43,11 @@ class MessageForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const formData = new FormData(event.target);
-    const url = event.target.action;
+    const formData = $(event.target).serializeObject();
 
-    createMessage(url, formData)
-      .then((response) => {
+    createMessage(this.props.chatId, formData)
+      .then(() => {
         this.textInput.current.value = '';
-
-        return response.data;
       });
   }
 }

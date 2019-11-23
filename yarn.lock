@@ -3905,6 +3905,11 @@ form-data@~2.3.2:
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
 
+form-serializer@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/form-serializer/-/form-serializer-2.5.0.tgz#caea2facbc1bcee7f655d9136707133f3facb5a3"
+  integrity sha1-yuovrLwbzuf2VdkTZwcTPz+staM=
+
 forwarded@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
