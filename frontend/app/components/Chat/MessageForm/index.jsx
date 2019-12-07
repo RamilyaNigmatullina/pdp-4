@@ -35,7 +35,7 @@ class MessageForm extends React.Component {
       >
 
         { this.renderTextarea() }
-        <button className="btn btn-primary message-form__buttom">Send</button>
+        <button className="btn btn-primary message-form__button">Send</button>
       </form>
     );
   }
@@ -44,7 +44,6 @@ class MessageForm extends React.Component {
     event.preventDefault();
 
     const formData = $(event.target).serializeObject();
-
     createMessage(this.props.chatId, formData)
       .then(() => {
         this.textInput.current.value = '';

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message renders message 1`] = `
+<div
+  className="message message--current-user"
+>
+  <span
+    className="message__text"
+  >
+    Hello world!
+  </span>
+  <img
+    className="rounded-circle"
+    height="32"
+    src="/avatar.jpg"
+    width="32"
+  />
+</div>
+`;
+
+exports[`Message with interlocator message renders message 1`] = `
+<div
+  className="message message--interlocutor"
+>
+  <img
+    className="rounded-circle"
+    height="32"
+    src="/avatar.jpg"
+    width="32"
+  />
+  <span
+    className="message__text"
+  >
+    Hello world!
+  </span>
+</div>
+`;

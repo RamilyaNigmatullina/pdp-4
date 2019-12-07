@@ -37,10 +37,10 @@ class Chat extends React.Component {
   render() {
     return (
       <div className="chat">
-        {this.props.interlocutor.full_name}
+        { this.props.interlocutor.full_name }
 
         <div className="messages">
-          {this.renderMessages()}
+          { this.renderMessages() }
         </div>
 
         { <MessageForm chatId={this.props.chat.id} /> }
