@@ -16,7 +16,7 @@ class MessageForm extends React.Component {
       <div className="form-group text message-form__text">
         <textarea
           ref={this.textInput}
-          className="form-control message-form__textarea"
+          className="form-control"
           rows="1"
           placeholder="Type text..."
           name="message[text]"
@@ -44,10 +44,9 @@ class MessageForm extends React.Component {
     event.preventDefault();
 
     const formData = $(event.target).serializeObject();
-    console.log(123);
     createMessage(this.props.chatId, formData)
       .then(() => {
-        this.textInput.current.value = 'hello';
+        this.textInput.current.value = '';
       });
   }
 }
