@@ -9,10 +9,11 @@ class Message extends React.Component {
       'message--current-user': isCurrentUserMessage,
       'message--interlocutor': !isCurrentUserMessage,
     });
+
     return (
       <div className={messageClasses}>
         { !isCurrentUserMessage && <img className="rounded-circle" src={avatarUrl} width="32" height="32" /> }
-        <span className="message__text">{message.text}</span>
+        <span className="message__text">{ message.text }</span>
         { isCurrentUserMessage && <img className="rounded-circle" src={avatarUrl} width="32" height="32" /> }
       </div>
     );

@@ -62,6 +62,7 @@ module.exports = {
   moduleDirectories: [
     'node_modules',
     'frontend',
+    'frontend/app',
   ],
 
   // An array of file extensions your modules use
@@ -73,7 +74,9 @@ module.exports = {
   // ],
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
+  moduleNameMapper: {
+    '\\.(css|scss)$': 'identity-obj-proxy',
+  },
 
   // An array of regexp pattern strings, matched against all module paths
   // before considered 'visible' to the module loader
@@ -119,14 +122,14 @@ module.exports = {
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
   setupFiles: [
-    '<rootDir>/test/setup.js',
+    '<rootDir>/config/tests/setup.js',
   ],
 
   // The path to a module that runs some code to configure or set up the testing framework before each test
   // setupTestFrameworkScriptFile: null,
 
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
-  // snapshotSerializers: [],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
 
   // The test environment that will be used for testing
   testEnvironment: 'jest-environment-jsdom',
