@@ -32,6 +32,7 @@
     "rails-ujs": "^5.2.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-waypoint": "^9.0.2",
     "react_ujs": "^2.6.0",
     "turbolinks": "^5.2.0",
     "webpack": "^4.30.0"

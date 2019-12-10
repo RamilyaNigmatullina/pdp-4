@@ -11,7 +11,7 @@ class Message extends React.Component {
     });
 
     return (
-      <div className={messageClasses}>
+      <div className={messageClasses} id={`message-${message.id}`}>
         { !isCurrentUserMessage && <img className="rounded-circle" src={avatarUrl} width="32" height="32" /> }
         <span className="message__text">{ message.text }</span>
         { isCurrentUserMessage && <img className="rounded-circle" src={avatarUrl} width="32" height="32" /> }
