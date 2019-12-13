@@ -21,9 +21,9 @@ class Message extends React.Component {
 }
 
 Message.propTypes = {
-  avatarUrl: PropTypes.string,
-  isCurrentUserMessage: PropTypes.bool,
-  message: PropTypes.object,
+  avatarUrl: PropTypes.string.isRequired,
+  isCurrentUserMessage: PropTypes.bool.isRequired,
+  message: PropTypes.object.isRequired,
 };
 
 export default Message;

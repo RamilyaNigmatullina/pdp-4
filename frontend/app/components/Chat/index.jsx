@@ -75,10 +75,10 @@ class Chat extends React.Component {
 }
 
 Chat.propTypes = {
-  interlocutor: PropTypes.object,
-  currentUser: PropTypes.object,
-  messages: PropTypes.array,
-  chat: PropTypes.object,
+  interlocutor: PropTypes.object.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  messages: PropTypes.array.isRequired,
+  chat: PropTypes.object.isRequired,
 };
 
 export default Chat;

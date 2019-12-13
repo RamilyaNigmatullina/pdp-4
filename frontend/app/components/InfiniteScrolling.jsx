@@ -27,10 +27,10 @@ class InfiniteScrolling extends React.Component {
 }
 
 InfiniteScrolling.propTypes = {
-  isLastPage: PropTypes.bool,
-  items: PropTypes.array,
-  loadItems: PropTypes.func,
-  renderItem: PropTypes.func,
+  isLastPage: PropTypes.bool.isRequired,
+  items: PropTypes.array.isRequired,
+  loadItems: PropTypes.func.isRequired,
+  renderItem: PropTypes.func.isRequired,
 };
 
 export default InfiniteScrolling;

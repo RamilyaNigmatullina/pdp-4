@@ -6,7 +6,7 @@ module Api
       expose_decorated :messages, :fetch_messages
 
       def index
-        respond_with messages, each_serializer: MessageSerializer
+        respond_with messages, each_serializer: MessageSerializer, fields: response_fields
       end
 
       def create

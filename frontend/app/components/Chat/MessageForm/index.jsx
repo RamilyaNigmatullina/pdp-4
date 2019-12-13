@@ -52,7 +52,7 @@ class MessageForm extends React.Component {
 }
 
 MessageForm.propTypes = {
-  chatId: PropTypes.number,
+  chatId: PropTypes.number.isRequired,
 };
 
 export default MessageForm;
