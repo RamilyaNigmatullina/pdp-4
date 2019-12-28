@@ -3,8 +3,8 @@ module CompanyRegistration
     include Interactor::Organizer
 
     organize \
-      CompanyRegistration::FindUser,
-      CompanyRegistration::CreateUser,
-      CompanyRegistration::CreateCompany
+      CompanyRegistration::PrepareParams,
+      CompanyRegistration::CreateCompany,
+      CompanyRegistration::CreateUser
   end
 end

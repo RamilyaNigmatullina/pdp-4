@@ -2,8 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable, :lockable
 
-  has_many :employees
-  has_many :companies, through: :employees
+  belongs_to :company
+
   has_many :first_user_chats, class_name: "Chat", foreign_key: :first_user_id,
             inverse_of: :first_user, dependent: :destroy
   has_many :second_user_chats, class_name: "Chat", foreign_key: :second_user_id,

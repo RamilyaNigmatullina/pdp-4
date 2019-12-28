@@ -1,8 +1,7 @@
 class Company < ApplicationRecord
-  belongs_to :admin, class_name: "User"
+  has_many :users
 
-  has_many :employees
-  has_many :users, through: :employees
+  has_one :admin, -> { where(role: "admin") }, class_name: "User"
 
   validates :name, :slug, presence: true
 

@@ -9,7 +9,6 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    binding.pry
     company.save
 
     respond_with company

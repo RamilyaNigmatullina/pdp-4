@@ -2,20 +2,16 @@ module CompanyRegistration
   class CreateUser
     include Interactor
 
-    delegate :company_params, :user, to: :context
+    delegate :user_params, :company, to: :context
 
     def call
-      return if user
-
-      context.user = create_user
-
       context.fail!(error: error) if user.invalid?
     end
 
     private
 
-    def create_user
-      User.create(company_params[:admin_attributes])
+    def user
+      @user ||= company.users.create(user_params)
     end
 
     def error

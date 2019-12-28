@@ -5,16 +5,19 @@ module CompanyRegistration
     delegate :company_params, to: :context
 
     def call
-      company.assign_attributes(prepared_company_params)
+      context.company = company
+
+      context.fail!(error: error) if company.invalid?
     end
 
     private
 
-    def prepared_company_params
-      company_params.tap do |params|
-        params[:admin_id] = user.id
-        params.delete(:admin_attributes)
-      end
+    def company
+      @company ||= Company.create(company_params)
+    end
+
+    def error
+      company.errors.full_messages.join(", ")
     end
   end
 end
