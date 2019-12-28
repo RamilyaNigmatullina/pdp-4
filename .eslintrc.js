@@ -28,6 +28,8 @@ module.exports = {
   },
   globals: {
     'I18n': true,
+    '$': true,
+    'jQuery': true,
   },
   rules: {
     'import/extensions': ['error', 'always', {

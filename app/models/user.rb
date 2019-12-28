@@ -2,6 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable, :lockable
 
+  has_many :employees
+  has_many :companies, through: :employees
   has_many :first_user_chats, class_name: "Chat", foreign_key: :first_user_id,
             inverse_of: :first_user, dependent: :destroy
   has_many :second_user_chats, class_name: "Chat", foreign_key: :second_user_id,
@@ -10,6 +12,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   validates :full_name, presence: true
+  validates :email, presence: true, format: { with: Devise.email_regexp }
 
   def chats
     first_user_chats.or(second_user_chats)

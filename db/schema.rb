@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_152851) do
+ActiveRecord::Schema.define(version: 2019_10_24_214318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,21 @@ ActiveRecord::Schema.define(version: 2019_09_12_152851) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["first_user_id", "second_user_id"], name: "index_chats_on_first_user_id_and_second_user_id", unique: true
     t.index ["second_user_id", "first_user_id"], name: "index_chats_on_second_user_id_and_first_user_id", unique: true
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.bigint "admin_id"
+    t.index ["admin_id"], name: "index_companies_on_admin_id"
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "company_id"
+    t.string "role", default: "employee", null: false
+    t.index ["company_id"], name: "index_employees_on_company_id"
+    t.index ["user_id"], name: "index_employees_on_user_id"
   end
 
   create_table "identities", force: :cascade do |t|
@@ -84,6 +99,7 @@ ActiveRecord::Schema.define(version: 2019_09_12_152851) do
     t.datetime "locked_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "role", default: "user", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -93,6 +109,7 @@ ActiveRecord::Schema.define(version: 2019_09_12_152851) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chats", "users", column: "first_user_id"
   add_foreign_key "chats", "users", column: "second_user_id"
+  add_foreign_key "companies", "users", column: "admin_id"
   add_foreign_key "identities", "users"
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users", column: "sender_id"
