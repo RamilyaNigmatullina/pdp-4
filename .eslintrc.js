@@ -14,9 +14,11 @@ module.exports = {
   },
   extends: [
     'airbnb-base',
+    'plugin:react/recommended',
     'plugin:jest/recommended',
   ],
   plugins: [
+    'react',
     'jest',
   ],
   settings: {
@@ -53,5 +55,7 @@ module.exports = {
     'class-methods-use-this': [0],
     'object-curly-newline': [0],
     'function-paren-newline': [0],
+    'react/prop-types': [2, { ignore: ['children'] }],
+    'react/jsx-curly-spacing': [2, { 'when': 'never', 'children': { 'when': 'always' } }]
   },
 };

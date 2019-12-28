@@ -9,4 +9,12 @@ Rails.application.routes.draw do
   end
   resources :users, only: :index
   resource :profile, only: %i[edit update]
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :chats, only: [] do
+        resources :messages, only: %i[create]
+      end
+    end
+  end
 end
