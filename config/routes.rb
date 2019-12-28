@@ -4,9 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :companies, only: %i[show new create]
-  resources :chats, only: %i[create show] do
-    resources :messages, only: %i[create]
-  end
+  resources :chats, only: %i[create show]
   resources :users, only: :index
   resource :profile, only: %i[edit update]
 
