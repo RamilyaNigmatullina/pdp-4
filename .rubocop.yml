@@ -20,13 +20,13 @@ AllCops:
 Layout/EndAlignment:
   EnforcedStyleAlignWith: variable
 
-Layout/AlignHash:
+Layout/HashAlignment:
   EnforcedLastArgumentHashStyle: ignore_implicit
 
-Layout/AlignParameters:
+Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
 
-Layout/AlignArguments:
+Layout/ArgumentAlignment:
   EnforcedStyle: with_fixed_indentation
 
 Layout/ClassStructure:
@@ -47,7 +47,7 @@ Layout/ClassStructure:
      - private_delegate
      - private_methods
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
 
 Metrics/BlockLength:
@@ -91,6 +91,12 @@ Style/ImplicitRuntimeError:
   Enabled: true
 
 Rails/ActiveSupportAliases:
+  Enabled: false
+
+Rails/ApplicationController:
+  Enabled: false
+
+Rails/FilePath:
   Enabled: false
 
 Rails/SkipsModelValidations:

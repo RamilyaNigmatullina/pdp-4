@@ -4,36 +4,8 @@
       <h2>Register your company</h2>
 
       <%= simple_form_for company do |f| %>
-        <div class="personal-info">
-          <h4>Personal Info</h4>
-
-          <div class="personal-info__inputs">
-            <%= f.simple_fields_for :admin do |a| %>
-              <%= a.input :full_name, autofocus: true %>
-              <%= a.input :email, input_html: { autocomplete: "email" } %>
-              <%= a.input :password, input_html: { autocomplete: "new-password" } %>
-              <%= a.input :password_confirmation, input_html: { autocomplete: "new-password" } %>
-            <% end %>
-          </div>
-
-          <div class="form-actions">
-            <%= link_to "Next step", "#", class: "float-right btn btn-primary company-info-link" %>
-          </div>
-        </div>
-
-        <div class="company-info d-none">
-          <h4>Company Info</h4>
-
-          <div class="company-info__inputs">
-            <%= f.input :name, autofocus: true %>
-            <%= f.input :slug %>
-          </div>
-
-          <div class="form-actions">
-            <%= link_to "Previous step", "#", class: "previous-step-link btn btn-primary personal-info-link" %>
-            <%= f.button :submit, "Sign up", class: "float-right" %>
-          </div>
-        </div>
+        <%= render "company_form", f: f, step: step %>
+        <%= render "admin_form", f: f, step: step %>
       <% end %>
     </div>
   </div>

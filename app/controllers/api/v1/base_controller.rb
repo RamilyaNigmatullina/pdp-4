@@ -1,8 +1,9 @@
 module Api
   module V1
     class BaseController < ActionController::Base
-      include Authentication
-      include RequestedData
+      include \
+        Authentication,
+        RequestedData
 
       protect_from_forgery with: :exception
 

@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   validates :full_name, presence: true
-  validates :email, presence: true, format: { with: Devise.email_regexp }
+  validates :role, length: { maximum: 15 }
 
   def chats
     first_user_chats.or(second_user_chats)

@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 2019_12_28_184340) do
   end
 
   create_table "companies", force: :cascade do |t|
-    t.string "name"
-    t.string "slug"
+    t.string "name", limit: 255
+    t.string "slug", limit: 50
   end
 
   create_table "identities", force: :cascade do |t|
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2019_12_28_184340) do
     t.datetime "locked_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "role", default: "employee", null: false
+    t.string "role", limit: 15, default: "employee", null: false
     t.bigint "company_id"
     t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

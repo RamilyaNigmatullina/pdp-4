@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :companies, only: %i[show new create]
+  resources :companies, only: %i[new create show]
   resources :chats, only: %i[create show]
   resources :users, only: :index
   resource :profile, only: %i[edit update]
