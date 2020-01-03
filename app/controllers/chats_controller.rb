@@ -1,6 +1,6 @@
 class ChatsController < ApplicationController
   expose_decorated :chat
-  expose_decorated :messages, :fetch_message
+  expose_decorated :messages, :fetch_messages
   expose_decorated :interlocutor, from: :chat, decorator: UserDecorator
 
   def create
@@ -24,7 +24,7 @@ class ChatsController < ApplicationController
     params.require(:chat).permit(:user_id)
   end
 
-  def fetch_message
-    chat.messages.order(created_at: :desc)
+  def fetch_messages
+    chat.messages.order(created_at: :desc).page(1)
   end
 end
