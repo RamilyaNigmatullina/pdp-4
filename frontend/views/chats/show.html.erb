@@ -2,5 +2,5 @@
   currentUser: UserSerializer.new(current_user).as_json,
   interlocutor: UserSerializer.new(chat.interlocutor).as_json,
   chat: ChatSerializer.new(chat).as_json,
-  messages: ActiveModel::Serializer::CollectionSerializer.new(chat.messages.order(created_at: :desc), serializer: MessageSerializer).to_a
+  messages: ActiveModel::Serializer::CollectionSerializer.new(messages, serializer: MessageSerializer).to_a
 }) %>

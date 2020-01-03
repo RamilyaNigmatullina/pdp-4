@@ -11,7 +11,7 @@ class Message extends React.Component {
     });
 
     return (
-      <div className={messageClasses}>
+      <div className={messageClasses} id={`message-${message.id}`}>
         { !isCurrentUserMessage && <img className="rounded-circle" src={avatarUrl} width="32" height="32" /> }
         <span className="message__text">{ message.text }</span>
         { isCurrentUserMessage && <img className="rounded-circle" src={avatarUrl} width="32" height="32" /> }
@@ -21,9 +21,9 @@ class Message extends React.Component {
 }
 
 Message.propTypes = {
-  avatarUrl: PropTypes.string,
-  isCurrentUserMessage: PropTypes.bool,
-  message: PropTypes.object,
+  avatarUrl: PropTypes.string.isRequired,
+  isCurrentUserMessage: PropTypes.bool.isRequired,
+  message: PropTypes.object.isRequired,
 };
 
 export default Message;
