@@ -21,14 +21,6 @@ describe CreateCompany do
 
       before { create :company, slug: "fs" }
 
-      # before do
-      #   user = build :user
-      #   another_company = build :company, admin: user, slug: "fs"
-      #   user.company = another_company
-      #
-      #   another_company.save
-      # end
-
       it "doesn't create company" do
         expect { create_company }.not_to change(Company, :count)
         expect(create_company.step).to eq(1)
