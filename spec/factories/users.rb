@@ -5,6 +5,11 @@ FactoryBot.define do
     password { "123456" }
     password_confirmation { password }
     confirmed_at { 1.hour.ago }
+    company
+
+    trait :admin do
+      role { "admin" }
+    end
 
     trait :not_confirmed do
       confirmed_at { nil }
@@ -13,5 +18,7 @@ FactoryBot.define do
         user.update(confirmation_sent_at: 3.days.ago)
       end
     end
+
+    factory :admin, traits: [:admin]
   end
 end

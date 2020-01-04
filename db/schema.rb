@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_152851) do
+ActiveRecord::Schema.define(version: 2019_12_28_184340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,11 @@ ActiveRecord::Schema.define(version: 2019_09_12_152851) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["first_user_id", "second_user_id"], name: "index_chats_on_first_user_id_and_second_user_id", unique: true
     t.index ["second_user_id", "first_user_id"], name: "index_chats_on_second_user_id_and_first_user_id", unique: true
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name", limit: 255
+    t.string "slug", limit: 50
   end
 
   create_table "identities", force: :cascade do |t|
@@ -84,6 +89,9 @@ ActiveRecord::Schema.define(version: 2019_09_12_152851) do
     t.datetime "locked_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "role", limit: 15, default: "employee", null: false
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

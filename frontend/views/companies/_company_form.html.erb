@@ -1,0 +1,12 @@
+<div class="<%= step == 1 ? 'company-info' : 'company-info d-none' %>">
+  <h4>Company Info</h4>
+
+  <div class="company-info__inputs">
+    <%= f.input :name, autofocus: true %>
+    <%= f.input :slug %>
+  </div>
+
+  <div class="form-actions">
+    <button class="float-right btn btn-primary company-info-link">Next step</button>
+  </div>
+</div>
