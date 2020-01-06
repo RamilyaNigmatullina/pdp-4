@@ -7,7 +7,8 @@ Rails.application.routes.draw do
     resources :chats, only: %i[create show]
     resources :users, only: :index
     resource :profile, only: %i[edit update]
-  end 
+    resource :company, only: %i[edit update]
+  end
 
   scope module: :public do
     root to: "pages#index", as: :public_root
