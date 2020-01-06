@@ -4,7 +4,7 @@ class Company < ApplicationRecord
   has_one :admin, -> { where(role: "admin") }, class_name: "User", inverse_of: :company
 
   validates :admin, presence: true
-  validates :slug, length: { maximum: 50 }, uniqueness: true
+  validates :slug, presence: true, uniqueness: { case_sensitive: false }, subdomain: true
   validates :name, length: { maximum: 255 }
 
   accepts_nested_attributes_for :admin

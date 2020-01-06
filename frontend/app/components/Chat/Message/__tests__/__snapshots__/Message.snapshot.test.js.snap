@@ -3,6 +3,7 @@
 exports[`Message renders message 1`] = `
 <div
   className="message message--current-user"
+  id="message-1"
 >
   <span
     className="message__text"
@@ -21,6 +22,7 @@ exports[`Message renders message 1`] = `
 exports[`Message with interlocator message renders message 1`] = `
 <div
   className="message message--interlocutor"
+  id="message-1"
 >
   <img
     className="rounded-circle"

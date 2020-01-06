@@ -1,4 +1,4 @@
-class ChatsController < ApplicationController
+class ChatsController < BaseController
   expose_decorated :chat
   expose_decorated :messages, :fetch_messages
   expose_decorated :interlocutor, from: :chat, decorator: UserDecorator

@@ -16,6 +16,10 @@ feature "Create Company", :js do
 
     click_button "Sign up"
 
-    expect(page).to have_content("Company was successfully created.")
+    expect(current_url).to eq(company_root_url("fs"))
+  end
+
+  def company_root_url(subdomain)
+    Rails.application.routes.url_helpers.company_root_url(subdomain: subdomain, port: ENV["PORT"])
   end
 end

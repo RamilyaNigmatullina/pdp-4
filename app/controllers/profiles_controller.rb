@@ -1,4 +1,4 @@
-class ProfilesController < ApplicationController
+class ProfilesController < BaseController
   expose_decorated :user, :current_user
 
   def edit
@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
   def update
     user.update(user_params)
 
-    respond_with(user, location: root_path)
+    respond_with(user, location: public_root_path)
   end
 
   private

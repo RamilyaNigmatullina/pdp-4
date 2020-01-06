@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < BaseController
   expose_decorated :users, :fetch_users
 
   def index

@@ -27,7 +27,7 @@ module Pdp4
     config.add_autoload_paths_to_load_path = false
 
     # Allow host
-    config.hosts << ENV.fetch("HOST")
+    config.hosts << /\A([a-z0-9]+\.)?#{ENV.fetch("HOST")}\z/
 
     # Set default From address for all Mailers
     config.action_mailer.default_options = { from: ENV.fetch("MAILER_SENDER_ADDRESS") }
