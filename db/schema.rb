@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2019_12_28_184340) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name", limit: 255
-    t.string "slug", limit: 50
+    t.string "slug", limit: 15
   end
 
   create_table "identities", force: :cascade do |t|
@@ -80,10 +80,6 @@ ActiveRecord::Schema.define(version: 2019_12_28_184340) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
@@ -92,7 +88,6 @@ ActiveRecord::Schema.define(version: 2019_12_28_184340) do
     t.string "role", limit: 15, default: "employee", null: false
     t.bigint "company_id"
     t.index ["company_id"], name: "index_users_on_company_id"
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true

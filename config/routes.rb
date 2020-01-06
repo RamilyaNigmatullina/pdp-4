@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
-  root to: "pages#index"
-
   devise_for :users
 
-  resources :companies, only: %i[new create show]
-  resources :chats, only: %i[create show]
-  resources :users, only: :index
-  resource :profile, only: %i[edit update]
+  constraints SubdomainConstraint.new do
+    root to: "pages#index", as: :company_root
+
+    resources :chats, only: %i[create show]
+    resources :users, only: :index
+    resource :profile, only: %i[edit update]
+  end 
+
+  scope module: :public do
+    root to: "pages#index", as: :public_root
+
+    resources :companies, only: %i[new create show]
+  end
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do

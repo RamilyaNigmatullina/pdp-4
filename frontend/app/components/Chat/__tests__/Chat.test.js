@@ -37,17 +37,17 @@ describe('Chat', () => {
   });
 
   describe('#constructor', () => {
-    it('add message to state', () => {
+    it('initializes state', () => {
       component = instance();
 
-      const expectedState = { messages: props.messages };
+      const expectedState = { isLastPage: false, messages: props.messages, page: 2 };
 
       expect(component.state).toEqual(expectedState);
     });
   });
 
   describe('#handleReceived', () => {
-    it('add message to state', () => {
+    it('adds message to state', () => {
       component = instance();
 
       const message = {
@@ -55,7 +55,7 @@ describe('Chat', () => {
         text: 'How are you?',
         sender_id: 1,
       };
-      const expectedState = { messages: [message, ...props.messages] };
+      const expectedState = { isLastPage: false, messages: [message, ...props.messages], page: 2 };
 
       component.handleReceived(message);
 

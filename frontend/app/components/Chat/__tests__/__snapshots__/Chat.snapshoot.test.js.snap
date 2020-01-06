@@ -8,41 +8,29 @@ exports[`Chat renders chat 1`] = `
   <div
     className="messages"
   >
-    <Message
-      avatarUrl="/john_smith_avatar.jpg"
-      isCurrentUserMessage={false}
-      key="1"
-      message={
-        Object {
-          "id": 1,
-          "sender_id": 1,
-          "text": "Hello, Kevin!",
-        }
+    <InfiniteScrolling
+      isLastPage={false}
+      items={
+        Array [
+          Object {
+            "id": 1,
+            "sender_id": 1,
+            "text": "Hello, Kevin!",
+          },
+          Object {
+            "id": 2,
+            "sender_id": 2,
+            "text": "Hello, John!",
+          },
+          Object {
+            "id": 1,
+            "sender_id": 1,
+            "text": "How are you?",
+          },
+        ]
       }
-    />
-    <Message
-      avatarUrl="/kevin_doe_avatar.jpg"
-      isCurrentUserMessage={true}
-      key="2"
-      message={
-        Object {
-          "id": 2,
-          "sender_id": 2,
-          "text": "Hello, John!",
-        }
-      }
-    />
-    <Message
-      avatarUrl="/john_smith_avatar.jpg"
-      isCurrentUserMessage={false}
-      key="1"
-      message={
-        Object {
-          "id": 1,
-          "sender_id": 1,
-          "text": "How are you?",
-        }
-      }
+      loadItems={[Function]}
+      renderItem={[Function]}
     />
   </div>
   <MessageForm

@@ -4,7 +4,7 @@ FactoryBot.define do
     full_name { Faker::Name.name }
     password { "123456" }
     password_confirmation { password }
-    confirmed_at { 1.hour.ago }
+    # confirmed_at { 1.hour.ago }
     company
 
     trait :admin do
