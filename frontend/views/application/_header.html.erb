@@ -15,6 +15,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <%= link_to t("navigation_bar.profile"), edit_profile_path, class: "dropdown-item" %>
+            <%= link_to "Settings", edit_company_path, class: "dropdown-item" %>
             <%= link_to t("devise.shared.links.sign_out"), destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>

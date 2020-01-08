@@ -7,7 +7,8 @@ Rails.application.routes.draw do
     resources :chats, only: %i[create show]
     resources :users, only: :index
     resource :profile, only: %i[edit update]
-  end 
+    resource :company, only: %i[edit]
+  end
 
   scope module: :public do
     root to: "pages#index", as: :public_root
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      resource :company, only: %i[update]
       resources :chats, only: [] do
         resources :messages, only: %i[index create]
       end
