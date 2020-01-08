@@ -5,7 +5,7 @@ class Company < ApplicationRecord
 
   validates :admin, presence: true
   validates :slug, presence: true, uniqueness: { case_sensitive: false }, subdomain: true
-  validates :name, length: { maximum: 255 }
+  validates :name, presence: true, length: { maximum: 255 }
 
   accepts_nested_attributes_for :admin
 end
