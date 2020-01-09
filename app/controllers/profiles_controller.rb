@@ -13,7 +13,7 @@ class ProfilesController < BaseController
   private
 
   def authorize_resource!
-    authorize! user
+    authorize! User
   end
 
   def user_params
