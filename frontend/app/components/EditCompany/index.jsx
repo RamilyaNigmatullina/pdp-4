@@ -13,26 +13,30 @@ class EditCompany extends React.Component {
     const { company, errors } = this.state;
 
     return (
-      <div>
-        <h2>Settings</h2>
-        <br/>
+      <div className='container'>
+        <div className='row justify-content-center'>
+          <div className='col col-md-6'>
+            <h2>Settings</h2>
+            <br/>
 
-        <CteTextField
-          error={errors.name}
-          disabled={false}
-          label="Name"
-          name="name"
-          onSubmit={this.handleSubmit}
-          value={company.name}
-        />
-        <CteTextField
-          error={errors.slug}
-          disabled={true}
-          label= "Slug"
-          name="slug"
-          onSubmit={this.handleSubmit}
-          value={company.slug}
-        />
+            <CteTextField
+              error={errors.name}
+              disabled={false}
+              label="Name"
+              name="name"
+              onSubmit={this.handleSubmit}
+              value={company.name}
+            />
+            <CteTextField
+              error={errors.slug}
+              disabled={true}
+              label= "Slug"
+              name="slug"
+              onSubmit={this.handleSubmit}
+              value={company.slug}
+            />
+          </div>
+        </div>
       </div>
     );
   }
