@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
-
   constraints SubdomainConstraint.new do
     root to: "pages#index", as: :company_root
+
+    devise_for :users
 
     resources :chats, only: %i[create show]
     resources :users, only: :index

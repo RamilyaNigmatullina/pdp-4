@@ -20,6 +20,6 @@ feature "Create Company", :js do
   end
 
   def company_root_url(subdomain)
-    Rails.application.routes.url_helpers.company_root_url(subdomain: subdomain, port: ENV["PORT"])
+    Rails.application.routes.url_helpers.new_user_session_url(subdomain: subdomain, port: ENV["PORT"])
   end
 end

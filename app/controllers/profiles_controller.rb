@@ -12,6 +12,10 @@ class ProfilesController < BaseController
 
   private
 
+  def authorize_resource!
+    authorize! User
+  end
+
   def user_params
     params.require(:user).permit(:full_name)
   end

@@ -1,5 +1,10 @@
 class PagesController < BaseController
   def index
-    sign_in(:user, User.last)
+  end
+
+  private
+
+  def authorize_resource!
+    authorize! :company
   end
 end

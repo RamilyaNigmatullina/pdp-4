@@ -4,18 +4,17 @@ module Public
 
     helper_method :step
 
+    def show
+    end
+
     def new
       company.admin = User.new
     end
 
     def create
       self.company = create_company.company
-      sign_in(:user, company.admin) if company.persisted?
 
       respond_with company, location: company_root_url(subdomain: company.slug)
-    end
-
-    def show
     end
 
     private

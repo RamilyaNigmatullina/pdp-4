@@ -3,6 +3,9 @@ class ChatsController < BaseController
   expose_decorated :messages, :fetch_messages
   expose_decorated :interlocutor, from: :chat, decorator: UserDecorator
 
+  def show
+  end
+
   def create
     if create_chat.success?
       respond_with(create_chat.chat)
@@ -11,10 +14,11 @@ class ChatsController < BaseController
     end
   end
 
-  def show
-  end
-
   private
+
+  def authorize_resource!
+    authorize! chat
+  end
 
   def create_chat
     @create_chat ||= CreateChat.call(current_user: current_user, chat_params: chat_params)

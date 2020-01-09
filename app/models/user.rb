@@ -1,5 +1,8 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :lockable
+  extend Enumerize
+
+  devise :database_authenticatable, :recoverable, :rememberable,
+    :trackable, :lockable, authentication_keys: %i[email company_id]
 
   belongs_to :company
 
@@ -10,8 +13,21 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  validates :email, presence: true, format: Devise.email_regexp,
+    uniqueness: { scope: :company_id, case_sensitive: false }
   validates :full_name, presence: true
   validates :role, length: { maximum: 15 }
+  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, confirmation: :password_confirmation
+
+  enumerize :role, in: %w[admin employee], predicates: true
+
+  def self.find_for_authentication(warden_conditions)
+    find_by(
+      email: warden_conditions[:email],
+      company_id: warden_conditions[:company_id]
+    )
+  end
 
   def chats
     first_user_chats.or(second_user_chats)

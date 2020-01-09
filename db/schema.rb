@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_28_184340) do
+ActiveRecord::Schema.define(version: 2020_01_08_202142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2019_12_28_184340) do
     t.string "role", limit: 15, default: "employee", null: false
     t.bigint "company_id"
     t.index ["company_id"], name: "index_users_on_company_id"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email", "company_id"], name: "index_users_on_email_and_company_id", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end

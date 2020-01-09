@@ -10,3 +10,5 @@ en:
       destroy:
         notice: "%{resource_name} was successfully destroyed."
         alert: "%{resource_name} could not be destroyed."
+  action_policy:
+    unauthorized_error: "You cannot perform this action."

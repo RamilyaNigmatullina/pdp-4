@@ -5,7 +5,7 @@
     <%= f.simple_fields_for :admin do |a| %>
       <%= a.input :full_name, autofocus: true %>
       <%= a.input :email, input_html: { autocomplete: "email" } %>
-      <%= a.input :password, input_html: { autocomplete: "new-password" } %>
+      <%= a.input :password, required: false, input_html: { autocomplete: "new-password" } %>
       <%= a.input :password_confirmation, input_html: { autocomplete: "new-password" } %>
     <% end %>
   </div>
