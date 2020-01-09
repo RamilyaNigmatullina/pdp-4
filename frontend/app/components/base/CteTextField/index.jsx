@@ -26,9 +26,9 @@ class CteTextField extends React.Component {
 
   handleBlur = (event) => {
     const newValue = event.target.value.trim();
-    const { name, onSubmit, value } = this.props;
+    const { error, name, onSubmit, value } = this.props;
 
-    if (newValue !== value) onSubmit({ [name]: newValue });
+    if (error || newValue !== value) onSubmit({ [name]: newValue });
   }
 }
 
