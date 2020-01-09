@@ -9,6 +9,10 @@ class CompaniesController < BaseController
 
   private
 
+  def authorize_resource!
+    authorize! company
+  end
+
   def company_params
     params.require(:company).permit(:name, :slug)
   end

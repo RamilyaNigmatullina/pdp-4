@@ -9,4 +9,8 @@ class UsersController < BaseController
   def fetch_users
     User.where.not(id: current_user.id)
   end
+
+  def authorize_resource!
+    authorize! User
+  end
 end

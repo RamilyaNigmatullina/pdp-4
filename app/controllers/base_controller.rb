@@ -1,7 +1,9 @@
 class BaseController < ApplicationController
-  helper_method :current_company
+  include Authorization
 
-  def current_company
-    @current_company ||= Company.find_by(slug: request.subdomain)
-  end
+  before_action \
+    :authorize_resource!
+    :authenticate_user!
+
+  protect_from_forgery with: :exception
 end
