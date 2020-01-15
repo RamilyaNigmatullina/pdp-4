@@ -3,14 +3,14 @@
 @import "~bootstrap/scss/mixins/breakpoints";
 
 body.chats {
-  height: 100vh;
+  height: 98vh;
   overflow: hidden;
 }
 
 .chat {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 64px);
+  height: calc(98vh - 64px);
 
   @include media-breakpoint-down(md) {
     height: calc(100vh - 56px);

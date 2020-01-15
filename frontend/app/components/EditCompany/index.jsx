@@ -44,7 +44,7 @@ class EditCompany extends React.Component {
   handleSubmit = (companyParams) => {
     const name = Object.keys(companyParams)[0];
 
-    updateCompany(companyParams)
+    return updateCompany(companyParams)
       .then((data) => {
         this.setState(
           {

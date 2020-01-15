@@ -17,7 +17,7 @@ class ChatsController < BaseController
   private
 
   def authorize_resource!
-    authorize! chat
+    authorize! Chat
   end
 
   def create_chat

@@ -17,8 +17,8 @@ class User < ApplicationRecord
     uniqueness: { scope: :company_id, case_sensitive: false }
   validates :full_name, presence: true
   validates :role, length: { maximum: 15 }
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password, confirmation: :password_confirmation
+  validates :password, presence: true, length: { minimum: 6 }, if: :password_required?
+  validates :password, confirmation: :password_confirmation, if: :password_required?
 
   enumerize :role, in: %w[admin employee], predicates: true
 
@@ -35,5 +35,9 @@ class User < ApplicationRecord
 
   def chat_with(user:)
     Chat.where(first_user: self, second_user: user).or(Chat.where(first_user: user, second_user_id: self)).first
+  end
+
+  def password_required?
+    !persisted? || !password.nil? || !password_confirmation.nil?
   end
 end
