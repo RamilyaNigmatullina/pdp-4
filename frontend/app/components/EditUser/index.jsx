@@ -35,22 +35,6 @@ class EditUser extends React.Component {
               onSubmit={this.handleSubmit}
               value={user.email}
             />
-            <CteTextField
-              error={errors.password}
-              disabled={false}
-              label= "Password"
-              name="password"
-              onSubmit={this.handleSubmit}
-              value={user.password}
-            />
-            <CteTextField
-              error={errors.password_confirmation}
-              disabled={false}
-              label= "Password confirmation"
-              name="password_confirmation"
-              onSubmit={this.handleSubmit}
-              value={user.password_confirmation}
-            />
           </div>
         </div>
       </div>
