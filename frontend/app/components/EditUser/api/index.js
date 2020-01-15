@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const updateCompany = (companyParams) => axios
-  .put('/api/v1/company', { company: companyParams })
+export const updateUser = (userParams) => axios
+  .put('/api/v1/profile', { user: userParams })
   .then((response) => response.data)
   .catch(({ response: { data } }) => Promise.reject(data.errors));

@@ -7,10 +7,10 @@ class UsersController < BaseController
   private
 
   def fetch_users
-    User.where.not(id: current_user.id)
+    current_company.users.where.not(id: current_user.id)
   end
 
   def authorize_resource!
-    authorize! User
+    authorize! users
   end
 end

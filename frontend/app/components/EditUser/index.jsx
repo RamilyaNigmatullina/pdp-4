@@ -1,39 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CteTextField from 'components/base/CteTextField';
-import { updateCompany } from './api/index';
+import { updateUser } from './api/index';
 
-class EditCompany extends React.Component {
+class EditUser extends React.Component {
   state = {
-    company: this.props.company,
+    user: this.props.user,
     errors: {},
   }
 
   render() {
-    const { company, errors } = this.state;
+    const { user, errors } = this.state;
 
     return (
       <div className='container'>
         <div className='row justify-content-center'>
           <div className='col col-md-6'>
-            <h2>Settings</h2>
+            <h2>Edit Profile</h2>
             <br/>
 
             <CteTextField
-              error={errors.name}
+              error={errors.full_name}
               disabled={false}
-              label="Name"
-              name="name"
+              label="Full name"
+              name="full_name"
               onSubmit={this.handleSubmit}
-              value={company.name}
+              value={user.full_name}
             />
             <CteTextField
-              error={errors.slug}
+              error={errors.email}
               disabled={true}
-              label= "Slug"
-              name="slug"
+              label= "Email"
+              name="email"
               onSubmit={this.handleSubmit}
-              value={company.slug}
+              value={user.email}
             />
           </div>
         </div>
@@ -41,14 +41,14 @@ class EditCompany extends React.Component {
     );
   }
 
-  handleSubmit = (companyParams) => {
-    const name = Object.keys(companyParams)[0];
+  handleSubmit = (userParams) => {
+    const name = Object.keys(userParams)[0];
 
-    return updateCompany(companyParams)
+    return updateUser(userParams)
       .then((data) => {
         this.setState(
           {
-            company: data,
+            user: data,
             errors: { ...this.state.errors, ...{ [name]: null } },
           },
         );
@@ -59,8 +59,8 @@ class EditCompany extends React.Component {
   }
 }
 
-EditCompany.propTypes = {
-  company: PropTypes.object.isRequired,
+EditUser.propTypes = {
+  user: PropTypes.object.isRequired,
 };
 
-export default EditCompany;
+export default EditUser;
