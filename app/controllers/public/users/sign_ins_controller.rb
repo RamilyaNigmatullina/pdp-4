@@ -12,7 +12,7 @@ module Public
         else
           flash[:error] = "Subdomain doesn't exist"
 
-          redirect_to new_sign_in_path
+          redirect_to users_sign_in_path
         end
       end
 

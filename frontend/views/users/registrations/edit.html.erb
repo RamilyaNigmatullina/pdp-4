@@ -10,17 +10,11 @@
       <p><%= t("devise.registrations.edit.currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %></p>
     <% end %>
 
-    <%= f.input :password,
-                hint: t("devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it"),
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: t("devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes"),
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+    <%= f.input :password, hint: t("devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it"),
+      required: false, input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation, required: false, input_html: { autocomplete: "new-password" } %>
+    <%= f.input :current_password, hint: t("devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes"),
+      required: true, input_html: { autocomplete: "current-password" } %>
   </div>
 
   <div class="form-actions">
@@ -28,8 +22,8 @@
   </div>
 <% end %>
 
-<h3><%= t("devise.registrations.edit.cancel_my_account") %></h3>
+<h3>Cancel my account</h3>
 
-<p><%= t("devise.registrations.edit.unhappy") %> <%= link_to t("devise.registrations.edit.cancel_my_account"), registration_path(resource_name), data: { confirm: t(".are_you_sure") }, method: :delete %></p>
+<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: t(".are_you_sure") }, method: :delete %></p>
 
-<%= link_to t("devise.shared.links.back"), :back %>
+<%= link_to "Back", :back %>
