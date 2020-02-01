@@ -9,6 +9,10 @@ module Api
 
       private
 
+      def authorize_resource!
+        authorize! current_user
+      end
+
       def user_params
         params.require(:user).permit(:full_name)
       end

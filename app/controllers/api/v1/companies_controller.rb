@@ -9,6 +9,10 @@ module Api
 
       private
 
+      def authorize_resource!
+        authorize! current_company
+      end
+
       def company_params
         params.require(:company).permit(:name, :slug)
       end

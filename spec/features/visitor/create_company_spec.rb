@@ -17,6 +17,7 @@ feature "Create Company", :js do
     click_button "Sign up"
 
     expect(current_url).to eq(company_root_url("fs"))
+    expect(page).to have_content("Sign in to Flatstack")
   end
 
   def company_root_url(subdomain)

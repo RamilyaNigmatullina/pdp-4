@@ -11,4 +11,10 @@ class ApplicationController < ActionController::Base
   def set_current
     Current.user = current_user
   end
+
+  private
+
+  def after_sign_out_path_for(*)
+    user_session_path
+  end
 end

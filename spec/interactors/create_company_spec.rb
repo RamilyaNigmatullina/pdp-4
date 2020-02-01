@@ -2,7 +2,7 @@ describe CreateCompany do
   subject(:create_company) { described_class.call(company: company) }
 
   let(:company) { build :company, admin: admin, name: "Flatstack", slug: "fs" }
-  let(:admin) { build :admin, email: "john.smith@example.com", full_name: "John Smith" }
+  let(:admin) { build :user, :admin, email: "john.smith@example.com", full_name: "John Smith" }
 
   let(:company_attributes) { { name: "Flatstack", slug: "fs" } }
   let(:admin_attributes) { { email: "john.smith@example.com", full_name: "John Smith" } }
@@ -17,8 +17,6 @@ describe CreateCompany do
     end
 
     context "with invalid company params" do
-      let(:company) { build :company, admin: admin, name: "Flatstack", slug: "fs" }
-
       before { create :company, slug: "fs" }
 
       it "doesn't create company" do
@@ -28,7 +26,7 @@ describe CreateCompany do
     end
 
     context "with invalid user params" do
-      let(:admin) { build :admin, email: "", full_name: "John Smith" }
+      let(:admin) { build :user, :admin, email: "", full_name: "John Smith" }
 
       it "doesn't create company" do
         expect { create_company }.not_to change(Company, :count)

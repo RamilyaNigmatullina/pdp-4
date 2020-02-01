@@ -4,6 +4,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    user.present?
+    true
   end
 end
