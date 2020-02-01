@@ -1,3 +1,18 @@
 .sidebar {
   width: 200px;
 }
+
+.sidebar-headling__link {
+  &:hover {
+    color: black;
+    text-decoration: none;
+  }
+
+  color: black;
+}
+
+.nav-info {
+  color: $nav-item;
+  display: block;
+  padding: 0.5rem 1rem;
+}

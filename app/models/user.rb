@@ -34,7 +34,7 @@ class User < ApplicationRecord
   end
 
   def chat_with(user:)
-    Chat.where(first_user: self, second_user: user).or(Chat.where(first_user: user, second_user_id: self)).first
+    Chat.where(first_user: self, second_user: user).or(Chat.where(first_user: user, second_user: self)).first
   end
 
   def password_required?

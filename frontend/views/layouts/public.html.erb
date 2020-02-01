@@ -19,12 +19,16 @@
   </head>
 
   <%= body_tag do %>
-     <%= render "public_header" %>
+    <div class="d-flex toggled" id="wrapper">
+      <div id="page-content-wrapper">
+        <%= render "public_navigation" %>
 
-     <div class="container">
-       <%= render "messages" %>
-       <br>
-       <%= yield %>
-     </div>
-   <% end %>
+        <div class="container">
+          <%= render "messages" %>
+          <br>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 <% end %>

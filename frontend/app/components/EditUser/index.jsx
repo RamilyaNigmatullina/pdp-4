@@ -16,7 +16,7 @@ class EditUser extends React.Component {
       <div className='container'>
         <div className='row justify-content-center'>
           <div className='col col-md-6'>
-            <h2>Edit Profile</h2>
+            <h2>Profile Settings</h2>
             <br/>
 
             <CteTextField
