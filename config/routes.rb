@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     devise_for :users
 
     resources :chats, only: %i[create show]
-    resources :users, only: :index
+    resources :users, only: %i[index]
     resource :profile, only: %i[edit]
     resource :company, only: %i[edit]
   end
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: "pages#index", as: :public_root
 
-    resources :companies, only: %i[new create show]
+    resources :companies, only: %i[new create]
 
     namespace :users, only: [] do
       resource :sign_in, only: %i[show create]

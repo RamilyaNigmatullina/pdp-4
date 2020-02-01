@@ -1,6 +1,6 @@
 class CompanyPolicy < ApplicationPolicy
   def index?
-    user.present?
+    true
   end
 
   def update?

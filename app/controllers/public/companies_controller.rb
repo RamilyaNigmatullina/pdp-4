@@ -4,9 +4,6 @@ module Public
 
     helper_method :step
 
-    def show
-    end
-
     def new
       company.admin = User.new
     end
