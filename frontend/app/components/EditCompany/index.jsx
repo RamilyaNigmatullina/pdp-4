@@ -16,7 +16,7 @@ class EditCompany extends React.Component {
       <div className='container'>
         <div className='row justify-content-center'>
           <div className='col col-md-6'>
-            <h2>Settings</h2>
+            <h2>Company Settings</h2>
             <br/>
 
             <CteTextField

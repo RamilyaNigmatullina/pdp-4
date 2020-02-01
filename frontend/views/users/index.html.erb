@@ -6,7 +6,7 @@
       </div>
       <div class="col">
         <% if current_user.chat_with(user: user).nil? %>
-          <%= button_to "+", chats_path, params: { chat: { user_id: user.id } } %>
+          <%= link_to "+", chats_path(chat: { user_id: user.id }), method: :post %>
         <% else %>
           <%= link_to "+", chat_path(current_user.chat_with(user: user)) %>
         <% end %>

@@ -14,7 +14,7 @@ module Public
     def create
       self.company = create_company.company
 
-      respond_with company, location: company_root_url(subdomain: company.slug)
+      respond_with company, location: new_user_session_url(subdomain: company.slug)
     end
 
     private

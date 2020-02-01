@@ -21,16 +21,14 @@
   <%= body_tag do %>
     <div class="d-flex" id="wrapper">
       <div id="page-content-wrapper">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-          <%= render "public_header" %>
-        </nav>
+        <%= render "public_navigation" %>
 
-        <div class="container-fluid">
+        <div class="container">
           <%= render "messages" %>
           <br>
           <%= yield %>
         </div>
       </div>
     </div>
-   <% end %>
+  <% end %>
 <% end %>
