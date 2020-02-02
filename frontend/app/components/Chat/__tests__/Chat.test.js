@@ -45,21 +45,4 @@ describe('Chat', () => {
       expect(component.state).toEqual(expectedState);
     });
   });
-
-  describe('#handleReceived', () => {
-    it('adds message to state', () => {
-      component = instance();
-
-      const message = {
-        id: 1,
-        text: 'How are you?',
-        sender_id: 1,
-      };
-      const expectedState = { isLastPage: false, messages: [message, ...props.messages], page: 2 };
-
-      component.handleReceived(message);
-
-      expect(component.state).toEqual(expectedState);
-    });
-  });
 });

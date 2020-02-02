@@ -1,0 +1,38 @@
+version: v1.0
+name: PDP-4
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+execution_time_limit:
+  minutes: 10
+
+auto_cancel:
+  running:
+    when: "true"
+
+global_job_config:
+  env_vars:
+    - name: DATABASE_URL
+      value: "postgresql://postgres:@0.0.0.0:5432/myapp_test"
+    - name: RAILS_ENV
+      value: test
+    - name: RACK_ENV
+      value: test
+
+blocks:
+  - name: Test
+    task:
+      jobs:
+        - name: Rspec
+          commands:
+            - checkout
+            - sem-service start postgres 11
+            - sem-version ruby 2.6.3
+            - yarn install
+            - cache restore
+            - bundle install --deployment --jobs 4 --path vendor/bundle --without development staging production
+            - cache store
+            - bin/rails db:setup
+            - bin/ci
