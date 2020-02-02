@@ -1,5 +1,5 @@
 version: v1.0
-name: Test MyApp
+name: PDP-4
 agent:
   machine:
     type: e1-standard-2
@@ -18,9 +18,10 @@ blocks:
         commands:
           - checkout
           - sem-service start postgres 11
-          - sem-version ruby 2.6.5
+          - sem-version ruby 2.6.3
+          - yarn install
           - cache restore
-          - bundle install --deployment --path vendor/bundle
+          - bundle install --deployment --jobs 4 --path vendor/bundle --without development staging production
           - cache store
-          - bundle exec rake db:setup
+          - bin/rails db:setup
           - bundle exec rspec
