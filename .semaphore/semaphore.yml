@@ -35,4 +35,4 @@ blocks:
             - bundle install --deployment --jobs 4 --path vendor/bundle --without development staging production
             - cache store
             - bin/rails db:setup
-            - bundle exec rspec
+            - bin/ci
