@@ -26,6 +26,7 @@ gem "bootsnap", ">= 1.1.0", require: false
 gem "decent_decoration"
 gem "decent_exposure"
 gem "devise"
+gem "devise_invitable"
 gem "draper"
 gem "enumerize"
 gem "i18n-js"

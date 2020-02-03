@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   extend Enumerize
 
-  devise :database_authenticatable, :recoverable, :rememberable,
+  devise :invitable, :database_authenticatable, :recoverable, :rememberable,
     :trackable, :lockable, authentication_keys: %i[email company_id]
 
   belongs_to :company

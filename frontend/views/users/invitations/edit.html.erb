@@ -1,0 +1,19 @@
+<div class="row justify-content-center">
+  <div class="col col-md-5">
+    <h2>Set your password</h2>
+
+    <%= simple_form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
+      <%= f.hidden_field :invitation_token %>
+
+      <div class="form-inputs">
+        <%= f.input :password %>
+        <%= f.input :password_confirmation %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Set my password" %>
+      </div>
+    <% end %>
+  </div>
+</div>

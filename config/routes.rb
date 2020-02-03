@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   constraints SubdomainConstraint.new do
     root to: "pages#index", as: :company_root
 
-    devise_for :users
+    devise_for :users, controllers: { invitations: "users/invitations" }
 
     resources :chats, only: %i[create show]
     resources :users, only: %i[index]
