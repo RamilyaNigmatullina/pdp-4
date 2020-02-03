@@ -3,6 +3,10 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
+  def create?
+    user.admin?
+  end
+
   def update?
     true
   end
