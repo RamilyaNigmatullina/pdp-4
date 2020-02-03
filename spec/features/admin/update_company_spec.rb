@@ -5,7 +5,7 @@ feature "Update user", :js do
 
   let(:menu_toggle_selector) { "#menu-toggle" }
 
-  scenario "User updates company" do
+  scenario "Admin updates company" do
     visit edit_company_path
 
     fill_in "Name", with: "OOO 'Эф-Эс'"
