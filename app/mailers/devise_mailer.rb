@@ -5,7 +5,6 @@ class DeviseMailer < Devise::Mailer
   def invitation_instructions(record, token, opts: {})
     @company = record.company
     @invited_by = record.invited_by
-
     super
   end
 
@@ -13,7 +12,6 @@ class DeviseMailer < Devise::Mailer
 
   def initialize_from_record(record)
     super
-
     instance_variable_set("@#{devise_mapping.name}", record.decorate)
   end
 end
