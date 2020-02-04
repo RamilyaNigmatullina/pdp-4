@@ -1,0 +1,26 @@
+version: v1.0
+name: Master -> Staging
+
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+blocks:
+  - name: Deploy
+    task:
+      secrets:
+        - name: ramilya-pdp-4
+      env_vars:
+        - name: HEROKU_REMOTE
+          value: https://git.heroku.com/ramilya-pdp-4.git
+      jobs:
+        - name: Staging
+          commands:
+            - checkout --use-cache
+            - ssh-keyscan -H heroku.com >> ~/.ssh/known_hosts
+            - chmod 600 ~/.ssh/id_rsa_semaphore_heroku_ramilya_pdp_4_staging
+            - ssh-add ~/.ssh/id_rsa_semaphore_heroku_ramilya_pdp_4_staging
+            - git config --global url.ssh://git@heroku.com/.insteadOf https://git.heroku.com/
+            - git remote add heroku $HEROKU_REMOTE
+            - git push heroku -f $SEMAPHORE_GIT_BRANCH:master

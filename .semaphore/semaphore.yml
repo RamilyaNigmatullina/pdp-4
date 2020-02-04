@@ -36,3 +36,11 @@ blocks:
             - cache store
             - bin/rails db:setup
             - bin/ci
+
+promotions:
+  - name: Staging
+    pipeline_file: staging.yml
+    auto_promote_on:
+      - result: passed
+        branch:
+          - master
