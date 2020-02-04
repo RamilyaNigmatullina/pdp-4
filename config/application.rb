@@ -46,7 +46,7 @@ module Pdp4
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}")]
 
     # Default locale
-    config.i18n.default_locale = ENV.fetch("I18N_DEFAULT_LOCALE")
+    config.i18n.default_locale = :en
 
     # ActiveJob adapter
     config.active_job.queue_adapter = :sidekiq
