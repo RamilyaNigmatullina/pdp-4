@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   extend Enumerize
 
-  devise :invitable, :database_authenticatable, :recoverable, :rememberable,
-    :trackable, :lockable, authentication_keys: %i[email company_id]
+  devise :confirmable, :database_authenticatable, :invitable, :lockable, :recoverable,
+    :registerable, :rememberable, :trackable, authentication_keys: %i[email company_id]
 
   belongs_to :company
 
@@ -21,6 +21,9 @@ class User < ApplicationRecord
   validates :password, confirmation: :password_confirmation, if: :password_required?
 
   enumerize :role, in: %w[admin employee], predicates: true
+
+  scope :active, -> { not_created_by_invite.or(User.invitation_accepted) }
+  scope :not_created_by_invite, -> { where(invited_by_id: nil) }
 
   def self.find_for_authentication(warden_conditions)
     find_by(
