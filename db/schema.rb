@@ -80,6 +80,10 @@ ActiveRecord::Schema.define(version: 2020_02_03_073614) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
@@ -96,6 +100,7 @@ ActiveRecord::Schema.define(version: 2020_02_03_073614) do
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
     t.index ["company_id"], name: "index_users_on_company_id"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email", "company_id"], name: "index_users_on_email_and_company_id", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
