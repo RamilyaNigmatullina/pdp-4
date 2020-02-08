@@ -3,7 +3,6 @@
   "env": {
     "HOST": { "required": true },
     "MAILER_SENDER_ADDRESS": { "required": true },
-    "NODE_ENV": { "required": true },
     "RACK_ENV": "staging",
     "RAILS_ENV": "staging",
     "ROLLBAR_ACCESS_TOKEN": { "required": true }
@@ -13,8 +12,7 @@
     "worker": { "quantity": 1, "size": "free" }
   },
   "buildpacks": [
-    { "url": "heroku/ruby" },
-    { "url": "heroku/nodejs" }
+    { "url": "heroku/ruby" }
   ],
   "addons": [
     "heroku-postgresql",
