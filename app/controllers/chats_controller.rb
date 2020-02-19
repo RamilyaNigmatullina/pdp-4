@@ -1,7 +1,8 @@
 class ChatsController < BaseController
   expose_decorated :chat
-  expose_decorated :messages, :fetch_messages
   expose_decorated :interlocutor, from: :chat, decorator: UserDecorator
+  expose_decorated :messages, :fetch_messages
+  expose_decorated :users, :fetch_users
 
   def show
   end
@@ -30,5 +31,9 @@ class ChatsController < BaseController
 
   def fetch_messages
     chat.messages.order(created_at: :desc).page(1)
+  end
+
+  def fetch_users
+    current_company.users.where.not(id: current_user.id)
   end
 end

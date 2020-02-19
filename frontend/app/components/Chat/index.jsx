@@ -4,6 +4,7 @@ import consumer from 'helpers/consumer';
 import InfiniteScrolling from 'components/InfiniteScrolling';
 import Message from './Message';
 import MessageForm from './MessageForm';
+import Users from './Users';
 import { fetchMessages } from './api/index';
 
 class Chat extends React.Component {
@@ -39,18 +40,23 @@ class Chat extends React.Component {
   render() {
     return (
       <div className="chat">
-        { this.props.interlocutor.full_name }
-
-        <div className="messages">
-          { <InfiniteScrolling
-              isLastPage={this.state.isLastPage}
-              items={this.state.messages}
-              loadItems={this.handleLoadMessages}
-              renderItem={this.renderMessage}
-            /> }
+        <div>
+          { <Users users={this.props.users} /> }
         </div>
+        <div className="dialog">
+          { this.props.interlocutor.full_name }
 
-        { <MessageForm chatId={this.props.chat.id} /> }
+          <div className="messages">
+            { <InfiniteScrolling
+                isLastPage={this.state.isLastPage}
+                items={this.state.messages}
+                loadItems={this.handleLoadMessages}
+                renderItem={this.renderMessage}
+              /> }
+          </div>
+
+          { <MessageForm chatId={this.props.chat.id} /> }
+        </div>
       </div>
     );
   }
@@ -75,10 +81,11 @@ class Chat extends React.Component {
 }
 
 Chat.propTypes = {
-  interlocutor: PropTypes.object.isRequired,
-  currentUser: PropTypes.object.isRequired,
-  messages: PropTypes.array.isRequired,
   chat: PropTypes.object.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  interlocutor: PropTypes.object.isRequired,
+  messages: PropTypes.array.isRequired,
+  users: PropTypes.array.isRequired,
 };
 
 export default Chat;
