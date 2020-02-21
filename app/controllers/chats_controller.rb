@@ -32,6 +32,6 @@ class ChatsController < BaseController
   end
 
   def fetch_chats
-    current_user.chats.includes(first_user: :avatar_attachment, second_user: :avatar_attachment)
+    Chat.where(id: current_user.chats.ids).includes(first_user: :avatar_attachment, second_user: :avatar_attachment)
   end
 end
