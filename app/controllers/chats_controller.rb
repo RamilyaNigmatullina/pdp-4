@@ -1,5 +1,6 @@
 class ChatsController < BaseController
   expose_decorated :chat
+  expose :chats, :fetch_chats
   expose_decorated :interlocutor, from: :chat, decorator: UserDecorator
   expose_decorated :messages, :fetch_messages
   expose_decorated :users, :fetch_users
@@ -35,5 +36,9 @@ class ChatsController < BaseController
 
   def fetch_users
     current_company.users.where.not(id: current_user.id)
+  end
+
+  def fetch_chats
+    current_user.chats.includes(first_user: :avatar_attachment, second_user: :avatar_attachment)
   end
 end

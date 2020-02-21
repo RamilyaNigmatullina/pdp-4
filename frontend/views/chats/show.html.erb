@@ -1,7 +1,5 @@
 <%= render_react_component("Chat", {
   chat: ChatSerializer.new(chat).as_json,
-  currentUser: UserSerializer.new(current_user).as_json,
-  interlocutor: UserSerializer.new(chat.interlocutor).as_json,
-  messages: ActiveModel::Serializer::CollectionSerializer.new(messages, serializer: MessageSerializer).to_a,
-  users: ActiveModel::Serializer::CollectionSerializer.new(users, serializer: UserSerializer).to_a
+  chats:  ActiveModel::Serializer::CollectionSerializer.new(chats).to_a,
+  currentUser: UserSerializer.new(current_user).as_json
 }) %>

@@ -2,11 +2,21 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins/breakpoints";
 
-.users-list {
+.chats-list {
   flex-direction: column;
   width: 250px;
 
   @include media-breakpoint-down(md) {
     display: none;
+  }
+}
+
+.chat-link {
+  &:hover,
+  &:active,
+  &:focus,
+  &:visited {
+    color: black;
+    text-decoration: none;
   }
 }
