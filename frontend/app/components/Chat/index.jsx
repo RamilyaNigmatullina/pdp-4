@@ -18,7 +18,21 @@ class Chat extends React.Component {
   };
 
   componentDidMount() {
+    this.subscribeToChannel();
     this.loadMessages();
+  }
+
+  componentDidUpdate() {
+    const { isLastPage } = this.state;
+    this.subscribeToChannel();
+
+    if (!isLastPage) { this.loadMessages(); }
+  }
+
+  subscribeToChannel = () => {
+    const prevSubscription = consumer.subscriptions[0];
+
+    if (prevSubscription) prevSubscription.unsubscribe();
 
     consumer.subscriptions.create({
       channel: 'ChatChannel',
@@ -26,12 +40,6 @@ class Chat extends React.Component {
     }, {
       received: this.handleReceived,
     });
-  }
-
-  componentDidUpdate() {
-    const { isLastPage } = this.state;
-
-    if (!isLastPage) { this.loadMessages(); }
   }
 
   renderMessage = (message) => {
