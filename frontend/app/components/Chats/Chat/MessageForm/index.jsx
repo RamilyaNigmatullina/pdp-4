@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
 import 'form-serializer';
-import { createMessage } from '../api/index';
+import { createMessage } from '../../api/index';
 
 class MessageForm extends React.Component {
   constructor(props) {

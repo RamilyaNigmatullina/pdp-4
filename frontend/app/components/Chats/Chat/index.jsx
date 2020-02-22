@@ -4,17 +4,14 @@ import consumer from 'helpers/consumer';
 import InfiniteScrolling from 'components/InfiniteScrolling';
 import Message from './Message';
 import MessageForm from './MessageForm';
-import Chats from './Chats';
-import { fetchMessages } from './api/index';
+import { fetchMessages } from '../api/index';
 
 class Chat extends React.Component {
   state = {
     chat: this.props.chat,
-    chats: this.props.chats,
     isLastPage: false,
     messages: [],
     page: 1,
-    subscriptionCreated: false,
   };
 
   componentDidMount() {
@@ -23,10 +20,19 @@ class Chat extends React.Component {
   }
 
   componentDidUpdate() {
-    const { isLastPage } = this.state;
-    this.subscribeToChannel();
-
-    if (!isLastPage) { this.loadMessages(); }
+    if (this.state) {
+      if (this.state.chat.id !== this.props.chat.id) {
+        this.setState({
+          chat: this.props.chat,
+          isLastPage: false,
+          messages: [],
+          page: 1,
+        });
+      } else {
+        this.subscribeToChannel();
+        this.loadMessages();
+      }
+    }
   }
 
   subscribeToChannel = () => {
@@ -36,7 +42,7 @@ class Chat extends React.Component {
 
     consumer.subscriptions.create({
       channel: 'ChatChannel',
-      chat_id: this.state.chat.id,
+      chat_id: this.props.chat.id,
     }, {
       received: this.handleReceived,
     });
@@ -45,7 +51,7 @@ class Chat extends React.Component {
   renderMessage = (message) => {
     const { currentUser } = this.props;
     const isCurrentUserMessage = currentUser.id === message.sender_id;
-    const avatarUrl = isCurrentUserMessage ? currentUser.avatar : this.state.chat.interlocutor.avatar;
+    const avatarUrl = isCurrentUserMessage ? currentUser.avatar : this.props.chat.interlocutor.avatar;
 
     return (
       <Message
@@ -58,40 +64,21 @@ class Chat extends React.Component {
 
   render() {
     return (
-      <div className="chat">
-        <div>
-          { <Chats chats={this.props.chats} onClick={this.handleSubmit} /> }
-        </div>
-        <div className="dialog">
-          { this.state.chat.interlocutor.full_name }
+      <>
+        { this.props.chat.interlocutor.full_name }
 
-          <div className="messages">
-            { <InfiniteScrolling
-                isLastPage={this.state.isLastPage}
-                items={this.state.messages}
-                loadItems={this.loadMessages}
-                renderItem={this.renderMessage}
-              /> }
-          </div>
-
-          { <MessageForm chatId={this.state.chat.id} /> }
+        <div className="messages">
+          { <InfiniteScrolling
+              isLastPage={this.state.isLastPage}
+              items={this.state.messages}
+              loadItems={this.loadMessages}
+              renderItem={this.renderMessage}
+            /> }
         </div>
-      </div>
+
+        { <MessageForm chatId={this.props.chat.id} /> }
+      </>
     );
-  }
-
-  handleSubmit = (event, chatId) => {
-    event.preventDefault();
-
-    const selectedChat = this.state.chats.filter((chat) => chat.id === chatId)[0];
-
-    this.setState({
-      chat: selectedChat,
-      isLastPage: false,
-      messages: [],
-      page: 1,
-      subscriptionCreated: false,
-    });
   }
 
   handleReceived = (message) => {
@@ -102,11 +89,7 @@ class Chat extends React.Component {
   }
 
   loadMessages = () => {
-    console.log("chat.id: ");
-    console.log(this.state.chat.id);
-    console.log("page: ");
-    console.log(this.state.page);
-    fetchMessages(this.state.chat.id, this.state.page)
+    fetchMessages(this.props.chat.id, this.state.page)
       .then((data) => {
         this.setState(({ messages, page }) => ({
           messages: [...messages, ...data],
@@ -119,7 +102,6 @@ class Chat extends React.Component {
 
 Chat.propTypes = {
   chat: PropTypes.object.isRequired,
-  chats: PropTypes.array.isRequired,
   currentUser: PropTypes.object.isRequired,
 };
 

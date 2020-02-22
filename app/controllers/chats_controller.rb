@@ -1,5 +1,4 @@
 class ChatsController < BaseController
-  expose :chat, :fetch_chat
   expose :chats, :fetch_chats
 
   def index
@@ -25,10 +24,6 @@ class ChatsController < BaseController
 
   def chat_params
     params.require(:chat).permit(:user_id)
-  end
-
-  def fetch_chat
-    current_user.chats.first
   end
 
   def fetch_chats

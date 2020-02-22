@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Chats extends React.Component {
+class ChatItem extends React.Component {
   renderChat = (chat) => (
     <div key={chat.id}>
       <a href="#" className="chat-link" onClick={(e) => this.props.onClick(e, chat.id)}>
@@ -19,9 +19,9 @@ class Chats extends React.Component {
   }
 }
 
-Chats.propTypes = {
+ChatItem.propTypes = {
   chats: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
-export default Chats;
+export default ChatItem;
