@@ -4,6 +4,7 @@ import consumer from 'helpers/consumer';
 import InfiniteScrolling from 'components/InfiniteScrolling';
 import Message from './Message';
 import MessageForm from './MessageForm';
+import Interlocutor from './Interlocutor';
 import { fetchMessages } from '../api/index';
 
 class Chat extends React.Component {
@@ -53,18 +54,9 @@ class Chat extends React.Component {
   }
 
   render() {
-    const { interlocutor } = this.props.chat;
     return (
       <>
-        <div className="interlocutor">
-          <div className="interlocutor__avatar">
-            <img className="rounded-circle" src={interlocutor.avatar} width="32" height="32" />
-          </div>
-          <div className="interlocutor__full-name">
-            { interlocutor.full_name }
-          </div>
-        </div>
-
+        { < Interlocutor interlocutor={this.props.chat.interlocutor} /> }
         <div className="messages">
           { <InfiniteScrolling
               isLastPage={this.state.isLastPage}
