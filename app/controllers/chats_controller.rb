@@ -1,9 +1,7 @@
 class ChatsController < BaseController
-  expose_decorated :chat
-  expose_decorated :messages, :fetch_messages
-  expose_decorated :interlocutor, from: :chat, decorator: UserDecorator
+  expose :chats, :fetch_chats
 
-  def show
+  def index
   end
 
   def create
@@ -28,7 +26,7 @@ class ChatsController < BaseController
     params.require(:chat).permit(:user_id)
   end
 
-  def fetch_messages
-    chat.messages.order(created_at: :desc).page(1)
+  def fetch_chats
+    Chat.where(id: current_user.chats.ids).includes(first_user: :avatar_attachment, second_user: :avatar_attachment)
   end
 end

@@ -21,6 +21,10 @@ module Api
 
       private
 
+      def authorize_resource!
+        authorize! message
+      end
+
       def fetch_messages
         chat.messages.order(created_at: :desc).page(params[:page])
       end

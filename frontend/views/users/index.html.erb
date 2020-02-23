@@ -10,13 +10,6 @@
       <div class="col">
         <%= user.full_name %>
       </div>
-      <div class="col">
-        <% if current_user.chat_with(user: user).nil? %>
-          <%= link_to "+", chats_path(chat: { user_id: user.id }), method: :post %>
-        <% else %>
-          <%= link_to "+", chat_path(current_user.chat_with(user: user)) %>
-        <% end %>
-      </div>
     </li>
   <% end %>
 </ul>

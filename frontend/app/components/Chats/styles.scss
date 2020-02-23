@@ -2,17 +2,22 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins/breakpoints";
 
-body.chats {
-  height: 98vh;
-  overflow: hidden;
-}
-
 .chat {
   display: flex;
+}
+
+.dialog-container {
+  display: flex;
   flex-direction: column;
-  height: calc(98vh - 64px);
+  height: calc(103vh - 64px);
+  padding: 10px 0;
+  width: 100%;
 
   @include media-breakpoint-down(md) {
     height: calc(100vh - 56px);
   }
+}
+
+.chats-container {
+  border-right: 1px solid #c4c4c4;
 }
