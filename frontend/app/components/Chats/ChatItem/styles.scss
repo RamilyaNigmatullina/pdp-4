@@ -2,15 +2,6 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins/breakpoints";
 
-.chats-list {
-  flex-direction: column;
-  width: 350px;
-
-  @include media-breakpoint-down(md) {
-    display: none;
-  }
-}
-
 .chat-link {
   &,
   &:hover,
@@ -42,11 +33,6 @@
   &:hover {
     background: #f7f7f7;
   }
-}
-
-.inbox_chat {
-  height: 550px;
-  overflow-y: scroll;
 }
 
 .chat_ib h5 {

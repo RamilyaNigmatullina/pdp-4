@@ -8,6 +8,17 @@
 
 .chatsList {
   border-right: 1px solid #c4c4c4;
+
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+}
+
+.chatItems {
+  flex-direction: column;
+  height: 550px;
+  overflow-y: scroll;
+  width: 350px;
 }
 
 .dialog {

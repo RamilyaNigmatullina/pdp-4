@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import ChatItem from './ChatItem';
 import Chat from './Chat';
 import styles from './styles.module.scss';
@@ -13,7 +12,7 @@ class Chats extends React.Component {
 
   renderChatsList() {
     return (
-      <div className="chats-list inbox_chat">
+      <div className={styles.chatItems}>
         {
           this.props.chats.map((chat) => {
             const active = this.state.chat.id === chat.id;
@@ -27,11 +26,11 @@ class Chats extends React.Component {
 
   render() {
     return (
-      <div className={classNames(styles.chat)}>
-        <div className={classNames(styles.chatsList)}>
+      <div className={styles.chat}>
+        <div className={styles.chatsList}>
           { this.renderChatsList() }
         </div>
-        <div className={classNames(styles.dialog)}>
+        <div className={styles.dialog}>
           { <Chat chat={this.state.chat} currentUser={this.props.currentUser} /> }
         </div>
       </div>
