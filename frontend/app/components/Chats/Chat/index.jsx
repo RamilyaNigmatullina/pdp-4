@@ -28,7 +28,7 @@ class Chat extends React.Component {
   subscribeToChannel = () => {
     const prevSubscription = consumer.subscriptions.subscriptions[0];
 
-    if (prevSubscription) prevSubscription.unsubscribe();
+    if (prevSubscription) { prevSubscription.unsubscribe(); }
 
     consumer.subscriptions.create({
       channel: 'ChatChannel',

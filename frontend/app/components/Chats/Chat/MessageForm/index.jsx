@@ -20,6 +20,7 @@ class MessageForm extends React.Component {
           rows="1"
           placeholder="Type text..."
           name="message[text]"
+          onKeyUp={this.handleKeyUp}
         />
       </div>
     );
@@ -43,11 +44,17 @@ class MessageForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
+    if (!this.textInput.current.value) { return; }
+
     const formData = $(event.target).serializeObject();
     createMessage(this.props.chatId, formData)
       .then(() => {
         this.textInput.current.value = '';
       });
+  }
+
+  handleKeyUp = (event) => {
+    if (event.keyCode === 13) { this.handleSubmit(event); }
   }
 }
 
