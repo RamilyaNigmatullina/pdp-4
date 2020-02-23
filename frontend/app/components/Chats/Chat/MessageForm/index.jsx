@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import $ from 'jquery';
 import 'form-serializer';
 import { createMessage } from '../../api/index';
-
 import styles from './styles.module.scss';
 
 class MessageForm extends React.Component {
