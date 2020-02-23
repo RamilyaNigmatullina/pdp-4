@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import ChatItem from './ChatItem';
 import Chat from './Chat';
+import styles from './styles.module.scss';
 
 class Chats extends React.Component {
   state = {
@@ -11,11 +13,11 @@ class Chats extends React.Component {
 
   render() {
     return (
-      <div className="chat">
-        <div className="chats-container">
+      <div className={classNames(styles.chat)}>
+        <div className={classNames(styles.chatsList)}>
           { <ChatItem chats={this.props.chats} onClick={this.handleClick} selectedChat={this.state.chat} /> }
         </div>
-        <div className="dialog-container">
+        <div className={classNames(styles.dialog)}>
           { <Chat chat={this.state.chat} currentUser={this.props.currentUser} /> }
         </div>
       </div>

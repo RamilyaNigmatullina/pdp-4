@@ -6,7 +6,11 @@
   display: flex;
 }
 
-.dialog-container {
+.chatsList {
+  border-right: 1px solid #c4c4c4;
+}
+
+.dialog {
   display: flex;
   flex-direction: column;
   height: calc(103vh - 64px);
@@ -16,8 +20,4 @@
   @include media-breakpoint-down(md) {
     height: calc(100vh - 56px);
   }
-}
-
-.chats-container {
-  border-right: 1px solid #c4c4c4;
 }
