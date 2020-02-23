@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 class ChatItem extends React.Component {
-  renderChat = (chat) => {
-    const activeChat = this.props.selectedChat.id === chat.id;
-    const chatItemClasses = classNames('chat_list', { active_chat: activeChat });
+  render() {
+    const { active, chat } = this.props;
+    const chatItemClasses = classNames('chat_list', { active_chat: active });
 
     return (
-      <div key={chat.id} className={chatItemClasses} onClick={(e) => this.props.onClick(e, chat.id)}>
+      <div className={chatItemClasses} onClick={(e) => this.props.onClick(e, chat.id)}>
         <div className="chat_people">
           <div className="chat_img">
             <img className="rounded-circle" src={chat.interlocutor.avatar} width="32" height="32" />
@@ -18,7 +18,7 @@ class ChatItem extends React.Component {
               { chat.interlocutor.full_name }
               { chat.last_message && <span className="chat_date">{ chat.last_message.created_at }</span> }
             </h5>
-            <p class="last-message">
+            <p className="last-message">
               { chat.last_message && chat.last_message.text }
             </p>
           </div>
@@ -26,19 +26,11 @@ class ChatItem extends React.Component {
       </div>
     );
   }
-
-  render() {
-    return (
-      <div className="chats-list inbox_chat">
-        { this.props.chats.map((chat) => this.renderChat(chat)) }
-      </div>
-    );
-  }
 }
 
 ChatItem.propTypes = {
-  chats: PropTypes.array.isRequired,
-  selectedChat: PropTypes.object.isRequired,
+  active: PropTypes.bool.isRequired,
+  chat: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

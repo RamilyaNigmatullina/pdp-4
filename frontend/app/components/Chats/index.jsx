@@ -11,11 +11,25 @@ class Chats extends React.Component {
     chats: this.props.chats,
   };
 
+  renderChatsList() {
+    return (
+      <div className="chats-list inbox_chat">
+        {
+          this.props.chats.map((chat) => {
+            const active = this.state.chat.id === chat.id;
+
+            return <ChatItem active={active} chat={chat} key={chat.id} onClick={this.handleClick} />;
+          })
+        }
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className={classNames(styles.chat)}>
         <div className={classNames(styles.chatsList)}>
-          { <ChatItem chats={this.props.chats} onClick={this.handleClick} selectedChat={this.state.chat} /> }
+          { this.renderChatsList() }
         </div>
         <div className={classNames(styles.dialog)}>
           { <Chat chat={this.state.chat} currentUser={this.props.currentUser} /> }
