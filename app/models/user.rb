@@ -10,7 +10,7 @@ class User < ApplicationRecord
             inverse_of: :first_user, dependent: :destroy
   has_many :second_user_chats, class_name: "Chat", foreign_key: :second_user_id,
             inverse_of: :second_user, dependent: :destroy
-  has_many :chats, -> { where("first_user_id == :id OR second_user_id == :id", id: id) }
+  has_many :chats, -> { where("first_user_id == :id OR second_user_id == :id", id: id) }, inverse_of: :chat
 
   has_one_attached :avatar
 

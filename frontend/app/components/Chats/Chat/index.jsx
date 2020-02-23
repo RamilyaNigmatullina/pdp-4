@@ -8,7 +8,6 @@ import { fetchMessages } from '../api/index';
 
 class Chat extends React.Component {
   state = {
-    chat: this.props.chat,
     isLastPage: false,
     messages: [],
     page: 1,
@@ -19,24 +18,15 @@ class Chat extends React.Component {
     this.loadMessages();
   }
 
-  componentDidUpdate() {
-    if (this.state) {
-      if (this.state.chat.id !== this.props.chat.id) {
-        this.setState({
-          chat: this.props.chat,
-          isLastPage: false,
-          messages: [],
-          page: 1,
-        });
-      } else {
-        this.subscribeToChannel();
-        this.loadMessages();
-      }
+  componentDidUpdate(prevProps) {
+    if (prevProps.chat.id !== this.props.chat.id) {
+      this.subscribeToChannel();
+      this.loadMessages();
     }
   }
 
   subscribeToChannel = () => {
-    const prevSubscription = consumer.subscriptions[0];
+    const prevSubscription = consumer.subscriptions.subscriptions[0];
 
     if (prevSubscription) prevSubscription.unsubscribe();
 
@@ -71,7 +61,7 @@ class Chat extends React.Component {
           { <InfiniteScrolling
               isLastPage={this.state.isLastPage}
               items={this.state.messages}
-              loadItems={this.loadMessages}
+              loadItems={this.handleLoadMessages}
               renderItem={this.renderMessage}
             /> }
         </div>
@@ -88,13 +78,24 @@ class Chat extends React.Component {
     });
   }
 
-  loadMessages = () => {
+  handleLoadMessages = () => {
     fetchMessages(this.props.chat.id, this.state.page)
       .then((data) => {
         this.setState(({ messages, page }) => ({
+          isLastPage: !data.length,
           messages: [...messages, ...data],
           page: page + 1,
-          isLastPage: !data.length,
+        }));
+      });
+  }
+
+  loadMessages = () => {
+    fetchMessages(this.props.chat.id, this.state.page)
+      .then((data) => {
+        this.setState(() => ({
+          isLastPage: false,
+          messages: data,
+          page: 1,
         }));
       });
   }
