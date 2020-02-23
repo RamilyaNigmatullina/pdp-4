@@ -15,7 +15,7 @@ class Chat extends React.Component {
 
   componentDidMount() {
     this.subscribeToChannel();
-    this.loadMessages();
+    this.handleLoadMessages();
   }
 
   componentDidUpdate(prevProps) {
@@ -90,12 +90,12 @@ class Chat extends React.Component {
   }
 
   loadMessages = () => {
-    fetchMessages(this.props.chat.id, this.state.page)
+    fetchMessages(this.props.chat.id, 1)
       .then((data) => {
         this.setState(() => ({
-          isLastPage: false,
+          isLastPage: !data.length,
           messages: data,
-          page: 1,
+          page: 2,
         }));
       });
   }
