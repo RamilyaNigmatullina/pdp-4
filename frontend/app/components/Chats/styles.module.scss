@@ -24,8 +24,8 @@
 .dialog {
   display: flex;
   flex-direction: column;
-  height: calc(103vh - 64px);
-  padding: 10px 0;
+  height: calc(101vh - 64px);
+  padding: 10px 0 1px 0;
   width: 100%;
 
   @include media-breakpoint-down(md) {
