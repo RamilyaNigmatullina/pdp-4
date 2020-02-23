@@ -13,7 +13,7 @@ class Chats extends React.Component {
     return (
       <div className="chat">
         <div>
-          { <ChatItem chats={this.props.chats} onClick={this.handleClick} /> }
+          { <ChatItem chats={this.props.chats} onClick={this.handleClick} selectedChat={this.state.chat} /> }
         </div>
         <div className="dialog">
           { <Chat chat={this.state.chat} currentUser={this.props.currentUser} /> }
