@@ -9,7 +9,8 @@
 .dialog {
   display: flex;
   flex-direction: column;
-  height: calc(98vh - 64px);
+  height: calc(101vh - 64px);
+  padding: 10px 0 0 10px;
   width: 100%;
 
   @include media-breakpoint-down(md) {

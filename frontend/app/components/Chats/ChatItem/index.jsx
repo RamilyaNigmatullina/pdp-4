@@ -19,8 +19,8 @@ class ChatItem extends React.Component {
     const chatItemClasses = classNames('chat_list', { active_chat: activeChat });
 
     return (
-      <div key={chat.id} className={chatItemClasses}>
-        <div className="chat_people" onClick={(e) => this.props.onClick(e, chat.id)}>
+      <div key={chat.id} className={chatItemClasses} onClick={(e) => this.props.onClick(e, chat.id)}>
+        <div className="chat_people">
           <div className="chat_img">
             <img className="rounded-circle" src={chat.interlocutor.avatar} width="32" height="32" />
           </div>

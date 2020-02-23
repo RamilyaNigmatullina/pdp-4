@@ -53,9 +53,17 @@ class Chat extends React.Component {
   }
 
   render() {
+    const { interlocutor } = this.props.chat;
     return (
       <>
-        { this.props.chat.interlocutor.full_name }
+        <div className="interlocutor">
+          <div className="interlocutor__avatar">
+            <img className="rounded-circle" src={interlocutor.avatar} width="32" height="32" />
+          </div>
+          <div className="interlocutor__full-name">
+            { interlocutor.full_name }
+          </div>
+        </div>
 
         <div className="messages">
           { <InfiniteScrolling
