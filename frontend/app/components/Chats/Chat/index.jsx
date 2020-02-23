@@ -56,7 +56,7 @@ class Chat extends React.Component {
   render() {
     return (
       <>
-        { < Interlocutor interlocutor={this.props.chat.interlocutor} /> }
+        { <Interlocutor interlocutor={this.props.chat.interlocutor} /> }
 
         <div className="messages">
           { <InfiniteScrolling

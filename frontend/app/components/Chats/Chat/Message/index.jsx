@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import styles from './styles.module.scss';
 
 class Message extends React.Component {
   render() {
     const { avatarUrl, message, isCurrentUserMessage } = this.props;
-    const messageClasses = classNames('message', {
-      'message--current-user': isCurrentUserMessage,
-      'message--interlocutor': !isCurrentUserMessage,
+    const messageClasses = classNames(styles.message, {
+      [styles.currentUserMessage]: isCurrentUserMessage,
+      [styles.interlocutorMessage]: !isCurrentUserMessage,
     });
 
     return (
       <div className={messageClasses} id={`message-${message.id}`}>
         { !isCurrentUserMessage && <img className="rounded-circle" src={avatarUrl} width="32" height="32" /> }
-        <span className="message__text">{ message.text }</span>
+        <span className={styles.messageText}>{ message.text }</span>
         { isCurrentUserMessage && <img className="rounded-circle" src={avatarUrl} width="32" height="32" /> }
       </div>
     );

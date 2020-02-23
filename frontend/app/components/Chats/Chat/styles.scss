@@ -1,0 +1,11 @@
+.messages {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column-reverse;
+  overflow-y: scroll;
+  padding: 0 10px;
+}
+
+.messages :first-child {
+  margin-bottom: 0;
+}

@@ -1,0 +1,29 @@
+.message {
+  display: flex;
+  flex: 0 0 auto;
+  margin-bottom: 32px;
+
+  .messageText {
+    border-radius: 8px;
+    display: inline-block;
+    max-width: 60%;
+    padding: 8px;
+  }
+}
+
+.interlocutorMessage {
+  .messageText {
+    background-color: #09c;
+    margin-left: 16px;
+  }
+}
+
+.currentUserMessage {
+  justify-content: flex-end;
+  margin-right: 16px;
+
+  .messageText {
+    background-color: #ffbb73;
+    margin-right: 16px;
+  }
+}
