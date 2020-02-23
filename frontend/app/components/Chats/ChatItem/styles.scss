@@ -22,6 +22,12 @@
   }
 }
 
+.last-message {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .chat_people {
   clear: both;
   overflow: hidden;

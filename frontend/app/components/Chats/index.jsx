@@ -12,7 +12,7 @@ class Chats extends React.Component {
   render() {
     return (
       <div className="chat">
-        <div>
+        <div className="chats-section">
           { <ChatItem chats={this.props.chats} onClick={this.handleClick} selectedChat={this.state.chat} /> }
         </div>
         <div className="dialog">

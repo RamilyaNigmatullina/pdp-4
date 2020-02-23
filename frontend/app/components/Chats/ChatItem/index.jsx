@@ -3,17 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 class ChatItem extends React.Component {
-  truncate = (string) => {
-    const maxStringLength = 75;
-    let truncatedString = string;
-
-    if (truncatedString.length > maxStringLength) {
-      truncatedString = string.substring(0, maxStringLength);
-      truncatedString = truncatedString.concat('...');
-    }
-    return truncatedString;
-  }
-
   renderChat = (chat) => {
     const activeChat = this.props.selectedChat.id === chat.id;
     const chatItemClasses = classNames('chat_list', { active_chat: activeChat });
@@ -29,8 +18,8 @@ class ChatItem extends React.Component {
               { chat.interlocutor.full_name }
               { chat.last_message && <span className="chat_date">{ chat.last_message.created_at }</span> }
             </h5>
-            <p>
-              { chat.last_message && this.truncate(chat.last_message.text) }
+            <p class="last-message">
+              { chat.last_message && chat.last_message.text }
             </p>
           </div>
         </div>
