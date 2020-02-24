@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import consumer from 'helpers/consumer';
 import ChatItem from './ChatItem';
 import Chat from './Chat';
 import styles from './styles.module.scss';
@@ -13,7 +14,18 @@ class Chats extends React.Component {
 
   componentDidMount() {
     const { chat } = this.state;
+
+    this.subscribeToChannel();
+
     if (chat.unread_messages_count > 0) { this.readChatMessages(chat); }
+  }
+
+  subscribeToChannel = () => {
+    consumer.subscriptions.create({
+      channel: 'ChatNotificationsChannel',
+    }, {
+      received: this.handleReceived,
+    });
   }
 
   renderChatsList() {
@@ -41,6 +53,16 @@ class Chats extends React.Component {
         </div>
       </div>
     );
+  }
+
+  handleReceived = (notificationInfo) => {
+    this.setState((prevState) => {
+      const originalChat = prevState.chats.filter((chat) => chat.id === notificationInfo.chat_id)[0];
+      const newChat = { ...originalChat, ...notificationInfo };
+      const chats = [newChat, ...prevState.chats.filter((chat) => chat.id !== originalChat.id)];
+      this.readChatMessages(newChat);
+      return { chats };
+    });
   }
 
   handleClick = (event, chatId) => {

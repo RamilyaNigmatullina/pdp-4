@@ -5,7 +5,7 @@ module Api
         expose :chat
 
         def create
-          chat.unread_messages.update_all(read_at: Time.current)
+          chat.unread_messages_for(current_user).update_all(read_at: Time.current)
 
           head :ok
         end

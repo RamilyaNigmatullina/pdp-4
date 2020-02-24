@@ -4,10 +4,11 @@ class ChatSerializer < ApplicationSerializer
   has_one :interlocutor, serializer: UserSerializer
   has_one :last_message, serializer: MessageSerializer
 
-  delegate :unread_messages, to: :object
-  delegate :count, to: :unread_messages, prefix: true
-
   def last_message
     object.messages.order(:created_at).last
+  end
+
+  def unread_messages_count
+    object.unread_messages_for(Current.user).count
   end
 end

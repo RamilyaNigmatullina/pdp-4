@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const MESSAGE_FIELDS = ['id', 'text', 'sender_id'];
+// const CHAT_FIELDS = ['id', 'unread_messages_count'];
 
 export const createMessage = (chatId, message) => axios
   .post(`/api/v1/chats/${chatId}/messages`, { ...message })

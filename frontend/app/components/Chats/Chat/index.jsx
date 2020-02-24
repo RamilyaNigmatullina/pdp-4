@@ -74,7 +74,7 @@ class Chat extends React.Component {
   }
 
   handleReceived = (message) => {
-    this.setState(({ messages }) => ({ messages: [message, ...messages], subscriptionCreated: true }), () => {
+    this.setState(({ messages }) => ({ messages: [message, ...messages] }), () => {
       const messageElement = document.getElementById(`message-${message.id}`);
       messageElement.scrollIntoView({ behavior: 'smooth' });
     });
