@@ -21,7 +21,11 @@ class ChatItem extends React.Component {
             </h5>
             <p className={styles.lastMessage}>
               { chat.last_message && chat.last_message.text }
-            </p>
+              { !!chat.unread_messages_count
+                && <span className={classNames(styles.date, 'badge badge-pill badge-secondary')}>
+                  { chat.unread_messages_count }
+                </span> }
+              </p>
           </div>
         </div>
       </div>

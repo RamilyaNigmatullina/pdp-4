@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       resource :profile, only: %i[update]
       resources :chats, only: [] do
         resources :messages, only: %i[index create]
+        resource :reads, only: %i[create], module: :chats
       end
     end
   end

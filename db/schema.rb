@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_03_073614) do
+ActiveRecord::Schema.define(version: 2020_02_24_185952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2020_02_03_073614) do
     t.text "text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "read_at"
     t.index ["chat_id", "created_at"], name: "index_messages_on_chat_id_and_created_at", order: { created_at: :desc }
   end
 

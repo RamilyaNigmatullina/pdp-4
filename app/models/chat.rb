@@ -3,6 +3,8 @@ class Chat < ApplicationRecord
   belongs_to :second_user, class_name: "User"
 
   has_many :messages, dependent: :destroy
+  has_many :unread_messages, -> { where(read_at: nil). where.not(sender: Current.user) },
+    dependent: :destroy, class_name: "Message"
 
   has_one :last_message, -> { order(id: :desc) }, class_name: "Message"
 
