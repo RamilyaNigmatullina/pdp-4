@@ -13,7 +13,7 @@ class Chats extends React.Component {
 
   componentDidMount() {
     const { chat } = this.state;
-    if (chat.unread_messages_count > 0) { this.readChatMessages(chat.id); }
+    if (chat.unread_messages_count > 0) { this.readChatMessages(chat); }
   }
 
   renderChatsList() {
@@ -52,19 +52,18 @@ class Chats extends React.Component {
       if (!selectedChat.unread_messages_count) {
         this.setState({ chat: selectedChat });
       } else {
-        this.readChatMessages(selectedChat.id);
+        this.readChatMessages(selectedChat);
       }
     }
   }
 
-  readChatMessages = (chatId) => {
-    readMessages(chatId)
-      .then((data) => {
-        const selectedChat = data.filter((chat) => chat.id === chatId)[0];
-
-        this.setState(() => ({
-          chat: selectedChat,
-          chats: data,
+  readChatMessages = (readChat) => {
+    const updatedReadChat = { ...readChat, unread_messages_count: 0 };
+    readMessages(updatedReadChat.id)
+      .then(() => {
+        this.setState((prevState) => ({
+          chat: updatedReadChat,
+          chats: prevState.chats.map((chat) => (chat.id === updatedReadChat.id ? updatedReadChat : chat)),
         }));
       });
   }
