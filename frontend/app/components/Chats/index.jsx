@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ChatItem from './ChatItem';
 import Chat from './Chat';
 import styles from './styles.module.scss';
+import { readMessages } from './api/index';
 
 class Chats extends React.Component {
   state = {
@@ -10,11 +11,16 @@ class Chats extends React.Component {
     chats: this.props.chats,
   };
 
+  componentDidMount() {
+    const { chat } = this.state;
+    if (chat.unread_messages_count > 0) { this.readChatMessages(chat.id); }
+  }
+
   renderChatsList() {
     return (
       <div className={styles.chatItems}>
         {
-          this.props.chats.map((chat) => {
+          this.state.chats.map((chat) => {
             const active = this.state.chat.id === chat.id;
 
             return <ChatItem active={active} chat={chat} key={chat.id} onClick={this.handleClick} />;
@@ -42,7 +48,25 @@ class Chats extends React.Component {
 
     const selectedChat = this.state.chats.filter((chat) => chat.id === chatId)[0];
 
-    if (this.state.chat !== selectedChat) { this.setState({ chat: selectedChat }); }
+    if (this.state.chat !== selectedChat) {
+      if (!selectedChat.unread_messages_count) {
+        this.setState({ chat: selectedChat });
+      } else {
+        this.readChatMessages(selectedChat.id);
+      }
+    }
+  }
+
+  readChatMessages = (chatId) => {
+    readMessages(chatId)
+      .then((data) => {
+        const selectedChat = data.filter((chat) => chat.id === chatId)[0];
+
+        this.setState(() => ({
+          chat: selectedChat,
+          chats: data,
+        }));
+      });
   }
 }
 
