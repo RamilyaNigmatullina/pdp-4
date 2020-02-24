@@ -8,7 +8,11 @@ class InfiniteScrolling extends React.Component {
 
     if (isLastPage) return null;
 
-    return <Waypoint onEnter={loadItems} />;
+    return <Waypoint onEnter={loadItems} >
+      <div className="text-center">
+        <a href="#" onClick={loadItems}>.</a>
+      </div>
+    </Waypoint>;
   }
 
   render() {

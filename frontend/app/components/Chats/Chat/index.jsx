@@ -54,14 +54,15 @@ class Chat extends React.Component {
   }
 
   render() {
+    const { messages, isLastPage } = this.state;
     return (
       <>
         { <Interlocutor interlocutor={this.props.chat.interlocutor} /> }
 
         <div className="messages">
           { <InfiniteScrolling
-              isLastPage={this.state.isLastPage}
-              items={this.state.messages}
+              isLastPage={isLastPage}
+              items={messages}
               loadItems={this.handleLoadMessages}
               renderItem={this.renderMessage}
             /> }
