@@ -10,7 +10,7 @@ class InfiniteScrolling extends React.Component {
 
     return <Waypoint onEnter={loadItems} >
       <div className="text-center">
-        <a href="#" onClick={loadItems}>.</a>
+        <a href="#" className="text-muted" onClick={loadItems}>loading...</a>
       </div>
     </Waypoint>;
   }
