@@ -27,6 +27,11 @@ class ChatsController < BaseController
   end
 
   def fetch_chats
-    Chat.where(id: current_user.chats.ids).includes(first_user: :avatar_attachment, second_user: :avatar_attachment)
+    Chat
+      .left_outer_joins(:last_message)
+      .where(id: current_user.chats.ids)
+      .includes(first_user: :avatar_attachment, second_user: :avatar_attachment)
+      .order("messages.created_at IS NULL, messages.created_at DESC")
+      .uniq
   end
 end
