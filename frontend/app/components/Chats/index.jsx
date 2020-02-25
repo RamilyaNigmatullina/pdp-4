@@ -49,7 +49,10 @@ class Chats extends React.Component {
           { this.renderChatsList() }
         </div>
         <div className={styles.dialog}>
-          { <Chat chat={this.state.chat} currentUser={this.props.currentUser} /> }
+          { <Chat
+              chat={this.state.chat}
+              currentUser={this.props.currentUser}
+              onMessageReceived={this.handleReceived} /> }
         </div>
       </div>
     );
@@ -57,7 +60,7 @@ class Chats extends React.Component {
 
   handleReceived = (notificationInfo) => {
     this.setState((prevState) => {
-      const originalChat = prevState.chats.filter((chat) => chat.id === notificationInfo.chat_id)[0];
+      const originalChat = prevState.chats.filter((chat) => chat.id === notificationInfo.id)[0];
       const newChat = { ...originalChat, ...notificationInfo };
       const isCurrentChat = originalChat.id === this.state.chat.id;
       const chats = [newChat, ...prevState.chats.filter((chat) => chat.id !== originalChat.id)];

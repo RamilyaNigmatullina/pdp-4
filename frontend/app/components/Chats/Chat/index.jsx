@@ -72,6 +72,7 @@ class Chat extends React.Component {
   }
 
   handleReceived = (message) => {
+    this.props.onMessageReceived({ ...this.props.chat, last_message: message, unread_messages_count: 0 });
     this.setState(({ messages }) => ({ messages: [message, ...messages] }), () => {
       const messageElement = document.getElementById(`message-${message.id}`);
       messageElement.scrollIntoView({ behavior: 'smooth' });
@@ -105,6 +106,7 @@ class Chat extends React.Component {
 Chat.propTypes = {
   chat: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
+  onMessageReceived: PropTypes.func.isRequired,
 };
 
 export default Chat;

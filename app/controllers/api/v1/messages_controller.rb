@@ -40,7 +40,7 @@ module Api
 
       def notification_info
         {
-          chat_id: chat.id,
+          id: chat.id,
           last_message: serialized_message,
           unread_messages_count: chat.unread_messages_for(chat.interlocutor).count
         }
