@@ -8,8 +8,8 @@ import { readMessages } from './api/index';
 
 class Chats extends React.Component {
   state = {
-    currentChat: this.props.chats[0],
     chats: this.props.chats,
+    currentChat: this.props.chats[0],
   };
 
   componentDidMount() {
@@ -85,8 +85,8 @@ class Chats extends React.Component {
         const updatedChat = this.buildChat(chat, { unread_messages_count: 0 });
 
         this.setState(() => ({
-          chat: updatedChat,
           chats: this.replaceChat(updatedChat),
+          currentChat: updatedChat,
         }));
       });
   }
