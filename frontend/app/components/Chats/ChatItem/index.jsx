@@ -14,18 +14,22 @@ class ChatItem extends React.Component {
           <div className={styles.interlocutorAvatar}>
             <img className="rounded-circle" src={chat.interlocutor.avatar} width="32" height="32" />
           </div>
-          <div className={styles.chatDetails}>
-            <h5 className={styles.interlocutorFullName}>
+          <div className={styles.details}>
+            <div className={styles.interlocutorFullName}>
               { chat.interlocutor.full_name }
-              { chat.last_message && <span className={styles.date}>{ chat.last_message.created_at }</span> }
-            </h5>
-            <p className={styles.lastMessage}>
+            </div>
+            { chat.last_message && <div className={styles.date}>
+              { chat.last_message.created_at }
+            </div> }
+          </div>
+          <div className={styles.details}>
+            <div className={styles.lastMessage}>
               { chat.last_message && chat.last_message.text }
-              { !!chat.unread_messages_count
-                && <span className={classNames(styles.date, 'badge badge-pill badge-secondary')}>
+            </div>
+            { !!chat.unread_messages_count
+                && <div className={classNames(styles.badge, 'badge badge-pill badge-secondary')}>
                   { chat.unread_messages_count }
-                </span> }
-              </p>
+                </div> }
           </div>
         </div>
       </div>
