@@ -38,9 +38,9 @@ class Chat extends React.Component {
   }
 
   renderMessage = (message) => {
-    const { currentUser } = this.props;
-    const isCurrentUserMessage = currentUser.id === message.sender_id;
-    const avatarUrl = isCurrentUserMessage ? currentUser.avatar : this.props.chat.interlocutor.avatar;
+    const { currentUser, chat } = this.props;
+    const isCurrentUserMessage = this.isCurrentUserMessage(message);
+    const avatarUrl = isCurrentUserMessage ? currentUser.avatar : chat.interlocutor.avatar;
 
     return (
       <Message
@@ -53,9 +53,11 @@ class Chat extends React.Component {
 
   render() {
     const { messages, isLastPage } = this.state;
+    const { chat } = this.props;
+
     return (
       <>
-        { <Interlocutor interlocutor={this.props.chat.interlocutor} /> }
+        { <Interlocutor interlocutor={chat.interlocutor} /> }
 
         <div className="messages">
           { <InfiniteScrolling
@@ -66,17 +68,25 @@ class Chat extends React.Component {
             /> }
         </div>
 
-        { <MessageForm chatId={this.props.chat.id} /> }
+        { <MessageForm chatId={chat.id} /> }
       </>
     );
   }
 
   handleReceived = (message) => {
-    this.props.onMessageReceived({ ...this.props.chat, last_message: message, unread_messages_count: 0 });
+    if (this.isCurrentUserMessage(message)) this.handleMessageReceived(message);
+
     this.setState(({ messages }) => ({ messages: [message, ...messages] }), () => {
       const messageElement = document.getElementById(`message-${message.id}`);
       messageElement.scrollIntoView({ behavior: 'smooth' });
     });
+  }
+
+  handleMessageReceived = (message) => {
+    const chat = { ...this.props.chat, last_message: message, unread_messages_count: 0 };
+    const { onMessageReceived } = this.props;
+
+    onMessageReceived(chat);
   }
 
   handleLoadMessages = () => {
@@ -101,6 +111,8 @@ class Chat extends React.Component {
         }));
       });
   }
+
+  isCurrentUserMessage = (message) => this.props.currentUser.id === message.sender_id
 }
 
 Chat.propTypes = {

@@ -35,7 +35,7 @@ class Chats extends React.Component {
             chat={chat}
             isCurrentChat={this.isCurrentChat(chat)}
             key={chat.id}
-            onClick={this.handleClick} />) }
+            onClick={this.handleChatSelected} />) }
       </div>
     );
   }
@@ -67,7 +67,7 @@ class Chats extends React.Component {
     });
   }
 
-  handleClick = (event, selectedChat) => {
+  handleChatSelected = (event, selectedChat) => {
     event.preventDefault();
 
     if (!this.isCurrentChat(selectedChat)) {
