@@ -17,7 +17,7 @@ class Chats extends React.Component {
 
     this.subscribeToChannel();
 
-    if (currentChat.unread_messages_count > 0) { this.readChatMessages(currentChat); }
+    if (currentChat.unread_messages_count > 0) this.readChatMessages(currentChat);
   }
 
   subscribeToChannel = () => {
