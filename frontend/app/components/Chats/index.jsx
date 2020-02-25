@@ -59,8 +59,9 @@ class Chats extends React.Component {
     this.setState((prevState) => {
       const originalChat = prevState.chats.filter((chat) => chat.id === notificationInfo.chat_id)[0];
       const newChat = { ...originalChat, ...notificationInfo };
+      const isCurrentChat = originalChat.id === this.state.chat.id;
       const chats = [newChat, ...prevState.chats.filter((chat) => chat.id !== originalChat.id)];
-      this.readChatMessages(newChat);
+      if (isCurrentChat) this.readChatMessages(newChat);
       return { chats };
     });
   }
