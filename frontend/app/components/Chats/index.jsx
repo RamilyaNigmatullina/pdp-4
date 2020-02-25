@@ -8,36 +8,34 @@ import { readMessages } from './api/index';
 
 class Chats extends React.Component {
   state = {
-    chat: this.props.chats[0],
+    currentChat: this.props.chats[0],
     chats: this.props.chats,
   };
 
   componentDidMount() {
-    const { chat } = this.state;
+    const { currentChat } = this.state;
 
     this.subscribeToChannel();
 
-    if (chat.unread_messages_count > 0) { this.readChatMessages(chat); }
+    if (currentChat.unread_messages_count > 0) { this.readChatMessages(currentChat); }
   }
 
   subscribeToChannel = () => {
     consumer.subscriptions.create({
       channel: 'ChatNotificationsChannel',
     }, {
-      received: this.handleReceived,
+      received: this.handleMessageReceived,
     });
   }
 
   renderChatsList() {
     return (
       <div className={styles.chatItems}>
-        {
-          this.state.chats.map((chat) => {
-            const active = this.state.chat.id === chat.id;
-
-            return <ChatItem active={active} chat={chat} key={chat.id} onClick={this.handleClick} />;
-          })
-        }
+        { this.state.chats.map((chat) => <ChatItem
+            chat={chat}
+            isCurrentChat={this.isCurrentChat(chat)}
+            key={chat.id}
+            onClick={this.handleClick} />) }
       </div>
     );
   }
@@ -50,49 +48,58 @@ class Chats extends React.Component {
         </div>
         <div className={styles.dialog}>
           { <Chat
-              chat={this.state.chat}
+              chat={this.state.currentChat}
               currentUser={this.props.currentUser}
-              onMessageReceived={this.handleReceived} /> }
+              onMessageReceived={this.handleMessageReceived} /> }
         </div>
       </div>
     );
   }
 
-  handleReceived = (notificationInfo) => {
-    this.setState((prevState) => {
-      const originalChat = prevState.chats.filter((chat) => chat.id === notificationInfo.id)[0];
-      const newChat = { ...originalChat, ...notificationInfo };
-      const isCurrentChat = originalChat.id === this.state.chat.id;
-      const chats = [newChat, ...prevState.chats.filter((chat) => chat.id !== originalChat.id)];
-      if (isCurrentChat) this.readChatMessages(newChat);
-      return { chats };
+  handleMessageReceived = (chat) => {
+    this.setState(() => {
+      const originalChat = this.findOriginalChat(chat.id);
+      const updatedChat = this.buildChat(originalChat, chat);
+
+      if (this.isCurrentChat(updatedChat)) this.readChatMessages(updatedChat);
+
+      return { chats: this.moveToTop(updatedChat) };
     });
   }
 
-  handleClick = (event, chatId) => {
+  handleClick = (event, selectedChat) => {
     event.preventDefault();
 
-    const selectedChat = this.state.chats.filter((chat) => chat.id === chatId)[0];
-
-    if (this.state.chat !== selectedChat) {
+    if (!this.isCurrentChat(selectedChat)) {
       if (!selectedChat.unread_messages_count) {
-        this.setState({ chat: selectedChat });
+        this.setState({ currentChat: selectedChat });
       } else {
         this.readChatMessages(selectedChat);
       }
     }
   }
 
-  readChatMessages = (readChat) => {
-    const updatedReadChat = { ...readChat, unread_messages_count: 0 };
-    readMessages(updatedReadChat.id)
+  readChatMessages = (chat) => {
+    readMessages(chat.id)
       .then(() => {
-        this.setState((prevState) => ({
-          chat: updatedReadChat,
-          chats: prevState.chats.map((chat) => (chat.id === updatedReadChat.id ? updatedReadChat : chat)),
+        const updatedChat = this.buildChat(chat, { unread_messages_count: 0 });
+
+        this.setState(() => ({
+          chat: updatedChat,
+          chats: this.replaceChat(updatedChat),
         }));
       });
   }
+
+  findOriginalChat = (chatId) => this.state.chats.filter((chat) => chat.id === chatId)[0]
+
+  buildChat = (originalChat, chat) => ({ ...originalChat, ...chat })
+
+  isCurrentChat = (chat) => this.state.currentChat.id === chat.id
+
+  moveToTop = (topChat) => [topChat, ...this.state.chats.filter((chat) => chat.id !== topChat.id)]
+
+  replaceChat = (updatedChat) => this.state.chats.map((chat) => (chat.id === updatedChat.id ? updatedChat : chat))
 }
 
 Chats.propTypes = {

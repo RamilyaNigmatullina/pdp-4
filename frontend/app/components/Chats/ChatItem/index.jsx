@@ -5,11 +5,11 @@ import styles from './styles.module.scss';
 
 class ChatItem extends React.Component {
   render() {
-    const { active, chat } = this.props;
-    const chatItemClasses = classNames(styles.chatItem, { [styles.active]: active });
+    const { isCurrentChat, chat } = this.props;
+    const chatItemClasses = classNames(styles.chatItem, { [styles.active]: isCurrentChat });
 
     return (
-      <div className={chatItemClasses} onClick={(e) => this.props.onClick(e, chat.id)}>
+      <div className={chatItemClasses} onClick={(e) => this.props.onClick(e, chat)}>
         <div className={styles.chatItemContainer}>
           <div className={styles.interlocutorAvatar}>
             <img className="rounded-circle" src={chat.interlocutor.avatar} width="32" height="32" />
@@ -38,7 +38,7 @@ class ChatItem extends React.Component {
 }
 
 ChatItem.propTypes = {
-  active: PropTypes.bool.isRequired,
+  isCurrentChat: PropTypes.bool.isRequired,
   chat: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
 };
