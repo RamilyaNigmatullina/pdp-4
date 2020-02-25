@@ -11,4 +11,8 @@ class Chat < ApplicationRecord
   def interlocutor
     first_user == Current.user ? second_user : first_user
   end
+
+  def unread_messages_for(user)
+    messages.where(read_at: nil).where.not(sender: user)
+  end
 end

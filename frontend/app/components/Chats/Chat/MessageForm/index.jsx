@@ -45,7 +45,7 @@ class MessageForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    if (!this.textInput.current.value) { return; }
+    if (!this.textInput.current.value) return;
 
     const formData = $(event.target).serializeObject();
     createMessage(this.props.chatId, formData)
@@ -55,7 +55,7 @@ class MessageForm extends React.Component {
   }
 
   handleKeyUp = (event) => {
-    if (event.keyCode === 13) { this.handleSubmit(event); }
+    if (event.keyCode === 13) this.handleSubmit(event);
   }
 }
 

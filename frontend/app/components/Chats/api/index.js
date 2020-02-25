@@ -9,3 +9,7 @@ export const createMessage = (chatId, message) => axios
 export const fetchMessages = (chatId, page) => axios
   .get(`/api/v1/chats/${chatId}/messages`, { params: { page, fields: MESSAGE_FIELDS } })
   .then((response) => response.data);
+
+export const readMessages = (chatId) => axios
+  .post(`/api/v1/chats/${chatId}/reads`)
+  .then((response) => response.data);

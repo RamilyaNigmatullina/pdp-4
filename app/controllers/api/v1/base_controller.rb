@@ -9,10 +9,15 @@ module Api
 
       before_action \
         :authorize_resource!,
-        :authenticate_user!
+        :authenticate_user!,
+        :set_current
 
       self.responder = ::ApiResponder
       respond_to :json
+
+      def set_current
+        Current.user = current_user
+      end
     end
   end
 end

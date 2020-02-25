@@ -18,7 +18,7 @@ class InfiniteScrolling extends React.Component {
   render() {
     const { items, renderItem } = this.props;
 
-    if (items.length === 0) { return null; }
+    if (items.length === 0) return null;
 
     return (
       <>

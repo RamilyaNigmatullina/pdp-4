@@ -12,6 +12,7 @@ module Api
       def create
         if message.save
           ChatChannel.broadcast_to chat, serialized_message
+          ChatNotificationsChannel.broadcast_to "notifications_for_user_#{chat.interlocutor.id}", chat_info
 
           head :created
         else
@@ -34,7 +35,15 @@ module Api
       end
 
       def serialized_message
-        MessageSerializer.new(message).as_json
+        @serialized_message ||= MessageSerializer.new(message).as_json
+      end
+
+      def chat_info
+        {
+          id: chat.id,
+          last_message: serialized_message,
+          unread_messages_count: chat.unread_messages_for(chat.interlocutor).count
+        }
       end
     end
   end

@@ -11,6 +11,7 @@
   border-bottom: 1px solid #c4c4c4;
   cursor: pointer;
   margin: 0;
+  min-height: 76px;
   padding: 18px 16px 10px;
 
   &:hover {
@@ -18,26 +19,37 @@
   }
 }
 
-.chatDetails {
-  float: left;
-  padding: 0 0 0 15px;
-  width: 88%;
+.details {
+  display: flex;
+  line-height: 1.3;
 }
 
 .interlocutorFullName {
   color: #464646;
   font-size: 15px;
   margin: 0 0 8px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .date {
+  color: #464646;
   float: right;
-  font-size: 13px;
+  font-size: 15px;
+  padding-left: 3px;
+  white-space: nowrap;
+}
+
+.badge {
+  float: right;
+  font-size: 12px;
 }
 
 .interlocutorAvatar {
   float: left;
-  width: 11%;
+  margin-right: 8px;
 }
 
 .lastMessage {
@@ -47,4 +59,5 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  width: 100%;
 }
