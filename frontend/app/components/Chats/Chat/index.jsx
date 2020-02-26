@@ -15,12 +15,19 @@ class Chat extends React.Component {
   };
 
   componentDidMount() {
-    this.loadMessages();
+    this.setState(() => ({
+      subscription: this.subscribeToChannel(),
+    }));
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.chat.id !== this.props.chat.id) {
-      this.loadMessages();
+      this.setState(() => ({
+        isLastPage: false,
+        messages: [],
+        page: 1,
+        subscription: this.subscribeToChannel(),
+      }));
     }
   }
 

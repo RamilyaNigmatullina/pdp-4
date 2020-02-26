@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Loader from 'react-loader-spinner';
 import { Waypoint } from 'react-waypoint';
 
 class InfiniteScrolling extends React.Component {
@@ -10,15 +11,13 @@ class InfiniteScrolling extends React.Component {
 
     return <Waypoint onEnter={loadItems} >
       <div className="text-center">
-        <a href="#" className="text-muted" onClick={loadItems}>loading...</a>
+        <Loader type="TailSpin" color="#E2E2E2" height={20} width={20} />
       </div>
     </Waypoint>;
   }
 
   render() {
     const { items, renderItem } = this.props;
-
-    if (items.length === 0) return null;
 
     return (
       <>
