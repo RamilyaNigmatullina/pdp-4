@@ -8,9 +8,9 @@ module Api
       protect_from_forgery with: :exception
 
       before_action \
+        :set_current,
         :authorize_resource!,
-        :authenticate_user!,
-        :set_current
+        :authenticate_user!
 
       self.responder = ::ApiResponder
       respond_to :json

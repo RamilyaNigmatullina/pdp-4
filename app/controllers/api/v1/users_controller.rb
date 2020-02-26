@@ -10,7 +10,7 @@ module Api
       private
 
       def authorize_resource!
-        authorize! User
+        authorize! users
       end
 
       def fetch_users
