@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import consumer from 'helpers/consumer';
 import ChatItem from './ChatItem';
 import Chat from './Chat';
+import ChatForm from './ChatForm';
 import styles from './styles.module.scss';
 import { readMessages } from './api/index';
 
@@ -10,6 +11,7 @@ class Chats extends React.Component {
   state = {
     chats: this.props.chats,
     currentChat: this.props.chats[0],
+    isChatFormShown: false,
   };
 
   componentDidMount() {
@@ -28,9 +30,16 @@ class Chats extends React.Component {
     });
   }
 
+  renderNewChatButton = () => (
+    <button className="btn btn-outline-secondary btn-block" onClick={this.handleShowChatForm}>
+      Start a new dialogue
+    </button>
+  )
+
   renderChatsList() {
     return (
       <div className={styles.chatItems}>
+        { this.renderNewChatButton() }
         { this.state.chats.map((chat) => <ChatItem
             chat={chat}
             isCurrentChat={this.isCurrentChat(chat)}
@@ -41,14 +50,18 @@ class Chats extends React.Component {
   }
 
   render() {
+    const { currentChat, isChatFormShown } = this.state;
+
     return (
       <div className={styles.chat}>
+        <ChatForm isShown={isChatFormShown} onClose={this.handleCloseChatForm} />
+
         <div className={styles.chatsList}>
           { this.renderChatsList() }
         </div>
         <div className={styles.dialog}>
           { <Chat
-              chat={this.state.currentChat}
+              chat={currentChat}
               currentUser={this.props.currentUser}
               onMessageReceived={this.handleMessageReceived} /> }
         </div>
@@ -77,6 +90,14 @@ class Chats extends React.Component {
         this.readChatMessages(selectedChat);
       }
     }
+  }
+
+  handleShowChatForm = () => {
+    this.setState({ isChatFormShown: true });
+  }
+
+  handleCloseChatForm = () => {
+    this.setState({ isChatFormShown: false });
   }
 
   readChatMessages = (chat) => {

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         resources :messages, only: %i[index create]
         resource :reads, only: %i[create], module: :chats
       end
+      resources :users, only: %i[index]
     end
   end
 end
