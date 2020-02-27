@@ -6,12 +6,12 @@ import styles from './styles.module.scss';
 
 class ChatForm extends React.Component {
   state = {
-    users: [],
+    users: null,
   }
 
   componentDidUpdate() {
-    if (this.props.isShown && !this.state.users.length) this.fetchUsers();
-    if (!this.props.isShown && this.state.users.length) this.setState({ users: [] });
+    if (this.props.isShown && !this.state.users) this.fetchUsers();
+    if (!this.props.isShown && this.state.users) this.setState({ users: null });
   }
 
   renderUserRow = (user) => (
@@ -22,6 +22,10 @@ class ChatForm extends React.Component {
 
   render() {
     const { onClose, isShown } = this.props;
+    const { users } = this.state;
+
+    if (!isShown) return null;
+
     return (
       <Modal
       show={isShown}
@@ -36,7 +40,8 @@ class ChatForm extends React.Component {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        { this.state.users.map((user) => this.renderUserRow(user)) }
+        { users && !!users.length && this.state.users.map((user) => this.renderUserRow(user)) }
+        { users && !users.length && <div>No available users</div> }
       </Modal.Body>
     </Modal>
     );
@@ -44,9 +49,7 @@ class ChatForm extends React.Component {
 
   fetchUsers = () => {
     fetchUsersWithoutChat()
-      .then((data) => {
-        this.setState({ users: data });
-      });
+      .then((data) => this.setState({ users: data }));
   }
 }
 
