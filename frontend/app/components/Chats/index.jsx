@@ -125,10 +125,10 @@ class Chats extends React.Component {
       .then(() => {
         const updatedChat = this.buildChat(chat, { unread_messages_count: 0 });
 
-        this.setState(() => ({
+        this.setState({
           chats: this.replaceChat(updatedChat),
           currentChat: updatedChat,
-        }));
+        });
       });
   }
 

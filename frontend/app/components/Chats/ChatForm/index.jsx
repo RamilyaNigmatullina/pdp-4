@@ -48,8 +48,7 @@ class ChatForm extends React.Component {
   }
 
   fetchUsers = () => {
-    fetchUsersWithoutChat()
-      .then((data) => this.setState({ users: data }));
+    fetchUsersWithoutChat().then((data) => this.setState({ users: data }));
   }
 }
 
