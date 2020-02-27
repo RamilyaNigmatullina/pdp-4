@@ -34,7 +34,7 @@ class Chats extends React.Component {
     <button className="btn btn-outline-secondary btn-block" onClick={this.handleShowChatForm}>
       Start a new dialogue
     </button>
-  )
+  );
 
   renderChatItem = (chat) => (
     <ChatItem
@@ -136,15 +136,15 @@ class Chats extends React.Component {
 
   buildChat = (originalChat, chat) => ({ ...originalChat, ...chat })
 
+  moveToTop = (topChat) => [topChat, ...this.state.chats.filter((chat) => chat.id !== topChat.id)]
+
+  replaceChat = (updatedChat) => this.state.chats.map((chat) => (chat.id === updatedChat.id ? updatedChat : chat))
+
   isCurrentChat = (chat) => {
     const { currentChat } = this.state;
 
     return !!currentChat && currentChat.id === chat.id;
   }
-
-  moveToTop = (topChat) => [topChat, ...this.state.chats.filter((chat) => chat.id !== topChat.id)]
-
-  replaceChat = (updatedChat) => this.state.chats.map((chat) => (chat.id === updatedChat.id ? updatedChat : chat))
 }
 
 Chats.propTypes = {

@@ -1,9 +1,6 @@
 class FilteredUsers
   ALLOWED_PARAMS = %i[without_chat].freeze
 
-  attr_reader :relation, :filter_params
-  private :relation, :filter_params
-
   def initialize(relation, filter_params = {})
     @relation = relation
     @filter_params = filter_params
@@ -18,6 +15,8 @@ class FilteredUsers
   end
 
   private
+
+  attr_reader :relation, :filter_params
 
   def by_without_chat(relation, without_chat)
     without_chat = ActiveModel::Type::Boolean.new.cast(without_chat)

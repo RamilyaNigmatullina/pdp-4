@@ -27,23 +27,17 @@ class ChatForm extends React.Component {
     if (!isShown) return null;
 
     return (
-      <Modal
-      show={isShown}
-      onHide={onClose}
-      size="md"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Direct Messages
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        { users && !!users.length && this.state.users.map((user) => this.renderUserRow(user)) }
-        { users && !users.length && <div>No available users</div> }
-      </Modal.Body>
-    </Modal>
+      <Modal aria-labelledby="contained-modal-title-vcenter" onHide={onClose} show={isShown} size="md" centered >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Direct Messages
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          { users && !!users.length && this.state.users.map((user) => this.renderUserRow(user)) }
+          { users && !users.length && <div>No available users</div> }
+        </Modal.Body>
+      </Modal>
     );
   }
 
