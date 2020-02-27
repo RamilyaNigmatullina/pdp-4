@@ -38,11 +38,16 @@ module Api
         @serialized_message ||= MessageSerializer.new(message).as_json
       end
 
+      def serialized_user
+        UserSerializer.new(current_user).as_json
+      end
+
       def chat_info
         {
           id: chat.id,
           last_message: serialized_message,
-          unread_messages_count: chat.unread_messages_for(chat.interlocutor).count
+          unread_messages_count: chat.unread_messages_for(chat.interlocutor).count,
+          interlocutor: serialized_user
         }
       end
     end

@@ -59,10 +59,12 @@ class Chats extends React.Component {
   );
 
   render() {
+    const { currentChat, isChatFormShown } = this.state;
+
     return (
       <div className={styles.chat}>
         <ChatForm
-          isShown={this.state.isChatFormShown}
+          isShown={isChatFormShown}
           onChatCreate={this.handleCreateChat}
           onClose={this.handleCloseChatForm} />
 
@@ -70,7 +72,7 @@ class Chats extends React.Component {
           { this.renderChatsList() }
         </div>
         <div className={styles.dialog}>
-          { this.state.currentChat && this.renderChat() }
+          { currentChat && this.renderChat() }
         </div>
       </div>
     );
@@ -134,7 +136,11 @@ class Chats extends React.Component {
 
   buildChat = (originalChat, chat) => ({ ...originalChat, ...chat })
 
-  isCurrentChat = (chat) => this.state.currentChat.id === chat.id
+  isCurrentChat = (chat) => {
+    const { currentChat } = this.state;
+
+    return !!currentChat && currentChat.id === chat.id;
+  }
 
   moveToTop = (topChat) => [topChat, ...this.state.chats.filter((chat) => chat.id !== topChat.id)]
 
