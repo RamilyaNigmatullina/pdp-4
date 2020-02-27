@@ -5,7 +5,7 @@ import ChatItem from './ChatItem';
 import Chat from './Chat';
 import ChatForm from './ChatForm';
 import styles from './styles.module.scss';
-import { readMessages } from './api/index';
+import { readMessages, createChat } from './api/index';
 
 class Chats extends React.Component {
   state = {
@@ -61,7 +61,10 @@ class Chats extends React.Component {
   render() {
     return (
       <div className={styles.chat}>
-        <ChatForm isShown={this.state.isChatFormShown} onClose={this.handleCloseChatForm} />
+        <ChatForm
+          isShown={this.state.isChatFormShown}
+          onChatCreate={this.handleCreateChat}
+          onClose={this.handleCloseChatForm} />
 
         <div className={styles.chatsList}>
           { this.renderChatsList() }
@@ -102,6 +105,17 @@ class Chats extends React.Component {
 
   handleCloseChatForm = () => {
     this.setState({ isChatFormShown: false });
+  }
+
+  handleCreateChat = (event, userId) => {
+    createChat(userId)
+      .then((data) => {
+        this.setState(({ chats }) => ({
+          chats: [data, ...chats],
+          currentChat: data,
+          isChatFormShown: false,
+        }));
+      });
   }
 
   readChatMessages = (chat) => {

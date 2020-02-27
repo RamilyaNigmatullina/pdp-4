@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resource :company, only: %i[update]
       resource :profile, only: %i[update]
-      resources :chats, only: [] do
+      resources :chats, only: %i[create] do
         resources :messages, only: %i[index create]
         resource :reads, only: %i[create], module: :chats
       end

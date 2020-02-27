@@ -15,7 +15,7 @@ class ChatForm extends React.Component {
   }
 
   renderUserRow = (user) => (
-    <div className={styles.userItem} key={user.id} onClick={this.handleClick}>
+    <div className={styles.userItem} key={user.id} onClick={(e) => this.props.onChatCreate(e, user.id)}>
       { user.full_name }
     </div>
   );
@@ -42,10 +42,6 @@ class ChatForm extends React.Component {
     );
   }
 
-  handleClick = () => {
-    console.log("Hello");
-  }
-
   fetchUsers = () => {
     fetchUsersWithoutChat()
       .then((data) => {
@@ -57,6 +53,7 @@ class ChatForm extends React.Component {
 ChatForm.propTypes = {
   onClose: PropTypes.func.isRequired,
   isShown: PropTypes.bool.isRequired,
+  onChatCreate: PropTypes.func.isRequired,
 };
 
 export default ChatForm;
