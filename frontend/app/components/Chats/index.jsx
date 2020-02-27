@@ -36,34 +36,38 @@ class Chats extends React.Component {
     </button>
   )
 
-  renderChatsList() {
-    return (
-      <div className={styles.chatItems}>
-        { this.renderNewChatButton() }
-        { this.state.chats.map((chat) => <ChatItem
-            chat={chat}
-            isCurrentChat={this.isCurrentChat(chat)}
-            key={chat.id}
-            onClick={this.handleChatSelected} />) }
-      </div>
-    );
-  }
+  renderChatItem = (chat) => (
+    <ChatItem
+      chat={chat}
+      isCurrentChat={this.isCurrentChat(chat)}
+      key={chat.id}
+      onClick={this.handleChatSelected} />
+  );
+
+  renderChat = () => (
+    <Chat
+      chat={this.state.currentChat}
+      currentUser={this.props.currentUser}
+      onMessageReceived={this.handleMessageReceived} />
+  );
+
+  renderChatsList = () => (
+    <div className={styles.chatItems}>
+      { this.renderNewChatButton() }
+      { this.state.chats.map((chat) => this.renderChatItem(chat)) }
+    </div>
+  );
 
   render() {
-    const { currentChat, isChatFormShown } = this.state;
-
     return (
       <div className={styles.chat}>
-        <ChatForm isShown={isChatFormShown} onClose={this.handleCloseChatForm} />
+        <ChatForm isShown={this.state.isChatFormShown} onClose={this.handleCloseChatForm} />
 
         <div className={styles.chatsList}>
           { this.renderChatsList() }
         </div>
         <div className={styles.dialog}>
-          { <Chat
-              chat={currentChat}
-              currentUser={this.props.currentUser}
-              onMessageReceived={this.handleMessageReceived} /> }
+          { this.renderChat() }
         </div>
       </div>
     );
