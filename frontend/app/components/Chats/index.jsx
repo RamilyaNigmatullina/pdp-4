@@ -19,7 +19,7 @@ class Chats extends React.Component {
 
     this.subscribeToChannel();
 
-    if (currentChat.unread_messages_count > 0) this.readChatMessages(currentChat);
+    if (currentChat && currentChat.unread_messages_count > 0) this.readChatMessages(currentChat);
   }
 
   subscribeToChannel = () => {
@@ -70,7 +70,7 @@ class Chats extends React.Component {
           { this.renderChatsList() }
         </div>
         <div className={styles.dialog}>
-          { this.renderChat() }
+          { this.state.currentChat && this.renderChat() }
         </div>
       </div>
     );
