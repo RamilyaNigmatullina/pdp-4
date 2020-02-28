@@ -4,7 +4,7 @@ class Chat < ApplicationRecord
 
   has_many :messages, dependent: :destroy
 
-  has_one :last_message, -> { order(id: :desc) }, class_name: "Message"
+  has_one :last_message, -> { order(id: :desc) }, class_name: "Message", inverse_of: :chat
 
   validates :second_user, interlocutor: true
 
