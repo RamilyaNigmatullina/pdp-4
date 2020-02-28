@@ -11,4 +11,8 @@ class ChatSerializer < ApplicationSerializer
   def unread_messages_count
     object.unread_messages_for(Current.user).count
   end
+
+  def interlocutor
+    @instance_options[:for] || object.interlocutor
+  end
 end

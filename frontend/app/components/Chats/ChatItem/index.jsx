@@ -4,33 +4,60 @@ import classNames from 'classnames';
 import styles from './styles.module.scss';
 
 class ChatItem extends React.Component {
+  renderAvatar = () => (
+    <div className={styles.interlocutorAvatar}>
+      <img className="rounded-circle" src={this.props.chat.interlocutor.avatar} width="32" height="32" />
+    </div>
+  );
+
+  renderDate = () => (
+    <div className={styles.date}>
+      { this.props.chat.last_message.created_at }
+    </div>
+  );
+
+  renderFullNameAndDate = () => {
+    const { chat } = this.props;
+
+    return (
+      <div className={styles.details}>
+        <div className={styles.interlocutorFullName}>
+          { chat.interlocutor.full_name }
+        </div>
+        { chat.last_message && this.renderDate() }
+      </div>
+    );
+  }
+
+  renderUnreadMessagesBadge = () => (
+    <div className={classNames(styles.badge, 'badge badge-pill badge-secondary')}>
+      { this.props.chat.unread_messages_count }
+    </div>
+  );
+
+  renderLastMessageAndUnreadMessagesBadge = () => {
+    const { chat } = this.props;
+
+    return (
+      <div className={styles.details}>
+        <div className={styles.lastMessage}>
+          { chat.last_message && chat.last_message.text }
+        </div>
+        { !!chat.unread_messages_count && this.renderUnreadMessagesBadge() }
+      </div>
+    );
+  }
+
   render() {
-    const { isCurrentChat, chat } = this.props;
+    const { chat, onClick, isCurrentChat } = this.props;
     const chatItemClasses = classNames(styles.chatItem, { [styles.active]: isCurrentChat });
 
     return (
-      <div className={chatItemClasses} onClick={(e) => this.props.onClick(e, chat)}>
+      <div className={chatItemClasses} onClick={(e) => onClick(e, chat)}>
         <div className={styles.chatItemContainer}>
-          <div className={styles.interlocutorAvatar}>
-            <img className="rounded-circle" src={chat.interlocutor.avatar} width="32" height="32" />
-          </div>
-          <div className={styles.details}>
-            <div className={styles.interlocutorFullName}>
-              { chat.interlocutor.full_name }
-            </div>
-            { chat.last_message && <div className={styles.date}>
-              { chat.last_message.created_at }
-            </div> }
-          </div>
-          <div className={styles.details}>
-            <div className={styles.lastMessage}>
-              { chat.last_message && chat.last_message.text }
-            </div>
-            { !!chat.unread_messages_count
-                && <div className={classNames(styles.badge, 'badge badge-pill badge-secondary')}>
-                  { chat.unread_messages_count }
-                </div> }
-          </div>
+          { this.renderAvatar() }
+          { this.renderFullNameAndDate() }
+          { this.renderLastMessageAndUnreadMessagesBadge() }
         </div>
       </div>
     );

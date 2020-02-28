@@ -13,3 +13,11 @@ export const fetchMessages = (chatId, page) => axios
 export const readMessages = (chatId) => axios
   .post(`/api/v1/chats/${chatId}/reads`)
   .then((response) => response.data);
+
+export const fetchUsersWithoutChat = () => axios
+  .get('/api/v1/users', { params: { without_chat: true } })
+  .then((response) => response.data);
+
+export const createChat = (userId) => axios
+  .post('/api/v1/chats', { chat: { user_id: userId } })
+  .then((response) => response.data);

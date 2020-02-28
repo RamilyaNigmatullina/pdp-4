@@ -15,19 +15,19 @@ class Chat extends React.Component {
   };
 
   componentDidMount() {
-    this.setState(() => ({
+    this.setState({
       subscription: this.subscribeToChannel(),
-    }));
+    });
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.chat.id !== this.props.chat.id) {
-      this.setState(() => ({
+      this.setState({
         isLastPage: false,
         messages: [],
         page: 1,
         subscription: this.subscribeToChannel(),
-      }));
+      });
     }
   }
 
@@ -103,18 +103,6 @@ class Chat extends React.Component {
           isLastPage: !data.length,
           messages: [...messages, ...data],
           page: page + 1,
-        }));
-      });
-  }
-
-  loadMessages = () => {
-    fetchMessages(this.props.chat.id, 1)
-      .then((data) => {
-        this.setState(() => ({
-          isLastPage: !data.length,
-          messages: data,
-          page: 2,
-          subscription: this.subscribeToChannel(),
         }));
       });
   }

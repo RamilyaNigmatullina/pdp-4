@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import consumer from 'helpers/consumer';
 import ChatItem from './ChatItem';
 import Chat from './Chat';
+import NewChatModal from './NewChatModal';
 import styles from './styles.module.scss';
-import { readMessages } from './api/index';
+import { readMessages, createChat } from './api/index';
 
 class Chats extends React.Component {
   state = {
     chats: this.props.chats,
     currentChat: this.props.chats[0],
+    isNewChatModalShown: false,
   };
 
   componentDidMount() {
@@ -17,7 +19,7 @@ class Chats extends React.Component {
 
     this.subscribeToChannel();
 
-    if (currentChat.unread_messages_count > 0) this.readChatMessages(currentChat);
+    if (currentChat && currentChat.unread_messages_count > 0) this.readChatMessages(currentChat);
   }
 
   subscribeToChannel = () => {
@@ -28,29 +30,49 @@ class Chats extends React.Component {
     });
   }
 
-  renderChatsList() {
-    return (
-      <div className={styles.chatItems}>
-        { this.state.chats.map((chat) => <ChatItem
-            chat={chat}
-            isCurrentChat={this.isCurrentChat(chat)}
-            key={chat.id}
-            onClick={this.handleChatSelected} />) }
-      </div>
-    );
-  }
+  renderNewChatButton = () => (
+    <button className="btn btn-outline-secondary btn-block" onClick={this.handleShowNewChatModal}>
+      Start a new dialogue
+    </button>
+  );
+
+  renderChatItem = (chat) => (
+    <ChatItem
+      chat={chat}
+      isCurrentChat={this.isCurrentChat(chat)}
+      key={chat.id}
+      onClick={this.handleChatSelected} />
+  );
+
+  renderChat = () => (
+    <Chat
+      chat={this.state.currentChat}
+      currentUser={this.props.currentUser}
+      onMessageReceived={this.handleMessageReceived} />
+  );
+
+  renderChatsList = () => (
+    <div className={styles.chatItems}>
+      { this.renderNewChatButton() }
+      { this.state.chats.map((chat) => this.renderChatItem(chat)) }
+    </div>
+  );
 
   render() {
+    const { currentChat, isNewChatModalShown } = this.state;
+
     return (
       <div className={styles.chat}>
+        <NewChatModal
+          isShown={isNewChatModalShown}
+          onChatCreate={this.handleCreateChat}
+          onClose={this.handleCloseNewChatModal} />
+
         <div className={styles.chatsList}>
           { this.renderChatsList() }
         </div>
         <div className={styles.dialog}>
-          { <Chat
-              chat={this.state.currentChat}
-              currentUser={this.props.currentUser}
-              onMessageReceived={this.handleMessageReceived} /> }
+          { currentChat && this.renderChat() }
         </div>
       </div>
     );
@@ -79,15 +101,34 @@ class Chats extends React.Component {
     }
   }
 
+  handleShowNewChatModal = () => {
+    this.setState({ isNewChatModalShown: true });
+  }
+
+  handleCloseNewChatModal = () => {
+    this.setState({ isNewChatModalShown: false });
+  }
+
+  handleCreateChat = (event, userId) => {
+    createChat(userId)
+      .then((data) => {
+        this.setState(({ chats }) => ({
+          chats: [data, ...chats],
+          currentChat: data,
+          isNewChatModalShown: false,
+        }));
+      });
+  }
+
   readChatMessages = (chat) => {
     readMessages(chat.id)
       .then(() => {
         const updatedChat = this.buildChat(chat, { unread_messages_count: 0 });
 
-        this.setState(() => ({
+        this.setState({
           chats: this.replaceChat(updatedChat),
           currentChat: updatedChat,
-        }));
+        });
       });
   }
 
@@ -95,11 +136,15 @@ class Chats extends React.Component {
 
   buildChat = (originalChat, chat) => ({ ...originalChat, ...chat })
 
-  isCurrentChat = (chat) => this.state.currentChat.id === chat.id
-
   moveToTop = (topChat) => [topChat, ...this.state.chats.filter((chat) => chat.id !== topChat.id)]
 
   replaceChat = (updatedChat) => this.state.chats.map((chat) => (chat.id === updatedChat.id ? updatedChat : chat))
+
+  isCurrentChat = (chat) => {
+    const { currentChat } = this.state;
+
+    return !!currentChat && currentChat.id === chat.id;
+  }
 }
 
 Chats.propTypes = {

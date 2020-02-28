@@ -1,0 +1,12 @@
+.userItem {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  height: 50px;
+  padding: 0 10px;
+  width: 100%;
+
+  &:hover {
+    background-color: #ebebeb;
+  }
+}
