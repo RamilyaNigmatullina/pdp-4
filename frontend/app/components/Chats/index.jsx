@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import consumer from 'helpers/consumer';
 import ChatItem from './ChatItem';
 import Chat from './Chat';
-import ChatForm from './ChatForm';
+import NewChatModal from './NewChatModal';
 import styles from './styles.module.scss';
 import { readMessages, createChat } from './api/index';
 
@@ -11,7 +11,7 @@ class Chats extends React.Component {
   state = {
     chats: this.props.chats,
     currentChat: this.props.chats[0],
-    isChatFormShown: false,
+    isNewChatModalShown: false,
   };
 
   componentDidMount() {
@@ -31,7 +31,7 @@ class Chats extends React.Component {
   }
 
   renderNewChatButton = () => (
-    <button className="btn btn-outline-secondary btn-block" onClick={this.handleShowChatForm}>
+    <button className="btn btn-outline-secondary btn-block" onClick={this.handleShowNewChatModal}>
       Start a new dialogue
     </button>
   );
@@ -59,14 +59,14 @@ class Chats extends React.Component {
   );
 
   render() {
-    const { currentChat, isChatFormShown } = this.state;
+    const { currentChat, isNewChatModalShown } = this.state;
 
     return (
       <div className={styles.chat}>
-        <ChatForm
-          isShown={isChatFormShown}
+        <NewChatModal
+          isShown={isNewChatModalShown}
           onChatCreate={this.handleCreateChat}
-          onClose={this.handleCloseChatForm} />
+          onClose={this.handleCloseNewChatModal} />
 
         <div className={styles.chatsList}>
           { this.renderChatsList() }
@@ -101,12 +101,12 @@ class Chats extends React.Component {
     }
   }
 
-  handleShowChatForm = () => {
-    this.setState({ isChatFormShown: true });
+  handleShowNewChatModal = () => {
+    this.setState({ isNewChatModalShown: true });
   }
 
-  handleCloseChatForm = () => {
-    this.setState({ isChatFormShown: false });
+  handleCloseNewChatModal = () => {
+    this.setState({ isNewChatModalShown: false });
   }
 
   handleCreateChat = (event, userId) => {
@@ -115,7 +115,7 @@ class Chats extends React.Component {
         this.setState(({ chats }) => ({
           chats: [data, ...chats],
           currentChat: data,
-          isChatFormShown: false,
+          isNewChatModalShown: false,
         }));
       });
   }

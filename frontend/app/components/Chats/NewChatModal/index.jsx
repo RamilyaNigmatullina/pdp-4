@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { fetchUsersWithoutChat } from '../api/index';
 import styles from './styles.module.scss';
 
-class ChatForm extends React.Component {
+class NewChatModal extends React.Component {
   state = {
     users: null,
   }
@@ -46,10 +46,10 @@ class ChatForm extends React.Component {
   }
 }
 
-ChatForm.propTypes = {
+NewChatModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   isShown: PropTypes.bool.isRequired,
   onChatCreate: PropTypes.func.isRequired,
 };
 
-export default ChatForm;
+export default NewChatModal;
