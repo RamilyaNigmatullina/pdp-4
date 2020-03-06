@@ -5,11 +5,15 @@
     <br/>
   <% end %>
 
-  <% users.each do |user| %>
-    <li class="row">
-      <div class="col">
-        <%= user.full_name %>
-      </div>
-    </li>
-  <% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Full name</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render users %>
+    </tbody>
+  </table>
 </ul>

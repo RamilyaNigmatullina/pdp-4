@@ -33,6 +33,7 @@ gem "i18n-js"
 gem "image_processing"
 gem "interactor"
 gem "kaminari"
+gem "paranoia"
 gem "rails-i18n"
 gem "seedbank"
 
