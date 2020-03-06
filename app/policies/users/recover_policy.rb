@@ -1,5 +1,5 @@
 module Users
-  class ChatPolicy < ApplicationPolicy
+  class RecoverPolicy < ApplicationPolicy
     def create?
       user.admin?
     end
