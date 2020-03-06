@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     devise_for :users, controllers: { invitations: "users/invitations" }
 
     resources :chats, only: %i[index create]
-    resources :users, only: %i[index destroy]
+    resources :users, only: %i[index destroy] do
+      resource :recovers, only: %i[create], module: :users
+    end
     resource :profile, only: %i[edit]
     resource :company, only: %i[edit]
   end

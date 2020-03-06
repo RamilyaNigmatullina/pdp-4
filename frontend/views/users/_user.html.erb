@@ -1,6 +1,14 @@
 <tr>
   <td><%= user.full_name %></td>
   <td>
-    <%= link_to "Archive", user_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+    <%- unless user.deleted? %>
+      <%= link_to "Archive", user_path(user), method: :delete,
+        class: "btn btn-danger btn-sm", data: { confirm: "Are you sure you want to archive the user? "\
+          "The user will not have access to the application." } %>
+    <% end %>
+    <%- if user.deleted? %>
+      <%= link_to "Reactivate", user_recovers_path(user), method: :post,
+        class: "btn btn-primary btn-sm", data: { confirm: "Are you sure you want to reactivate the user?" } %>
+    <% end %>
   </td>
 </tr>
