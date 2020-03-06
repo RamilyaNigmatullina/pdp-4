@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   extend Enumerize
 
+  acts_as_paranoid
+
   devise :confirmable, :database_authenticatable, :invitable, :lockable, :recoverable,
     :registerable, :rememberable, :trackable, authentication_keys: %i[email company_id]
 

@@ -13,9 +13,9 @@ class EditCompany extends React.Component {
     const { company, errors } = this.state;
 
     return (
-      <div className='container'>
-        <div className='row justify-content-center'>
-          <div className='col col-md-6'>
+      <div className="content-wraper">
+        <div className="row justify-content-center">
+          <div className="col col-md-5">
             <h2>Company Settings</h2>
             <br/>
 

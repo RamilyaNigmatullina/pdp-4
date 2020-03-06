@@ -1,4 +1,6 @@
 class Chat < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :first_user, class_name: "User"
   belongs_to :second_user, class_name: "User"
 

@@ -1,14 +1,21 @@
 FactoryBot.define do
   factory :user do
-    company
     confirmed_at { 1.hour.ago }
     email { Faker::Internet.email }
     full_name { Faker::Name.name }
     password { "123456" }
     password_confirmation { password }
 
+    before(:create) do |user|
+      user.company ||= user.admin? ? build(:company, admin: user) : build(:company)
+    end
+
     trait :admin do
       role { "admin" }
+    end
+
+    trait :archived do
+      deleted_at { 1.day.ago }
     end
 
     trait :not_confirmed do
@@ -24,8 +31,13 @@ FactoryBot.define do
       full_name { "John Smith" }
 
       before(:create) do |user|
-        user.company = create :company, :flatstack
+        user.company = create :company, :flatstack, admin: user
       end
+    end
+
+    trait :kevin_doe do
+      email { "kevin.doe@example.com" }
+      full_name { "Kevin Doe" }
     end
   end
 end

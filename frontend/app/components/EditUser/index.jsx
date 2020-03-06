@@ -13,9 +13,9 @@ class EditUser extends React.Component {
     const { user, errors } = this.state;
 
     return (
-      <div className='container'>
-        <div className='row justify-content-center'>
-          <div className='col col-md-6'>
+      <div className="content-wraper">
+        <div className="row justify-content-center">
+          <div className="col col-md-5">
             <h2>Profile Settings</h2>
             <br/>
 
