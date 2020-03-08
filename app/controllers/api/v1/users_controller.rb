@@ -14,7 +14,7 @@ module Api
       end
 
       def fetch_users
-        FilteredUsers.new(raw_users, filter_params).all
+        FilteredUsers.new(raw_users, filter_params, options).all
       end
 
       def raw_users
@@ -23,6 +23,10 @@ module Api
 
       def filter_params
         params.permit(:without_chat).to_h
+      end
+
+      def options
+        { user: current_user }
       end
     end
   end

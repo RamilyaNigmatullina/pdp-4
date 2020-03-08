@@ -6,12 +6,6 @@ class ApplicationController < ActionController::Base
   responders :flash
   respond_to :html
 
-  before_action :set_current
-
-  def set_current
-    Current.user = current_user
-  end
-
   private
 
   def after_sign_out_path_for(*)
