@@ -10,5 +10,7 @@
     <%= link_to "Profile settings", edit_profile_path, class: "list-group-item list-group-item-action bg-light" %>
     <%= link_to "Chats", chats_path, class: "list-group-item list-group-item-action bg-light" %>
     <%= link_to "Users", users_path, class: "list-group-item list-group-item-action bg-light" %>
+    <%= link_to "Sign Out", destroy_user_session_path,
+      method: :delete, class: "list-group-item list-group-item-action bg-light" %>
   </div>
 </div>
