@@ -10,7 +10,7 @@ module Api
       private
 
       def authorize_resource!
-        authorize! users
+        authorize! users, with: ::Chats::UserPolicy
       end
 
       def fetch_users
