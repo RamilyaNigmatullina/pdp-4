@@ -3,7 +3,7 @@ FactoryBot.define do
     confirmed_at { 1.hour.ago }
     email { Faker::Internet.email }
     full_name { Faker::Name.name }
-    password { "123456" }
+    password { "password" }
     password_confirmation { password }
 
     before(:create) do |user|
