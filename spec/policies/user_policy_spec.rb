@@ -5,7 +5,13 @@ describe UserPolicy do
   describe "#index" do
     subject { policy.apply(:index?) }
 
-    it { is_expected.to be_truthy }
+    it { is_expected.to be_falsey }
+
+    context "when user is admin" do
+      let(:user) { build_stubbed :user, :admin }
+
+      it { is_expected.to be_truthy }
+    end
   end
 
   describe "#create" do
