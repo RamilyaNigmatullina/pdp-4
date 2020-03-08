@@ -1,0 +1,10 @@
+en:
+  activerecord:
+    errors:
+      models:
+        chat:
+          attributes:
+            second_user:
+              invalid_company: "must be from the same company"
+              invalid: "is invalid"
+              taken: "has already been taken"
