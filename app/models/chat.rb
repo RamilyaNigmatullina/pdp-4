@@ -10,8 +10,8 @@ class Chat < ApplicationRecord
 
   validates :second_user, interlocutor: true
 
-  def interlocutor
-    first_user == Current.user ? second_user : first_user
+  def interlocutor(user)
+    first_user == user ? second_user : first_user
   end
 
   def unread_messages_for(user)

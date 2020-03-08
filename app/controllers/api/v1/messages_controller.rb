@@ -12,7 +12,7 @@ module Api
       def create
         if message.save
           ChatChannel.broadcast_to chat, serialized_message
-          ChatNotificationsChannel.broadcast_to "notifications_for_user_#{chat.interlocutor.id}", serialized_chat
+          ChatNotificationsChannel.broadcast_to "notifications_for_user_#{chat_interlocutor.id}", serialized_chat
 
           head :created
         else
@@ -39,7 +39,11 @@ module Api
       end
 
       def serialized_chat
-        ChatSerializer.new(chat, for: current_user).as_json
+        ChatSerializer.new(chat, user: chat_interlocutor).as_json
+      end
+
+      def chat_interlocutor
+        @chat_interlocutor ||= chat.interlocutor(current_user)
       end
     end
   end
