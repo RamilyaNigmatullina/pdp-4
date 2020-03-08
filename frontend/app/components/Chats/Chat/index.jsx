@@ -100,7 +100,7 @@ class Chat extends React.Component {
     fetchMessages(this.props.chat.id, this.state.page)
       .then((data) => {
         this.setState(({ messages, page }) => ({
-          isLastPage: !data.length,
+          isLastPage: this.isLastPage(data.length),
           messages: [...messages, ...data],
           page: page + 1,
         }));
@@ -108,6 +108,10 @@ class Chat extends React.Component {
   }
 
   isCurrentUserMessage = (message) => this.props.currentUser.id === message.sender_id
+
+  isLastPage(messagesCount) {
+    return messagesCount < 25;
+  }
 }
 
 Chat.propTypes = {
