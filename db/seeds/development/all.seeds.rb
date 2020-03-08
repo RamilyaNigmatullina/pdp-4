@@ -8,7 +8,7 @@ def create_messages(chat, messages_count:)
 end
 
 def create_first_company
-  admin = FactoryBot.create(:user, :john_smith)
+  admin = FactoryBot.create(:user, :admin, :john_smith)
   company = admin.company
 
   user_1 = FactoryBot.create(:user, email: "matthew.strickland@flatstack.com", full_name: "Matthew Strickland", company: company)
