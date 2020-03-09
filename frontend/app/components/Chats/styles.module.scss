@@ -1,13 +1,14 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins/breakpoints";
+@import "~stylesheets/colors";
 
 .chat {
   display: flex;
 }
 
 .chatsList {
-  border-right: 1px solid #c4c4c4;
+  border-right: 1px solid $grey-dark-20;
 
   @include media-breakpoint-down(md) {
     display: none;
