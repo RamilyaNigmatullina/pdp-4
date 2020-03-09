@@ -1,3 +1,5 @@
+@import "~stylesheets/colors";
+
 .message {
   display: flex;
   flex: 0 0 auto;
@@ -13,7 +15,7 @@
 
 .interlocutorMessage {
   .messageText {
-    background-color: #09c;
+    background-color: $interlocutor-messsage;
     margin-left: 16px;
   }
 }
@@ -23,7 +25,7 @@
   margin-right: 16px;
 
   .messageText {
-    background-color: #ffbb73;
+    background-color: $current-user-messsage;
     margin-right: 16px;
   }
 }

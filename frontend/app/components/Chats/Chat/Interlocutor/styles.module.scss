@@ -1,7 +1,9 @@
+@import "~stylesheets/colors";
+
 .interlocutor {
-  background: #f7f7f7;
-  border-bottom: 1px solid #c4c4c4;
-  color: #464646;
+  background: $grey;
+  border-bottom: 1px solid $grey-dark-20;
+  color: $grey-dark-65;
   font-size: 18px;
   padding-bottom: 21px;
   padding-top: 22px;
