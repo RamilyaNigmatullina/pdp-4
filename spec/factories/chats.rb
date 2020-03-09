@@ -1,6 +1,12 @@
 FactoryBot.define do
   factory :chat do
-    association :first_user, strategy: :build, factory: :user
-    association :second_user, strategy: :build, factory: :user
+    after(:build) do |chat|
+      company = build :company
+      first_user = build :user, company: company
+      second_user = build :user, company: company
+
+      chat.first_user ||= first_user
+      chat.second_user ||= second_user
+    end
   end
 end

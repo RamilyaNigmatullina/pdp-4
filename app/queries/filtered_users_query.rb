@@ -1,23 +1,7 @@
-class FilteredUsers
+class FilteredUsersQuery < BaseFilteredQuery
   ALLOWED_PARAMS = %i[without_chat archived].freeze
 
-  def initialize(relation, filter_params = {}, options = {})
-    @relation = relation
-    @filter_params = filter_params
-    @options = options
-  end
-
-  def all
-    filter_params.slice(*ALLOWED_PARAMS).reduce(relation) do |relation, (key, value)|
-      next relation if value.nil?
-
-      send("by_#{key}", relation, value)
-    end
-  end
-
   private
-
-  attr_reader :relation, :filter_params, :options
 
   def by_archived(relation, archived)
     archived = ActiveModel::Type::Boolean.new.cast(archived)

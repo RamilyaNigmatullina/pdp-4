@@ -14,7 +14,7 @@ module Api
       end
 
       def fetch_users
-        FilteredUsers.new(raw_users, filter_params, options).all
+        FilteredUsersQuery.new(raw_users, filter_params, options).all
       end
 
       def raw_users

@@ -11,7 +11,6 @@ class Chat extends React.Component {
   state = {
     isLastPage: false,
     messages: [],
-    page: 1,
   };
 
   componentDidMount() {
@@ -25,7 +24,6 @@ class Chat extends React.Component {
       this.setState({
         isLastPage: false,
         messages: [],
-        page: 1,
         subscription: this.subscribeToChannel(),
       });
     }
@@ -97,17 +95,20 @@ class Chat extends React.Component {
   }
 
   handleLoadMessages = () => {
-    fetchMessages(this.props.chat.id, this.state.page)
+    const createdAt = this.lastMessage() && this.lastMessage().created_at;
+
+    fetchMessages(this.props.chat.id, createdAt)
       .then((data) => {
-        this.setState(({ messages, page }) => ({
+        this.setState(({ messages }) => ({
           isLastPage: this.isLastPage(data.length),
           messages: [...messages, ...data],
-          page: page + 1,
         }));
       });
   }
 
   isCurrentUserMessage = (message) => this.props.currentUser.id === message.sender_id
+
+  lastMessage = () => this.state.messages[this.state.messages.length - 1]
 
   isLastPage(messagesCount) {
     return messagesCount < 25;
