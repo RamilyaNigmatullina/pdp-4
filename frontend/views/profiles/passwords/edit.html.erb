@@ -1,0 +1,20 @@
+<div class="content-wrapper">
+  <div class="row justify-content-center">
+    <div class="col col-md-5">
+      <h2>Update password</h2>
+      <br>
+
+      <%= simple_form_for current_user, url: profiles_passwords_path do |f| %>
+        <div class="form-inputs">
+          <%= f.input :password, required: true, autofocus: true %>
+          <%= f.input :password_confirmation, required: true %>
+          <%= f.input :current_password, required: true %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Update" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

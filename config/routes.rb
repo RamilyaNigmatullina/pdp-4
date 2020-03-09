@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     resources :users, only: %i[index destroy] do
       resource :recovers, only: %i[create], module: :users
     end
+    resource :profiles, only: [] do
+      resource :passwords, only: %i[edit update], module: :profiles
+    end
     resource :profile, only: %i[edit]
     resource :company, only: %i[edit]
   end
