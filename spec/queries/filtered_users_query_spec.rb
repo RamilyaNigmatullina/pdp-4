@@ -1,4 +1,4 @@
-describe FilteredUsers do
+describe FilteredUsersQuery do
   subject(:query) { described_class.new(relation, filter_params) }
 
   let(:relation) { User.with_deleted }

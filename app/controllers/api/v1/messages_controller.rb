@@ -3,7 +3,7 @@ module Api
     class MessagesController < BaseController
       expose_decorated :chat
       expose_decorated :message, parent: :chat
-      expose_decorated :messages, :fetch_messages
+      expose_decorated :messages, :filtered_messages
 
       def index
         respond_with messages, each_serializer: MessageSerializer, fields: response_fields
@@ -26,12 +26,20 @@ module Api
         authorize! message
       end
 
+      def filtered_messages
+        FilteredMessagesQuery.new(fetch_messages, filter_params).all
+      end
+
       def fetch_messages
-        chat.messages.order(created_at: :desc).page(params[:page])
+        chat.messages.order(created_at: :desc).limit(25)
       end
 
       def message_params
         params.require(:message).permit(:text).merge(sender_id: current_user.id)
+      end
+
+      def filter_params
+        params.permit(:created_at_until).reverse_merge(created_at_until: Time.zone.now).to_h
       end
 
       def serialized_message

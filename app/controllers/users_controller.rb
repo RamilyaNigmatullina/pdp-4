@@ -16,7 +16,7 @@ class UsersController < BaseController
   private
 
   def filtered_users
-    FilteredUsers.new(fetch_users, filter_params).all
+    FilteredUsersQuery.new(fetch_users, filter_params).all
   end
 
   def fetch_users
