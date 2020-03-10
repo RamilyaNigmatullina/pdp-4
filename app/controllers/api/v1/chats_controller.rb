@@ -2,7 +2,7 @@ module Api
   module V1
     class ChatsController < BaseController
       def create
-        respond_with create_chat.chat
+        respond_with create_chat.chat, serializer: ChatSerializer, user: current_user
       end
 
       private
