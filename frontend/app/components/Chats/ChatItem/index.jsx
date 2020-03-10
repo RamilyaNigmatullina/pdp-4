@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import moment from 'moment';
 import styles from './styles.module.scss';
 
 class ChatItem extends React.Component {
@@ -12,7 +13,7 @@ class ChatItem extends React.Component {
 
   renderDate = () => (
     <div className={styles.date}>
-      { this.props.chat.last_message.created_at }
+      { moment(this.props.chat.last_message.created_at).fromNow(true) }
     </div>
   );
 
