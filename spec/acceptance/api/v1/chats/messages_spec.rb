@@ -82,12 +82,12 @@ resource "Api/V1/Chats/Messages" do
     end
     let(:serialized_chat) do
       {
-        id: 1,
+        id: chat.id,
         interlocutor: {
           avatar: "/images/avatar_32x32.png",
           email: "john.smith@example.com",
           full_name: "John Smith",
-          id: 1
+          id: user.id
         },
         last_message: created_serialized_message,
         unread_messages_count: 1
