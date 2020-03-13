@@ -35,7 +35,7 @@ resource "Api/V1/Chats/Messages" do
   end
 
   get "/api/v1/chats/:chat_id/messages" do
-    parameter :chat_id, "Chat Id", required: true
+    parameter :chat_id, "Chat ID", required: true
     parameter :fields, "Response fields", required: false
 
     example_request "Get messages" do
@@ -80,11 +80,31 @@ resource "Api/V1/Chats/Messages" do
         text: "I'm fine, thank you."
       }
     end
+    let(:serialized_chat) do
+      {
+        id: 1,
+        interlocutor: {
+          avatar: "/images/avatar_32x32.png",
+          email: "john.smith@example.com",
+          full_name: "John Smith",
+          id: 1
+        },
+        last_message: created_serialized_message,
+        unread_messages_count: 1
+      }
+    end
 
-    before { allow(ChatChannel).to receive(:broadcast_to) }
+    before do
+      allow(ChatChannel).to receive(:broadcast_to)
+      allow(ChatNotificationsChannel).to receive(:broadcast_to)
+    end
 
     example_request "Create message" do
       expect(ChatChannel).to have_received(:broadcast_to).with(chat, created_serialized_message).once
+      expect(ChatNotificationsChannel).to have_received(:broadcast_to).with(
+        "notifications_for_user_#{second_user.id}",
+        serialized_chat
+      ).once
 
       expect(response_status).to eq 201
     end
