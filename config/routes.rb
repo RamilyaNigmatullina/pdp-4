@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       resource :company, only: %i[update]
       resource :profile, only: %i[update]
       resources :chats, only: %i[create] do
-        resources :messages, only: %i[index create]
+        resources :messages, only: %i[index create], module: :chats
         resource :reads, only: %i[create], module: :chats
       end
       resources :users, only: %i[index]

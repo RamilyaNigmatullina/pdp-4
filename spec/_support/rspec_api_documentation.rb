@@ -10,3 +10,7 @@ RspecApiDocumentation.configure do |config|
   config.keep_source_order = true
   config.request_body_formatter = :json
 end
+
+RSpec.configure do |config|
+  config.include Warden::Test::Helpers
+end

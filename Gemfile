@@ -66,5 +66,6 @@ group :test do
   gem "rspec_api_documentation"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
+  gem "timecop"
   gem "webdrivers"
 end

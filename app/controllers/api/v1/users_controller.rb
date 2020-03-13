@@ -18,7 +18,7 @@ module Api
       end
 
       def raw_users
-        current_company.users.active.where.not(id: current_user.id)
+        current_company.users.active.where.not(id: current_user.id).order(:full_name)
       end
 
       def filter_params
