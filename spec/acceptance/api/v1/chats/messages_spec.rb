@@ -1,4 +1,4 @@
-resource "Api/V1/Messages" do
+resource "Api/V1/Chats/Messages" do
   include_context :api_headers
   include_context :when_api_user_signed_in
   include_context :when_time_is_frozen
