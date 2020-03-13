@@ -15,9 +15,7 @@ resource "Api/V1/Companies" do
   patch "/api/v1/company" do
     parameter :name, "Name", scope: :company, required: true
 
-    example "Update company" do
-      do_request
-
+    example_request "Update company" do
       expect(response_status).to eq 200
       expect(json_response_body).to eq(expected_data)
     end

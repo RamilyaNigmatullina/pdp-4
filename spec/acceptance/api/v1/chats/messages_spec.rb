@@ -38,9 +38,7 @@ resource "Api/V1/Chats/Messages" do
     parameter :chat_id, "Chat Id", required: true
     parameter :fields, "Response fields", required: false
 
-    example "Get messages" do
-      do_request
-
+    example_request "Get messages" do
       expect(response_status).to eq 200
       expect(json_response_body).to eq(expected_data)
     end
@@ -63,9 +61,7 @@ resource "Api/V1/Chats/Messages" do
 
     before { allow(ChatChannel).to receive(:broadcast_to) }
 
-    example "Create message" do
-      do_request
-
+    example_request "Create message" do
       expect(ChatChannel).to have_received(:broadcast_to).with(chat, created_serialized_message).once()
 
       expect(response_status).to eq 201

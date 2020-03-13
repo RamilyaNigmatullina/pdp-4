@@ -16,9 +16,7 @@ resource "Api/V1/Profiles" do
   patch "/api/v1/profile" do
     parameter :full_name, "Full name", scope: :user, required: true
 
-    example "Update user" do
-      do_request
-
+    example_request "Update user" do
       expect(response_status).to eq 200
       expect(json_response_body).to eq(expected_data)
     end

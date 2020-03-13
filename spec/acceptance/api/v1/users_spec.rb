@@ -23,9 +23,7 @@ resource "Api/V1/Users" do
   end
 
   get "/api/v1/users" do
-    example "Get users" do
-      do_request
-
+    example_request "Get users" do
       expect(response_status).to eq 200
       expect(json_response_body).to eq(expected_data)
     end

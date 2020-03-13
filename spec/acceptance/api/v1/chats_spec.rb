@@ -24,9 +24,7 @@ resource "Api/V1/Chats" do
   post "/api/v1/chats" do
     parameter :user_id, "User ID", scope: :chat, required: true
 
-    example "Create chat" do
-      do_request
-
+    example_request "Create chat" do
       expect(response_status).to eq 201
       expect(json_response_body).to eq(expected_data)
     end

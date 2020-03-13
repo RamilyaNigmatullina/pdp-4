@@ -19,9 +19,7 @@ resource "Api/V1/Chats/Reads" do
   post "/api/v1/chats/:chat_id/reads" do
     parameter :chat_id, "Chat ID", required: true
 
-    example "Read messages" do
-      do_request
-
+    example_request "Read messages" do
       expect(response_status).to eq 200
       expect(message_1.reload.read_at).to eq(4.minutes.ago)
       expect(message_2.reload.read_at).to eq(Time.zone.now)
