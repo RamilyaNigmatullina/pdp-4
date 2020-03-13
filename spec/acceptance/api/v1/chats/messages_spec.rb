@@ -42,6 +42,28 @@ resource "Api/V1/Chats/Messages" do
       expect(response_status).to eq 200
       expect(json_response_body).to eq(expected_data)
     end
+
+    context "with created_at_until parameter" do
+      parameter :created_at_until, "Messages created at until datetime"
+
+      let(:created_at_until) { 4.minutes.ago }
+
+      let(:expected_data) do
+        [
+          {
+            "created_at" => "2020-03-15T10:55:00.000Z",
+            "id" => message_1.id,
+            "sender_id" => user.id,
+            "text" => "Hello, bro!"
+          }
+        ]
+      end
+
+      example_request "Get messages created at until datetime" do
+        expect(response_status).to eq 200
+        expect(json_response_body).to eq(expected_data)
+      end
+    end
   end
 
   post "/api/v1/chats/:chat_id/messages" do
@@ -62,7 +84,7 @@ resource "Api/V1/Chats/Messages" do
     before { allow(ChatChannel).to receive(:broadcast_to) }
 
     example_request "Create message" do
-      expect(ChatChannel).to have_received(:broadcast_to).with(chat, created_serialized_message).once()
+      expect(ChatChannel).to have_received(:broadcast_to).with(chat, created_serialized_message).once
 
       expect(response_status).to eq 201
     end

@@ -115,7 +115,7 @@ RSpec/RepeatedDescription:
   Enabled: false
 
 RSpec/MessageSpies:
-  EnforcedStyle: receive
+  Enabled: false
 
 RSpec/ImplicitSubject:
   Enabled: false
