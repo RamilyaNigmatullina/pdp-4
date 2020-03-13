@@ -25,7 +25,7 @@ class User < ApplicationRecord
 
   enumerize :role, in: %w[admin employee], predicates: true
 
-  scope :active, -> { not_created_by_invite.or(self.invitation_accepted) }
+  scope :active, -> { not_created_by_invite.or(invitation_accepted) }
   scope :not_created_by_invite, -> { where(invited_by_id: nil) }
 
   def self.find_for_authentication(warden_conditions)
