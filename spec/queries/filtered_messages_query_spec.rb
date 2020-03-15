@@ -13,7 +13,7 @@ describe FilteredMessagesQuery do
 
     it { is_expected.to match_array([message_1, message_2, message_3]) }
 
-    context "with created_at_until param" do
+    context "with created_at_until parameter" do
       let(:filter_params) { { created_at_until: 30.minutes.ago } }
 
       it { is_expected.to match_array([message_2, message_3]) }

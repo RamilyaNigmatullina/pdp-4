@@ -1,9 +1,9 @@
 class MessagePolicy < ApplicationPolicy
   def index?
-    true
+    user.chats.include?(record.chat)
   end
 
   def create?
-    true
+    user.chats.include?(record.chat)
   end
 end

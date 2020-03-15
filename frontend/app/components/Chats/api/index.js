@@ -15,7 +15,7 @@ export const readMessages = (chatId) => axios
   .then((response) => response.data);
 
 export const fetchUsersWithoutChat = () => axios
-  .get('/api/v1/users', { params: { without_chat: true } })
+  .get('/api/v1/users')
   .then((response) => response.data);
 
 export const createChat = (userId) => axios

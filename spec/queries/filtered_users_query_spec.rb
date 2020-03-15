@@ -13,7 +13,7 @@ describe FilteredUsersQuery do
 
     it { is_expected.to match_array([user, archived_user]) }
 
-    context "with archived param" do
+    context "with archived parameter" do
       context "with true value" do
         let(:filter_params) { { archived: "true" } }
 

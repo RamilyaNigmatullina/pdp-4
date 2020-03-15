@@ -60,6 +60,7 @@ group :development, :test do
 end
 
 group :test do
+  gem "action-cable-testing"
   gem "capybara"
   gem "email_spec"
   gem "rspec-sidekiq"
