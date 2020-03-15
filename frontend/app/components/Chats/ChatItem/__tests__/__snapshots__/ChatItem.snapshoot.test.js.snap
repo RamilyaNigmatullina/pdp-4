@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatItem renders chat item 1`] = `
+<div
+  className="chatItem"
+  onClick={[Function]}
+>
+  <div
+    className="chatItemContainer"
+  >
+    <div
+      className="interlocutorAvatar"
+    >
+      <img
+        className="rounded-circle"
+        height="32"
+        src="/john_smith_avatar.jpg"
+        width="32"
+      />
+    </div>
+    <div
+      className="details"
+    >
+      <div
+        className="interlocutorFullName"
+      >
+        John Smith
+      </div>
+      <div
+        className="date"
+      >
+        Today at 8:39 PM
+      </div>
+    </div>
+    <div
+      className="details"
+    >
+      <div
+        className="lastMessage"
+      >
+        Hello! How are you?
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ChatItem with current chat renders chat item 1`] = `
+<div
+  className="chatItem active"
+  onClick={[Function]}
+>
+  <div
+    className="chatItemContainer"
+  >
+    <div
+      className="interlocutorAvatar"
+    >
+      <img
+        className="rounded-circle"
+        height="32"
+        src="/john_smith_avatar.jpg"
+        width="32"
+      />
+    </div>
+    <div
+      className="details"
+    >
+      <div
+        className="interlocutorFullName"
+      >
+        John Smith
+      </div>
+      <div
+        className="date"
+      >
+        Today at 8:39 PM
+      </div>
+    </div>
+    <div
+      className="details"
+    >
+      <div
+        className="lastMessage"
+      >
+        Hello! How are you?
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ChatItem with unread messages renders chat item 1`] = `
+<div
+  className="chatItem"
+  onClick={[Function]}
+>
+  <div
+    className="chatItemContainer"
+  >
+    <div
+      className="interlocutorAvatar"
+    >
+      <img
+        className="rounded-circle"
+        height="32"
+        src="/john_smith_avatar.jpg"
+        width="32"
+      />
+    </div>
+    <div
+      className="details"
+    >
+      <div
+        className="interlocutorFullName"
+      >
+        John Smith
+      </div>
+      <div
+        className="date"
+      >
+        Today at 8:39 PM
+      </div>
+    </div>
+    <div
+      className="details"
+    >
+      <div
+        className="lastMessage"
+      >
+        Hello! How are you?
+      </div>
+      <div
+        className="badge badge badge-pill badge-secondary"
+      >
+        2
+      </div>
+    </div>
+  </div>
+</div>
+`;

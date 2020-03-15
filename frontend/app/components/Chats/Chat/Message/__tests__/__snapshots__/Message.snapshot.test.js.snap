@@ -2,11 +2,11 @@
 
 exports[`Message renders message 1`] = `
 <div
-  className="message message--current-user"
+  className="message currentUserMessage"
   id="message-1"
 >
   <span
-    className="message__text"
+    className="messageText"
   >
     Hello world!
   </span>
@@ -21,7 +21,7 @@ exports[`Message renders message 1`] = `
 
 exports[`Message with interlocator message renders message 1`] = `
 <div
-  className="message message--interlocutor"
+  className="message interlocutorMessage"
   id="message-1"
 >
   <img
@@ -31,7 +31,7 @@ exports[`Message with interlocator message renders message 1`] = `
     width="32"
   />
   <span
-    className="message__text"
+    className="messageText"
   >
     Hello world!
   </span>

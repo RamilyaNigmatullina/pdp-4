@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewChatModal renders new chat modal 1`] = `
+<Bootstrap(Modal)
+  aria-labelledby="contained-modal-title-vcenter"
+  centered={true}
+  onHide={[MockFunction]}
+  show={true}
+  size="md"
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <ModalTitle
+      id="contained-modal-title-vcenter"
+    >
+      Direct Messages
+    </ModalTitle>
+  </ModalHeader>
+  <ModalBody />
+</Bootstrap(Modal)>
+`;
+
+exports[`NewChatModal when is not shown renders new chat modal 1`] = `""`;
