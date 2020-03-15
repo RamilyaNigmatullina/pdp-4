@@ -24,7 +24,7 @@ describe User do
     let(:user_1) { create :user, company: company }
     let!(:chat) { create :chat, first_user: user, second_user: user_1 }
 
-    it { is_expected.to eq chat }
+    it { is_expected.to eq(chat) }
 
     context "when users do not have a chat" do
       let(:interlocutor) { create :user, company: company }

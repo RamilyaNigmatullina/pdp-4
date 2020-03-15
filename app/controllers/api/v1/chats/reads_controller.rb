@@ -13,7 +13,7 @@ module Api
         private
 
         def authorize_resource!
-          authorize! chat, with: ReadsPolicy
+          authorize! chat, with: ReadPolicy
         end
       end
     end

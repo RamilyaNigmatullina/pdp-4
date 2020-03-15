@@ -14,19 +14,11 @@ module Api
       end
 
       def fetch_users
-        FilteredUsersQuery.new(raw_users, filter_params, options).all
+        UsersWithoutChatWithUserQuery.new(raw_users, user: current_user).all
       end
 
       def raw_users
         current_company.users.active.where.not(id: current_user.id).order(:full_name)
-      end
-
-      def filter_params
-        params.permit(:without_chat).to_h
-      end
-
-      def options
-        { user: current_user }
       end
     end
   end
