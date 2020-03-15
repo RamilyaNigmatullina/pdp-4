@@ -14,7 +14,7 @@ describe MessagePolicy do
 
     it { is_expected.to be_truthy }
 
-    context "when it's not a user chat" do
+    context "when a message from another chat" do
       let(:chat) { create :chat }
 
       it { is_expected.to be_falsey }
@@ -26,7 +26,7 @@ describe MessagePolicy do
 
     it { is_expected.to be_truthy }
 
-    context "when it's not a user chat" do
+    context "when a message from another chat" do
       let(:chat) { create :chat }
 
       it { is_expected.to be_falsey }
