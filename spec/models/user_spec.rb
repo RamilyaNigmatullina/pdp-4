@@ -26,7 +26,7 @@ describe User do
 
     it { is_expected.to eq(chat) }
 
-    context "when user do not have a chat" do
+    context "when users do not have a chat" do
       let(:interlocutor) { create :user, company: company }
 
       it { is_expected.to be_nil }
