@@ -3,22 +3,23 @@
 exports[`MessageForm renders message form 1`] = `
 <form
   action="/api/v1/chats/1/messages"
-  className="simple_form message-form"
+  className="messageForm simple_form"
   method="post"
   onSubmit={[Function]}
 >
   <div
-    className="form-group text message-form__text"
+    className="formText form-group text"
   >
     <textarea
       className="form-control"
       name="message[text]"
+      onKeyUp={[Function]}
       placeholder="Type text..."
       rows="1"
     />
   </div>
   <button
-    className="btn btn-primary message-form__button"
+    className="formButton btn btn-primary"
   >
     Send
   </button>

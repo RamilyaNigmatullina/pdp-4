@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chats renders chats 1`] = `
+<div
+  className="chat"
+>
+  <NewChatModal
+    isShown={false}
+    onChatCreate={[Function]}
+    onClose={[Function]}
+  />
+  <div
+    className="chatsList"
+  >
+    <div
+      className="chatItems"
+    >
+      <button
+        className="btn btn-outline-secondary btn-block"
+        onClick={[Function]}
+      >
+        Start a new dialogue
+      </button>
+      <ChatItem
+        chat={
+          Object {
+            "id": 1,
+            "interlocutor": Object {
+              "avatar": "/kevin_doe_avatar.jpg",
+              "full_name": "Kevin Doe",
+              "id": 2,
+            },
+            "last_message": Object {
+              "created_at": "2020-03-15T17:39:18.327Z",
+              "id": 1,
+              "sender_id": 1,
+              "text": "Hello! How are you?",
+            },
+            "unread_messages_count": 0,
+          }
+        }
+        isCurrentChat={true}
+        key="1"
+        onClick={[Function]}
+      />
+      <ChatItem
+        chat={
+          Object {
+            "id": 1,
+            "interlocutor": Object {
+              "avatar": "/mark_boone_avatar.jpg",
+              "full_name": "Mark Boone",
+              "id": 3,
+            },
+            "last_message": Object {
+              "created_at": "2020-03-15T15:00:10.327Z",
+              "id": 1,
+              "sender_id": 1,
+              "text": "Are you working?",
+            },
+            "unread_messages_count": 2,
+          }
+        }
+        isCurrentChat={true}
+        key="1"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+  <div
+    className="dialog"
+  >
+    <Chat
+      chat={
+        Object {
+          "id": 1,
+          "interlocutor": Object {
+            "avatar": "/kevin_doe_avatar.jpg",
+            "full_name": "Kevin Doe",
+            "id": 2,
+          },
+          "last_message": Object {
+            "created_at": "2020-03-15T17:39:18.327Z",
+            "id": 1,
+            "sender_id": 1,
+            "text": "Hello! How are you?",
+          },
+          "unread_messages_count": 0,
+        }
+      }
+      currentUser={
+        Object {
+          "avatar": "/john_smith_avatar.jpg",
+          "full_name": "John Smith",
+          "id": 1,
+        }
+      }
+      onMessageReceived={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`Chats without chats renders chats 1`] = `
+<div
+  className="chat"
+>
+  <NewChatModal
+    isShown={false}
+    onChatCreate={[Function]}
+    onClose={[Function]}
+  />
+  <div
+    className="chatsList"
+  >
+    <div
+      className="chatItems"
+    >
+      <button
+        className="btn btn-outline-secondary btn-block"
+        onClick={[Function]}
+      >
+        Start a new dialogue
+      </button>
+    </div>
+  </div>
+  <div
+    className="dialog"
+  />
+</div>
+`;

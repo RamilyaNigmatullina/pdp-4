@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Interlocutor renders interlocutor info 1`] = `
+<div
+  className="interlocutor"
+>
+  <div
+    className="interlocutorAvatar"
+  >
+    <img
+      alt=""
+      className="rounded-circle"
+      height="32"
+      src="/john_smith_avatar.jpg"
+      width="32"
+    />
+  </div>
+  <div
+    className="interlocutorFullName"
+  >
+    John Smith
+  </div>
+</div>
+`;
