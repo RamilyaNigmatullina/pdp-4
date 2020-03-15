@@ -13,7 +13,7 @@ class ChatItem extends React.Component {
 
   renderDate = () => (
     <div className={styles.date}>
-      { moment(this.props.chat.last_message.created_at).fromNow(true) }
+      { moment(this.props.chat.last_message.created_at).calendar() }
     </div>
   );
 
