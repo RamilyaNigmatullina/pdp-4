@@ -58,7 +58,7 @@ class Chat extends React.Component {
 
   render() {
     const { messages, isLastPage } = this.state;
-    const { chat } = this.props;
+    const { chat, currentUser } = this.props;
 
     return (
       <>
@@ -73,7 +73,7 @@ class Chat extends React.Component {
             /> }
         </div>
 
-        { <MessageForm chatId={chat.id} /> }
+        { <MessageForm chatId={chat.id} currentUser={currentUser} /> }
       </>
     );
   }
