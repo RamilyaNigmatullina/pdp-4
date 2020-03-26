@@ -1,0 +1,19 @@
+@import "~stylesheets/colors";
+
+.fileInput {
+  display: none;
+}
+
+.imageArea {
+  border-radius: 10px;
+  box-sizing: content-box;
+  display: block;
+  margin-top: 8px;
+  max-height: 300px;
+  max-width: 400px;
+
+  &:hover {
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    cursor: pointer;
+  }
+}
