@@ -54,6 +54,10 @@
   margin-right: 8px;
 }
 
+.image {
+  object-fit: cover;
+}
+
 .lastMessage {
   color: $grey-dark-35;
   font-size: 14px;

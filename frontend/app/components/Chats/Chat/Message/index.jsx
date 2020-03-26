@@ -4,6 +4,10 @@ import classNames from 'classnames';
 import styles from './styles.module.scss';
 
 class Message extends React.Component {
+  avatar(avatarUrl) {
+    return <img className={classNames(styles.image, 'rounded-circle')} src={avatarUrl} width="32" height="32" />;
+  }
+
   render() {
     const { avatarUrl, message, isCurrentUserMessage } = this.props;
     const messageClasses = classNames(styles.message, {
@@ -13,9 +17,9 @@ class Message extends React.Component {
 
     return (
       <div className={messageClasses} id={`message-${message.id}`}>
-        { !isCurrentUserMessage && <img className="rounded-circle" src={avatarUrl} width="32" height="32" /> }
+        { !isCurrentUserMessage && this.avatar(avatarUrl) }
         <span className={styles.messageText}>{ message.text }</span>
-        { isCurrentUserMessage && <img className="rounded-circle" src={avatarUrl} width="32" height="32" /> }
+        { isCurrentUserMessage && this.avatar(avatarUrl) }
       </div>
     );
   }

@@ -8,14 +8,15 @@ const CteFileField = (props) => {
   const handleChange = (event) => {
     const file = event.target.files[0];
     const formData = new FormData();
+    const inputName = `${className}[${fieldName}]`;
 
-    formData.append(`${className}[${fieldName}]`, file);
+    formData.append(inputName, file);
 
     onSubmit(formData);
   };
 
   return (
-    <div className={`form-group file ${className}_${fieldName}`}>
+    <div className="form-group file">
       <label className="file" htmlFor={`${className}_${fieldName}`}>
         { label }
         <input

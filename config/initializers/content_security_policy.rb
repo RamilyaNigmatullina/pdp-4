@@ -5,11 +5,11 @@
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 
 Rails.application.config.content_security_policy do |policy|
- policy.object_src  :none
- policy.script_src  :self, :https, :strict_dynamic
- policy.base_uri    :none
+  policy.object_src  :none
+  policy.script_src  :self, :https, :strict_dynamic
+  policy.base_uri    :none
 
- # policy.report_uri "/csp-violation-report-endpoint"
+  # policy.report_uri "/csp-violation-report-endpoint"
 end
 
 # If you are using UJS then enable automatic nonce generation
