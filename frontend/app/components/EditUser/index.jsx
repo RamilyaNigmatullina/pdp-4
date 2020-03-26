@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CteFileField from 'components/base/CteFileField';
 import CteTextField from 'components/base/CteTextField';
-import { updateUser } from './api/index';
+import { updateUserAvatar, updateUser } from './api/index';
 
 class EditUser extends React.Component {
   state = {
@@ -35,6 +36,13 @@ class EditUser extends React.Component {
               onSubmit={this.handleSubmit}
               value={user.email}
             />
+            <CteFileField
+              fileUrl={user.avatar}
+              label= "Avatar"
+              className="user"
+              fieldName="avatar"
+              onSubmit={this.handleSubmitAvatar}
+            />
           </div>
         </div>
       </div>
@@ -57,6 +65,9 @@ class EditUser extends React.Component {
         this.setState({ errors: { ...this.state.errors, ...{ [name]: errors[name] } } });
       });
   }
+
+  handleSubmitAvatar = (formData) => updateUserAvatar(formData)
+    .then((data) => { this.setState({ user: data }); });
 }
 
 EditUser.propTypes = {

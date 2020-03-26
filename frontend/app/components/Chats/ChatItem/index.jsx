@@ -7,7 +7,12 @@ import styles from './styles.module.scss';
 class ChatItem extends React.Component {
   renderAvatar = () => (
     <div className={styles.interlocutorAvatar}>
-      <img className="rounded-circle" src={this.props.chat.interlocutor.avatar} width="32" height="32" />
+      <img
+        className={classNames(styles.image, 'rounded-circle')}
+        height="32"
+        src={this.props.chat.interlocutor.avatar}
+        width="32"
+      />
     </div>
   );
 

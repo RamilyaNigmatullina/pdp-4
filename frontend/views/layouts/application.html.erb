@@ -14,8 +14,8 @@
       integrity: "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T",
       crossorigin: "anonymous" %>
 
-    <%= stylesheet_pack_tag "application", media: "all" %>
-    <%= javascript_pack_tag "application", defer: true %>
+    <%= stylesheet_pack_tag "application", media: "all", nonce: true %>
+    <%= javascript_pack_tag "application", defer: true, nonce: true %>
   </head>
 
   <%= body_tag do %>

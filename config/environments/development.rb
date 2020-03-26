@@ -58,4 +58,6 @@ Rails.application.configure do
 
   # Generate frontend/vendor/translations.js
   config.middleware.use I18n::JS::Middleware
+
+  routes.default_url_options[:port] = 5000
 end

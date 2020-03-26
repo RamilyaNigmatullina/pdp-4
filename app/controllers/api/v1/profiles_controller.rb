@@ -14,7 +14,7 @@ module Api
       end
 
       def user_params
-        params.require(:user).permit(:full_name)
+        params.require(:user).permit(:full_name, :avatar)
       end
     end
   end
