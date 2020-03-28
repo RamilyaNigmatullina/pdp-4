@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: "pages#index", as: :public_root
 
-    resources :pages, only: %i[index]
     resources :companies, only: %i[new create]
 
     namespace :users, only: [] do
