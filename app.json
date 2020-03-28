@@ -1,11 +1,19 @@
 {
   "name": "ramilya-pdp-4",
   "env": {
+    "CLOUDCUBE_ACCESS_KEY_ID": { "required": true },
+    "CLOUDCUBE_SECRET_ACCESS_KEY": { "required": true },
+    "CLOUDCUBE_URL": { "required": true },
     "HOST": { "required": true },
     "MAILER_SENDER_ADDRESS": { "required": true },
     "RACK_ENV": "staging",
     "RAILS_ENV": "staging",
-    "ROLLBAR_ACCESS_TOKEN": { "required": true }
+    "REDIS_URL": { "required": true },
+    "ROLLBAR_ACCESS_TOKEN": { "required": true },
+    "ROLLBAR_ENDPOINT": { "required": true },
+    "SENDGRID_PASSWORD": { "required": true },
+    "SENDGRID_USERNAME": { "required": true },
+    "WEBPACKER_PRECOMPILE": false
   },
   "formation": {
     "web": { "quantity": 1, "size": "free" },
