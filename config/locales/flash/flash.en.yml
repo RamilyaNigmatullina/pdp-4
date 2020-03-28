@@ -1,5 +1,18 @@
 en:
   flash:
+    users:
+      destroy:
+        notice: "User was successfully archived."
+        alert: "User could not be archived."
+      recovers:
+        create:
+          notice: "User was successfully reactivated."
+          alert: "User could not be reactivated."
+    profiles:
+      passwords:
+        update:
+          notice: "Password was successfully changed!"
+          alert: "Password could not be updated."
     actions:
       create:
         notice: "%{resource_name} was successfully created."

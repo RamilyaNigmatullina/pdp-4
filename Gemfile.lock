@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    action-cable-testing (0.6.1)
+      actioncable (>= 5.0)
     action_policy (0.4.3)
     actioncable (6.0.2.1)
       actionpack (= 6.0.2.1)
@@ -164,18 +166,6 @@ GEM
     interactor (3.1.2)
     jaro_winkler (1.5.4)
     jsonapi-renderer (0.2.2)
-    kaminari (1.1.1)
-      activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.1.1)
-      kaminari-activerecord (= 1.1.1)
-      kaminari-core (= 1.1.1)
-    kaminari-actionview (1.1.1)
-      actionview
-      kaminari-core (= 1.1.1)
-    kaminari-activerecord (1.1.1)
-      activerecord
-      kaminari-core (= 1.1.1)
-    kaminari-core (1.1.1)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.7.0)
@@ -203,6 +193,8 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     parallel (1.19.1)
+    paranoia (2.4.2)
+      activerecord (>= 4.0, < 6.1)
     parser (2.7.0.1)
       ast (~> 2.4.0)
     pg (1.2.1)
@@ -354,6 +346,7 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    timecop (0.9.1)
     tzinfo (1.2.6)
       thread_safe (~> 0.1)
     unicode-display_width (1.6.0)
@@ -379,6 +372,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  action-cable-testing
   action_policy
   active_link_to
   active_model_serializers
@@ -401,9 +395,9 @@ DEPENDENCIES
   i18n-js
   image_processing
   interactor
-  kaminari
   letter_opener
   listen
+  paranoia
   pg (= 1.2.1)
   pry-rails
   puma (= 4.3.1)
@@ -425,6 +419,7 @@ DEPENDENCIES
   simple_form
   spring
   spring-watcher-listen
+  timecop
   webdrivers
   webpacker
 

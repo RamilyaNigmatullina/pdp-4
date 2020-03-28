@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MessageForm renders message form 1`] = `
+<form
+  action="/api/v1/chats/1/messages"
+  className="messageForm simple_form"
+  method="post"
+  onSubmit={[Function]}
+>
+  <div
+    className="formText form-group text"
+  >
+    <textarea
+      className="form-control"
+      name="message[text]"
+      onKeyUp={[Function]}
+      placeholder="Type text..."
+      rows="1"
+    />
+  </div>
+  <button
+    className="formButton btn btn-primary"
+  >
+    Send
+  </button>
+</form>
+`;

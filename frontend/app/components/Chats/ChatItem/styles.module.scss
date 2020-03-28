@@ -1,0 +1,65 @@
+@import "~stylesheets/colors";
+
+.active {
+  background: $grey-dark-10;
+}
+
+.chatItemContainer {
+  clear: both;
+  overflow: hidden;
+}
+
+.chatItem {
+  border-bottom: 1px solid $grey-dark-20;
+  cursor: pointer;
+  margin: 0;
+  min-height: 76px;
+  padding: 18px 16px 10px;
+
+  &:hover {
+    background: $grey;
+  }
+}
+
+.details {
+  display: flex;
+  line-height: 1.3;
+}
+
+.interlocutorFullName {
+  color: $grey-dark-65;
+  font-size: 15px;
+  margin: 0 0 8px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.date {
+  color: $grey-dark-65;
+  float: right;
+  font-size: 15px;
+  padding-left: 3px;
+  white-space: nowrap;
+}
+
+.badge {
+  float: right;
+  font-size: 12px;
+}
+
+.interlocutorAvatar {
+  float: left;
+  margin-right: 8px;
+}
+
+.lastMessage {
+  color: $grey-dark-35;
+  font-size: 14px;
+  margin: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}

@@ -13,7 +13,7 @@ feature "Sign in", :js do
     expect(page).to have_content("Sign in to Flatstack")
 
     fill_in "Email", with: "john.smith@example.com"
-    fill_in "Password", with: "123456"
+    fill_in "Password", with: "password"
 
     click_on "Log in"
 

@@ -3,13 +3,13 @@ class Subdomain
 
   SUBDOMAIN_REGEXP = /\A[a-z0-9]+\z/.freeze
 
-  attr_reader :subdomain
+  attr_reader :value
 
-  def subdomain=(subdomain)
-    @subdomain = subdomain.to_s.downcase
+  def value=(value)
+    @value = value.to_s.downcase
   end
 
-  validates :subdomain, presence: true, length: { in: 2..15 },
+  validates :value, presence: true, length: { in: 2..15 },
     format: SUBDOMAIN_REGEXP, exclusion: { in: :reserved_subdomain_names }
 
   private

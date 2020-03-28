@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chat renders chat 1`] = `
+<Fragment>
+  <Interlocutor
+    interlocutor={
+      Object {
+        "avatar": "/kevin_doe_avatar.jpg",
+        "full_name": "Kevin Doe",
+        "id": 2,
+      }
+    }
+  />
+  <div
+    className="messages"
+  >
+    <InfiniteScrolling
+      isLastPage={false}
+      items={Array []}
+      loadItems={[Function]}
+      renderItem={[Function]}
+    />
+  </div>
+  <MessageForm
+    chatId={1}
+  />
+</Fragment>
+`;

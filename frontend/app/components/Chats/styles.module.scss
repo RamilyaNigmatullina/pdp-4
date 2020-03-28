@@ -1,0 +1,35 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins/breakpoints";
+@import "~stylesheets/colors";
+
+.chat {
+  display: flex;
+}
+
+.chatsList {
+  border-right: 1px solid $grey-dark-20;
+
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+}
+
+.chatItems {
+  flex-direction: column;
+  height: 550px;
+  overflow-y: scroll;
+  width: 350px;
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  height: calc(101vh - 64px);
+  padding: 0 0 1px 0;
+  width: 100%;
+
+  @include media-breakpoint-down(md) {
+    height: calc(100vh - 56px);
+  }
+}

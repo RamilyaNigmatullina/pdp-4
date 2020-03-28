@@ -5,8 +5,9 @@ describe InterlocutorValidator do
 
   let(:chat) { build :chat, first_user: first_user, second_user: second_user }
 
-  let(:first_user) { create :user }
-  let(:second_user) { create :user }
+  let(:company) { create :company }
+  let(:first_user) { create :user, company: company }
+  let(:second_user) { create :user, company: company }
 
   describe "#validate_each" do
     subject(:errors) { chat.errors[:second_user] }

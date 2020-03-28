@@ -1,12 +1,14 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <h2>Register your company</h2>
+<div class="content-wrapper">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h2>Register your company</h2>
 
-      <%= simple_form_for company do |f| %>
-        <%= render "company_form", f: f, step: step %>
-        <%= render "admin_form", f: f, step: step %>
-      <% end %>
+        <%= simple_form_for company do |f| %>
+          <%= render "company_form", f: f, step: step %>
+          <%= render "admin_form", f: f, step: step %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

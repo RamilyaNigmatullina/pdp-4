@@ -14,7 +14,7 @@ module Api
       end
 
       def company_params
-        params.require(:company).permit(:name, :slug)
+        params.require(:company).permit(:name)
       end
     end
   end

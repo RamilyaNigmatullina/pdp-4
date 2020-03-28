@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_03_073614) do
+ActiveRecord::Schema.define(version: 2020_03_06_194337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 2020_02_03_073614) do
     t.bigint "second_user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_chats_on_deleted_at"
     t.index ["first_user_id", "second_user_id"], name: "index_chats_on_first_user_id_and_second_user_id", unique: true
     t.index ["second_user_id", "first_user_id"], name: "index_chats_on_second_user_id_and_first_user_id", unique: true
   end
@@ -65,7 +67,10 @@ ActiveRecord::Schema.define(version: 2020_02_03_073614) do
     t.text "text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "read_at"
+    t.datetime "deleted_at"
     t.index ["chat_id", "created_at"], name: "index_messages_on_chat_id_and_created_at", order: { created_at: :desc }
+    t.index ["deleted_at"], name: "index_messages_on_deleted_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -99,8 +104,10 @@ ActiveRecord::Schema.define(version: 2020_02_03_073614) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.datetime "deleted_at"
     t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email", "company_id"], name: "index_users_on_email_and_company_id", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"

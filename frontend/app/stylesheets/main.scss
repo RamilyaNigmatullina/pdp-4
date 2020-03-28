@@ -1,3 +1,8 @@
+.content-wrapper {
+  padding: 15px 15px 0;
+  width: 100%;
+}
+
 .sidebar {
   width: 200px;
 }
@@ -12,7 +17,7 @@
 }
 
 .nav-info {
-  color: $nav-item;
+  color: $grey-dark-65;
   display: block;
   padding: 0.5rem 1rem;
 }

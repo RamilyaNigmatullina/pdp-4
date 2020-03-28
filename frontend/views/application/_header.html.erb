@@ -1,9 +1,5 @@
 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
   <li class="nav-item nav-info">
-    <!-- <%= image_tag current_user.avatar, class: "rounded-circle", size: "32x32" %> -->
     <%= current_user.full_name %>
-  </li>
-  <li class="nav-item">
-    <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
   </li>
 </ul>

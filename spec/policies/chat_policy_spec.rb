@@ -3,8 +3,8 @@ describe ChatPolicy do
   let(:chat) { build_stubbed :chat }
   let(:user) { build_stubbed :user }
 
-  describe "#show" do
-    subject { policy.apply(:show?) }
+  describe "#index" do
+    subject { policy.apply(:index?) }
 
     it { is_expected.to be_truthy }
   end

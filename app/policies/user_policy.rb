@@ -1,6 +1,6 @@
 class UserPolicy < ApplicationPolicy
   def index?
-    true
+    user.admin?
   end
 
   def create?
@@ -9,5 +9,9 @@ class UserPolicy < ApplicationPolicy
 
   def update?
     true
+  end
+
+  def destroy?
+    user.admin?
   end
 end

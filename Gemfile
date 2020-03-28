@@ -32,7 +32,7 @@ gem "enumerize"
 gem "i18n-js"
 gem "image_processing"
 gem "interactor"
-gem "kaminari"
+gem "paranoia"
 gem "rails-i18n"
 gem "seedbank"
 
@@ -60,11 +60,13 @@ group :development, :test do
 end
 
 group :test do
+  gem "action-cable-testing"
   gem "capybara"
   gem "email_spec"
   gem "rspec-sidekiq"
   gem "rspec_api_documentation"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
+  gem "timecop"
   gem "webdrivers"
 end

@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   extend Enumerize
 
+  acts_as_paranoid
+
   devise :confirmable, :database_authenticatable, :invitable, :lockable, :recoverable,
     :registerable, :rememberable, :trackable, authentication_keys: %i[email company_id]
 
@@ -10,6 +12,7 @@ class User < ApplicationRecord
             inverse_of: :first_user, dependent: :destroy
   has_many :second_user_chats, class_name: "Chat", foreign_key: :second_user_id,
             inverse_of: :second_user, dependent: :destroy
+  has_many :chats, -> { where("first_user_id == :id OR second_user_id == :id", id: id) }, inverse_of: :chat
 
   has_one_attached :avatar
 
@@ -22,7 +25,7 @@ class User < ApplicationRecord
 
   enumerize :role, in: %w[admin employee], predicates: true
 
-  scope :active, -> { not_created_by_invite.or(User.invitation_accepted) }
+  scope :active, -> { not_created_by_invite.or(invitation_accepted) }
   scope :not_created_by_invite, -> { where(invited_by_id: nil) }
 
   def self.find_for_authentication(warden_conditions)

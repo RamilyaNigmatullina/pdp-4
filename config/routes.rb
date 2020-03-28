@@ -4,8 +4,13 @@ Rails.application.routes.draw do
 
     devise_for :users, controllers: { invitations: "users/invitations" }
 
-    resources :chats, only: %i[create show]
-    resources :users, only: %i[index]
+    resources :chats, only: %i[index create]
+    resources :users, only: %i[index destroy] do
+      resource :recovers, only: %i[create], module: :users
+    end
+    resource :profiles, only: [] do
+      resource :passwords, only: %i[edit update], module: :profiles
+    end
     resource :profile, only: %i[edit]
     resource :company, only: %i[edit]
   end
@@ -24,9 +29,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       resource :company, only: %i[update]
       resource :profile, only: %i[update]
-      resources :chats, only: [] do
-        resources :messages, only: %i[index create]
+      resources :chats, only: %i[create] do
+        resources :messages, only: %i[index create], module: :chats
+        resource :reads, only: %i[create], module: :chats
       end
+      resources :users, only: %i[index]
     end
   end
 end

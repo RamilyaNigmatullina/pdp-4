@@ -1,0 +1,19 @@
+@import "~stylesheets/colors";
+
+.interlocutor {
+  background: $grey;
+  border-bottom: 1px solid $grey-dark-20;
+  color: $grey-dark-65;
+  font-size: 18px;
+  padding-bottom: 21px;
+  padding-top: 22px;
+}
+
+.interlocutorAvatar {
+  float: left;
+  padding: 0 10px;
+}
+
+.interlocutorFullName {
+  padding-top: 3px;
+}

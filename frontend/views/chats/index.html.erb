@@ -1,0 +1,4 @@
+<%= render_react_component("Chats", {
+  chats: ActiveModel::Serializer::CollectionSerializer.new(chats, user: current_user).to_a,
+  currentUser: UserSerializer.new(current_user).as_json
+}) %>

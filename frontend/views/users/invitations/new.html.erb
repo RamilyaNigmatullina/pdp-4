@@ -1,17 +1,19 @@
-<div class="row justify-content-center">
-  <div class="col col-md-5">
-    <h2>Send invitation</h2>
+<div class="content-wrapper">
+  <div class="row justify-content-center">
+    <div class="col col-md-5">
+      <h2>Send invitation</h2>
 
-    <%= simple_form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
-      <%= f.error_notification %>
+      <%= simple_form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
+        <%= f.error_notification %>
 
-      <%= f.input :full_name, autofocus: true %>
-      <%= f.input :email, input_html: { autocomplete: "email" } %>
-      <%= f.input :company_id, as: :hidden, input_html: { value: current_company.id } %>
+        <%= f.input :full_name, autofocus: true %>
+        <%= f.input :email, input_html: { autocomplete: "email" } %>
+        <%= f.input :company_id, as: :hidden, input_html: { value: current_company.id } %>
 
-      <div class="form-actions">
-        <%= f.button :submit, "Send an invitation" %>
-      </div>
-    <% end %>
+        <div class="form-actions">
+          <%= f.button :submit, "Send an invitation" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
