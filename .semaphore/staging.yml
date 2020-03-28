@@ -29,8 +29,6 @@ blocks:
             - git config --global user.email "semaphoreci@pdp4"
             - git config --global user.name "Semaphore CI"
             - git commit -m "Deploy to Heroku"
-            - heroku maintenance:on
             - git push heroku -f $SEMAPHORE_GIT_BRANCH:master
             - heroku run --exit-code -- bundle exec rails db:migrate
             - heroku restart
-            - heroku maintenance:off
