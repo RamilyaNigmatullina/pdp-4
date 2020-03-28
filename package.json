@@ -1,5 +1,5 @@
 {
-  "name": "pdp4",
+  "name": "ramilya-pdp-4",
   "private": true,
   "scripts": {
     "analyze": "REPORT=true yarn build",

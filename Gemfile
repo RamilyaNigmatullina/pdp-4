@@ -22,6 +22,7 @@ gem "sidekiq-scheduler"
 # all other gems
 gem "action_policy"
 gem "active_model_serializers"
+gem "aws-sdk-s3", require: false
 gem "bootsnap", ">= 1.1.0", require: false
 gem "decent_decoration"
 gem "decent_exposure"
