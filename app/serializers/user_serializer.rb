@@ -4,7 +4,7 @@ class UserSerializer < ApplicationSerializer
   attributes :id, :full_name, :email, :avatar
 
   def avatar
-    return url_for(object.avatar) if object.avatar.attached?
+    return rails_blob_url(object.avatar, subdomain: "www") if object.avatar.attached?
 
     url_for("/images/avatar_32x32.png")
   end
