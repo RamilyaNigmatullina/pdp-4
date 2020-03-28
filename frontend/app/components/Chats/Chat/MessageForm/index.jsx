@@ -10,18 +10,28 @@ class MessageForm extends React.Component {
   constructor(props) {
     super(props);
     this.textInput = React.createRef();
+
+    this.state = { value: this.getValue() };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.chatId !== this.props.chatId) {
+      this.setState({ value: this.getValue() });
+    }
   }
 
   renderTextarea() {
     return (
       <div className={classNames(styles.formText, 'form-group', 'text')}>
         <textarea
-          ref={this.textInput}
           className="form-control"
-          rows="1"
-          placeholder="Type text..."
           name="message[text]"
+          onChange={(event) => { this.handleChange(event); }}
           onKeyUp={this.handleKeyUp}
+          placeholder="Type text..."
+          ref={this.textInput}
+          rows="1"
+          value={this.state.value}
         />
       </div>
     );
@@ -50,17 +60,34 @@ class MessageForm extends React.Component {
     const formData = $(event.target).serializeObject();
     createMessage(this.props.chatId, formData)
       .then(() => {
-        this.textInput.current.value = '';
+        localStorage.setItem(this.chatUid(), '');
+        this.setState({ value: '' });
       });
   }
 
   handleKeyUp = (event) => {
     if (event.keyCode === 13) this.handleSubmit(event);
   }
+
+  handleChange = (event) => {
+    const { value } = event.target;
+
+    localStorage.setItem(this.chatUid(), value);
+    this.setState({ value });
+  }
+
+  chatUid = () => {
+    const { chatId, currentUser } = this.props;
+
+    return `chat_${chatId}_${currentUser.id}`;
+  }
+
+  getValue = () => localStorage.getItem(this.chatUid()) || ''
 }
 
 MessageForm.propTypes = {
   chatId: PropTypes.number.isRequired,
+  currentUser: PropTypes.object.isRequired,
 };
 
 export default MessageForm;
