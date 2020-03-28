@@ -15,16 +15,14 @@ Rails.application.routes.draw do
     resource :company, only: %i[edit]
   end
 
-  constraints subdomain: "www" do
-    scope module: :public do
-      root to: "pages#index", as: :public_root
+  scope module: :public do
+    root to: "pages#index", as: :public_root
 
-      resources :pages, only: %i[index]
-      resources :companies, only: %i[new create]
+    resources :pages, only: %i[index]
+    resources :companies, only: %i[new create]
 
-      namespace :users, only: [] do
-        resource :sign_in, only: %i[show create]
-      end
+    namespace :users, only: [] do
+      resource :sign_in, only: %i[show create]
     end
   end
 
