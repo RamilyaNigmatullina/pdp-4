@@ -30,5 +30,3 @@ blocks:
             - git config --global user.name "Semaphore CI"
             - git commit -m "Deploy to Heroku"
             - git push heroku -f $SEMAPHORE_GIT_BRANCH:master
-            - heroku run --exit-code -- bundle exec rails db:migrate
-            - heroku restart
