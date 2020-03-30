@@ -61,7 +61,7 @@ class MessageForm extends React.Component {
 
     if (!this.textInput.current.value.trim()) return;
 
-    this.setState({ isSending: true });
+    this.setState({ isSending: true, value: this.textInput.current.value.trim() });
 
     const formData = $(event.target).serializeObject();
     createMessage(this.props.chatId, formData)
@@ -72,7 +72,11 @@ class MessageForm extends React.Component {
   }
 
   handleKeyUp = (event) => {
-    if (event.keyCode === 13) this.handleSubmit(event);
+    if (event.keyCode === 13) {
+      this.setState({ isSending: true, value: this.textInput.current.value.trim() });
+
+      this.handleSubmit(event);
+    }
   }
 
   handleChange = (event) => {
