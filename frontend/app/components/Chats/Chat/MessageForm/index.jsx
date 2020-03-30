@@ -11,7 +11,7 @@ class MessageForm extends React.Component {
     super(props);
     this.textInput = React.createRef();
 
-    this.state = { value: this.getValue() };
+    this.state = { isSending: false, value: this.getValue() };
   }
 
   componentDidUpdate(prevProps) {
@@ -47,7 +47,11 @@ class MessageForm extends React.Component {
       >
 
         { this.renderTextarea() }
-        <button className={classNames(styles.formButton, 'btn', 'btn-primary')}>Send</button>
+        <button
+          className={classNames(styles.formButton, 'btn', 'btn-primary')}
+          disabled={this.state.isSending}>
+          Send
+        </button>
       </form>
     );
   }
@@ -55,13 +59,15 @@ class MessageForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    if (!this.textInput.current.value) return;
+    if (!this.textInput.current.value.trim()) return;
+
+    this.setState({ isSending: true });
 
     const formData = $(event.target).serializeObject();
     createMessage(this.props.chatId, formData)
       .then(() => {
         localStorage.setItem(this.chatUid(), '');
-        this.setState({ value: '' });
+        this.setState({ isSending: false, value: '' });
       });
   }
 
