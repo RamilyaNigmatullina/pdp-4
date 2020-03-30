@@ -59,7 +59,7 @@ class MessageForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    if (!this.textInput.current.value.trim()) return;
+    if (!this.textInput.current.value.trim() || this.state.isSending) return;
 
     this.setState({ isSending: true, value: this.textInput.current.value.trim() });
 
