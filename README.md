@@ -1,7 +1,5 @@
 # Ramilya's PDP-4
 
-[![Build Status](https://{ORGANIZATION_NAME}.semaphoreci.com/badges/{PROJECT_NAME}.svg)](https://ramilya.semaphoreci.com/projects/pdp-4)
-
 It's a simple site for companies.
 
 ## Scripts
