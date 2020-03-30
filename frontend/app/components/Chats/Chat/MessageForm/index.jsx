@@ -73,7 +73,7 @@ class MessageForm extends React.Component {
 
   handleKeyUp = (event) => {
     if (event.keyCode === 13) {
-      this.setState({ isSending: true, value: this.textInput.current.value.trim() });
+      this.setState({ value: this.textInput.current.value.trim() });
 
       this.handleSubmit(event);
     }
