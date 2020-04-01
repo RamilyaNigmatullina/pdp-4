@@ -11,7 +11,7 @@ exports[`Message renders message 1`] = `
     Hello world!
   </span>
   <img
-    className="rounded-circle"
+    className="image rounded-circle"
     height="32"
     src="/avatar.jpg"
     width="32"
@@ -25,7 +25,7 @@ exports[`Message with interlocator message renders message 1`] = `
   id="message-1"
 >
   <img
-    className="rounded-circle"
+    className="image rounded-circle"
     height="32"
     src="/avatar.jpg"
     width="32"

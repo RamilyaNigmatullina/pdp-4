@@ -1,7 +1,7 @@
 module Profiles
   class PasswordPolicy < ApplicationPolicy
     def update?
-      true
+      user == record
     end
   end
 end

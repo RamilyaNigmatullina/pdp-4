@@ -13,13 +13,16 @@ exports[`MessageForm renders message form 1`] = `
     <textarea
       className="form-control"
       name="message[text]"
+      onChange={[Function]}
       onKeyUp={[Function]}
       placeholder="Type text..."
       rows="1"
+      value=""
     />
   </div>
   <button
     className="formButton btn btn-primary"
+    disabled={false}
   >
     Send
   </button>

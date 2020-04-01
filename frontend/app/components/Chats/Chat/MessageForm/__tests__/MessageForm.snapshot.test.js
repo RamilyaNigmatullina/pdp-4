@@ -10,6 +10,11 @@ describe('MessageForm', () => {
   beforeEach(() => {
     props = {
       chatId: 1,
+      currentUser: {
+        id: 1,
+        full_name: 'John Smith',
+        avatar: '/john_smith_avatar.jpg',
+      },
     };
   });
 

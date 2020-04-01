@@ -1,6 +1,6 @@
 class CompanyPolicy < ApplicationPolicy
   def index?
-    true
+    user.company == record
   end
 
   def update?

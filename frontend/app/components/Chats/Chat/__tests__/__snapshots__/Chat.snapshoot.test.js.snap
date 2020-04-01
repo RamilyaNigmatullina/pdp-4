@@ -23,6 +23,13 @@ exports[`Chat renders chat 1`] = `
   </div>
   <MessageForm
     chatId={1}
+    currentUser={
+      Object {
+        "avatar": "/john_smith_avatar.jpg",
+        "full_name": "John Smith",
+        "id": 1,
+      }
+    }
   />
 </Fragment>
 `;

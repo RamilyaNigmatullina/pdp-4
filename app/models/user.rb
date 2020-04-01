@@ -12,7 +12,6 @@ class User < ApplicationRecord
             inverse_of: :first_user, dependent: :destroy
   has_many :second_user_chats, class_name: "Chat", foreign_key: :second_user_id,
             inverse_of: :second_user, dependent: :destroy
-  has_many :chats, -> { where("first_user_id == :id OR second_user_id == :id", id: id) }, inverse_of: :chat
 
   has_one_attached :avatar
 
@@ -40,7 +39,8 @@ class User < ApplicationRecord
   end
 
   def chat_with(user:)
-    Chat.where(first_user: self, second_user: user).or(Chat.where(first_user: user, second_user: self)).first
+    Chat.find_by(first_user: self, second_user: user) ||
+      Chat.find_by(first_user: user, second_user: self)
   end
 
   def password_required?

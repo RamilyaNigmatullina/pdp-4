@@ -9,7 +9,7 @@ exports[`Interlocutor renders interlocutor info 1`] = `
   >
     <img
       alt=""
-      className="rounded-circle"
+      className="image rounded-circle"
       height="32"
       src="/john_smith_avatar.jpg"
       width="32"
