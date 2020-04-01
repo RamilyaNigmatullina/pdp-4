@@ -5,6 +5,6 @@ class PagesController < BaseController
   private
 
   def authorize_resource!
-    authorize! current_company, with: CompanyPolicy
+    authorize! Company
   end
 end

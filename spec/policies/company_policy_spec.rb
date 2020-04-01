@@ -7,12 +7,6 @@ describe CompanyPolicy do
     subject { policy.apply(:index?) }
 
     it { is_expected.to be_truthy }
-
-    context "when user from another company" do
-      let(:user) { build_stubbed :user }
-
-      it { is_expected.to be_falsey }
-    end
   end
 
   describe "#update" do
