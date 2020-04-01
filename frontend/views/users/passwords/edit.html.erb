@@ -10,8 +10,7 @@
         <%= f.full_error :reset_password_token %>
 
         <div class="form-inputs">
-          <%= f.input :password, label: "New password", required: true, autofocus: true, input_html: { autocomplete: "new-password" }
-            hint: (t("devise.shared.minimum_password_length", count: @minimum_password_length) if @minimum_password_length) %>
+          <%= f.input :password, label: "New password", required: true, autofocus: true, input_html: { autocomplete: "new-password" }, hint: (t("devise.shared.minimum_password_length", count: @minimum_password_length) if @minimum_password_length) %>
           <%= f.input :password_confirmation, label: "Confirm new password", required: true %>
         </div>
 
