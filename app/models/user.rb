@@ -29,7 +29,7 @@ class User < ApplicationRecord
 
   def self.find_for_authentication(warden_conditions)
     find_by(
-      email: warden_conditions[:email],
+      email: warden_conditions[:email].downcase,
       company_id: warden_conditions[:company_id]
     )
   end
