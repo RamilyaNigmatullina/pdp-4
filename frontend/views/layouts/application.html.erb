@@ -1,33 +1,29 @@
 <!DOCTYPE html>
-<%= html_tag do %>
-  <head>
-    <title>Company</title>
+<head>
+  <title>Company</title>
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
-      integrity: "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T",
-      crossorigin: "anonymous" %>
+  <%= stylesheet_link_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
+    integrity: "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T",
+    crossorigin: "anonymous" %>
 
-    <%= stylesheet_pack_tag "application", media: "all", nonce: true %>
-    <%= javascript_pack_tag "application", defer: true, nonce: true %>
-  </head>
+  <%= stylesheet_pack_tag "application", media: "all", nonce: true %>
+  <%= javascript_pack_tag "application", defer: true, nonce: true %>
+</head>
 
-  <%= body_tag do %>
-    <div class="d-flex toggled" id="wrapper">
-      <%= render "sidebar" %>
+<div class="d-flex toggled" id="wrapper">
+  <%= render "sidebar" %>
 
-      <div id="page-content-wrapper">
-        <%= render "navigation" %>
+  <div id="page-content-wrapper">
+    <%= render "navigation" %>
 
-        <%= render "messages" %>
-        <%= yield %>
-      </div>
-    </div>
-  <% end %>
-<% end %>
+    <%= render "messages" %>
+    <%= yield %>
+  </div>
+</div>
