@@ -36,6 +36,7 @@ gem "interactor"
 gem "paranoia"
 gem "rails-i18n"
 gem "seedbank"
+gem "tunemygc"
 
 group :development do
   gem "letter_opener"
